@@ -10,6 +10,14 @@ public class DrawScreen : MonoBehaviour {
     public bool usePhysics = true;
     public bool useKinematic = false;
 
+	public enum Physicss
+	{
+		Dynamic,
+		Kinematic
+	}
+
+	public Physicss physType;
+
     public float colliderThickness = 0.1f;
     public float vertexPrecision = 0.0001f;
 
@@ -28,6 +36,7 @@ public class DrawScreen : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			StartCoroutine (DrawLine()); 
 		}
+		Physicss p = Physicss.Dynamic;
 	}
 
     //Create a LineRenderer and draws where mouse is moved. It also applies the physiscs to the draw
@@ -36,8 +45,9 @@ public class DrawScreen : MonoBehaviour {
     IEnumerator DrawLine() {
         float drawTimer = 0;
 
-		LineRenderer lr = new GameObject ().AddComponent<LineRenderer> ();
-		lr.transform.SetParent(transform);//Set the line renderer new objects as a child of the object who calls the script
+
+		LineRenderer lr =  new GameObject ().AddComponent<LineRenderer> ();
+		lr.transform.SetParent(GameObject.Find("Lines").transform);//Set the line renderer new objects as a child of the object who calls the script
         lr.startWidth = 0.1f;
         lr.endWidth = 0.1f;
         lr.material = new Material (shader);
