@@ -39,4 +39,5 @@ namespace UnityStandardAssets._2D
             m_Jump = false;
         }
 			    
+	}
 }
