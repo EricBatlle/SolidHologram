@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114405905934468830}
   - component: {fileID: 61724463965741866}
   - component: {fileID: 114462416257939486}
+  - component: {fileID: 114221252306608270}
   m_Layer: 0
   m_Name: CharacterRobotBoy
   m_TagString: Player
@@ -182,6 +183,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114221252306608270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816532449734644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8f3fc12cdeb5b840b15136350e9fbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114405905934468830
 MonoBehaviour:
   m_ObjectHideFlags: 1
