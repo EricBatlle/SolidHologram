@@ -21,6 +21,7 @@ public class Drip : MonoBehaviour {
 
     public void dripDrop()
     {
-        var drop = (GameObject)Instantiate(dropPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        //var drop = (GameObject)Instantiate(dropPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        Instantiate(dropPrefab, this.gameObject.transform.position, this.gameObject.transform.rotation);
     }
 }

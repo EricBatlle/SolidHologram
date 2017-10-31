@@ -3806,11 +3806,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4718047057105548, guid: db6bee96a0c3cfb4390a6b1f95dd225d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.4
+      value: 23.03
       objectReference: {fileID: 0}
     - target: {fileID: 4718047057105548, guid: db6bee96a0c3cfb4390a6b1f95dd225d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.217272
+      value: -3.54
       objectReference: {fileID: 0}
     - target: {fileID: 4718047057105548, guid: db6bee96a0c3cfb4390a6b1f95dd225d, type: 2}
       propertyPath: m_LocalPosition.z
