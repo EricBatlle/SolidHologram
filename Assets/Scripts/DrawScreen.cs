@@ -67,7 +67,7 @@ public class DrawScreen : MonoBehaviour
         lr.material = new Material(shader);
         lr.material.color = color;
         lr.useWorldSpace = false; //Set positions to relative, in this case, to the parent object --> the camera
-
+        lr.tag = "Draw";
         List<Vector3> positionsLine = new List<Vector3>();
 
         //Can't be ButtonDown, cause it only will works for a single frame

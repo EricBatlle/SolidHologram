@@ -8,6 +8,8 @@ TagManager:
   - Collectable
   - DeadZone
   - Spawn
+  - Draw
+  - Wall
   layers:
   - Default
   - TransparentFX
