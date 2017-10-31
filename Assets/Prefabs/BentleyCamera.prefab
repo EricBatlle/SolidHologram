@@ -105,9 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2b9d719808d454ebe4888d6a2b9fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyType: 0
   usePhysics: 1
-  useKinematic: 0
-  physType: 0
   colliderThickness: 0.1
   vertexPrecision: 0.0001
   deathTime: 0

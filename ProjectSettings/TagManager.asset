@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bentley
+  - Collectable
+  - DeadZone
+  - Spawn
   layers:
   - Default
   - TransparentFX
