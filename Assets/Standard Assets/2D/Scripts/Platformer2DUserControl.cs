@@ -1,15 +1,26 @@
 using System;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets._2D
 {
     [RequireComponent(typeof (PlatformerCharacter2D))]
-    public class Platformer2DUserControl : MonoBehaviour
+    public class Platformer2DUserControl : NetworkBehaviour
     {
         private PlatformerCharacter2D m_Character;
         private bool m_Jump;
 		private bool isColliding;
+
+        //Only local player can use it
+        private void Start()
+        {
+            if (!isLocalPlayer)
+            {
+                Destroy(this);
+                return;
+            }
+        }
 
         private void Awake()
         {

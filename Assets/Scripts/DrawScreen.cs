@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class DrawScreen : MonoBehaviour
+public class DrawScreen : NetworkBehaviour
 {
 
     //CONSTANTS
@@ -44,7 +44,16 @@ public class DrawScreen : MonoBehaviour
 
     public Shader shader;
     public Color color;
-
+    // Use this for initialization
+    void Start()
+    {
+        if (!isLocalPlayer)
+        {
+            Destroy(this);
+            return;
+        }
+        shader = Shader.Find("Unlit/Color");
+    }
     // Update is called once per frame
     void Update()
     {
@@ -56,6 +65,7 @@ public class DrawScreen : MonoBehaviour
     }
 
     //Create a LineRenderer and draws where mouse is moved. It also applies the physiscs to the draw
+    //[Command]
     IEnumerator DrawLine()
     {
         float drawTimer = 0;
