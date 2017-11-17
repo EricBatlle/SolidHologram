@@ -57,18 +57,35 @@ public class DrawScreen : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+		
+		if (Input.GetMouseButtonDown(0))
+		{
+			CmdAddSphere ();
+		}
+		/*
         if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(DrawLine());
         }
+        */
     }
+
+	[Command]
+	void CmdAddSphere() {
+		GameObject lro = (GameObject)Instantiate (Resources.Load ("LineRendererObject"));
+		NetworkServer.Spawn (lro);
+	}
 
     //Create a LineRenderer and draws where mouse is moved. It also applies the physiscs to the draw
     //[Command]
     IEnumerator DrawLine()
     {
         float drawTimer = 0;
+
+		//GameObject lro = Instantiate (Resources.Load ("Prefabs/LineRendererObject"));
+		GameObject lro = (GameObject)Instantiate (Resources.Load ("LineRendererObject"));
+
+		LineRenderer lr2 = lro.GetComponent<LineRenderer> ();
 
         LineRenderer lr = new GameObject().AddComponent<LineRenderer>();
         lr.transform.SetParent(transform);//Set the line renderer new objects as a child of the object who calls the script
