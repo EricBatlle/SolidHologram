@@ -52,8 +52,8 @@ public class DrawScreen : NetworkBehaviour
             Destroy(this);
             return;
         }
-        shader = Shader.Find("Unlit/Color");
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -79,7 +79,10 @@ public class DrawScreen : NetworkBehaviour
         lr.useWorldSpace = false; //Set positions to relative, in this case, to the parent object --> the camera
         lr.tag = "Draw";
         List<Vector3> positionsLine = new List<Vector3>();
-
+        lr.gameObject.AddComponent<NetworkTransform>();
+        //lr.gameObject.GetComponent<NetworkIdentity>().localPlayerAuthority = true;
+        //lr.gameObject.GetComponent<NetworkIdentity>().serverOnly = true;
+        
         //Can't be ButtonDown, cause it only will works for a single frame
         while ((drawTimer < drawTime) && (Input.GetMouseButton(0)))
         {

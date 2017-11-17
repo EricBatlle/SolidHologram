@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114220282808715798}
   m_Layer: 0
   m_Name: BentleyCamera
-  m_TagString: Untagged
+  m_TagString: Bentley
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   mass: 10
   deathTime: 0
   drawTime: 3
-  shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 3}
+  shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   color: {r: 0, g: 0.91724133, b: 1, a: 0}
 --- !u!124 &124848742141239626
 Behaviour:
