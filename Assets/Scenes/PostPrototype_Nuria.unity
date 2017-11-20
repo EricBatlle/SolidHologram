@@ -4329,8 +4329,8 @@ MonoBehaviour:
   m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
-  - {fileID: 1816532449734644, guid: e31322a399283ce4596072067ae12fa3, type: 2}
   - {fileID: 1083407084184776, guid: 86b2e7482dc53d546af1c956c429144f, type: 2}
+  - {fileID: 1816532449734644, guid: e31322a399283ce4596072067ae12fa3, type: 2}
   - {fileID: 1339324207320068, guid: bf653f7be1fa02442b99d8b229ac6343, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
@@ -4389,8 +4389,8 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   player1SpawnPos: {x: 6, y: 9, z: 0}
   player2SpawnPos: {x: 6, y: 9, z: 0}
-  character1: {fileID: 1816532449734644, guid: e31322a399283ce4596072067ae12fa3, type: 2}
-  character2: {fileID: 1083407084184776, guid: 86b2e7482dc53d546af1c956c429144f, type: 2}
+  character1: {fileID: 1083407084184776, guid: 86b2e7482dc53d546af1c956c429144f, type: 2}
+  character2: {fileID: 1816532449734644, guid: e31322a399283ce4596072067ae12fa3, type: 2}
   currentCharacter: 0
 --- !u!4 &1732289707
 Transform:
