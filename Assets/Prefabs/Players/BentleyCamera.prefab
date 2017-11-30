@@ -160,10 +160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48aaa57df75a73949a8f91a764c55b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usePhysics: 1
+  bodyType: 1
+  colliderThickness: 0.1
+  mass: 10
   lineObjectPrefab: {fileID: 1159826074647394, guid: 6ac229ad7ec1c844394ffc082e766c38,
     type: 2}
   pointInterval: 30
-  colliderThickness: 0.1
 --- !u!124 &124848742141239626
 Behaviour:
   m_ObjectHideFlags: 1

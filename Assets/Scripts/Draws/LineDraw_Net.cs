@@ -5,14 +5,40 @@ using UnityEngine.Networking;
 
 public class LineDraw_Net : NetworkBehaviour
 {
-
+    //PREFAB DRAW
     [SerializeField] GameObject lineObjectPrefab; //this needs to be the line prefab in the assets folder
+
+    //ENUM-dropdownMenu
+    public bool usePhysics = true;
+    public enum PhysicsType
+    {
+        Dynamic,
+        Static,
+        Kinematic
+    }
+    RigidbodyType2D getBodyType(PhysicsType pt)
+    {
+        if (pt == PhysicsType.Dynamic)
+        { return RigidbodyType2D.Dynamic; }
+        else if (pt == PhysicsType.Static)
+        { return RigidbodyType2D.Static; }
+        else if (pt == PhysicsType.Kinematic)
+        { return RigidbodyType2D.Kinematic; }
+        return RigidbodyType2D.Dynamic;
+    }
+    public PhysicsType bodyType;
+    //----------------------------------------------
+
+    //OTHER CUSTOM PARAMETERS
+    public float colliderThickness = 0.1f;
     [SerializeField] float pointInterval = 30f; //the maximum distance in pixels between each point of line
+    public float mass = 10.0f;
+
+    public float deathTime = 0;
+    public float drawTime = 3;
 
     Vector3 oldMousePos; //we store the mouse position when user first clicks
-
     List<Vector3> positionsLine = new List<Vector3>();
-    public float colliderThickness = 0.1f;
 
     // Update is called once per frame
     void Update()
@@ -57,8 +83,11 @@ public class LineDraw_Net : NetworkBehaviour
         //if mouse button is up
         if (Input.GetMouseButtonUp(0))
         {
-            //Add collider to the lr
-            RpcUpdateLineCollider();
+            if (usePhysics == true)
+            {
+                //Add collider to the lr
+                RpcUpdateLineCollider();
+            }
         }
     }
 
@@ -98,9 +127,6 @@ public class LineDraw_Net : NetworkBehaviour
         //lr.positionCount++;
         lr.positionCount = positionsLine.Count;
         lr.SetPosition(lr.positionCount - 1, newPosLocal);
-
-        //here you would create/update the collider for the rigidbody
-        //...
     }
 
     [ClientRpc]
@@ -125,5 +151,12 @@ public class LineDraw_Net : NetworkBehaviour
 
         collider.points = positionsCollider.ToArray();
         collider.gameObject.AddComponent<Rigidbody2D>();
+
+        //Changing properties
+        lr.GetComponent<Rigidbody2D>().mass = mass;
+        lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
+
+        positionsLine.Clear();
+
     }
 }
