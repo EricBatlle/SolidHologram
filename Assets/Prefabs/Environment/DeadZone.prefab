@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 61437821789109616}
   - component: {fileID: 114401304180005390}
   - component: {fileID: 114151525973231058}
+  - component: {fileID: 114958419594716100}
   m_Layer: 0
   m_Name: DeadZone
   m_TagString: DeadZone
@@ -110,3 +111,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb19a38cf271b6241a0dc312817429f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114958419594716100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1823920285235458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 1

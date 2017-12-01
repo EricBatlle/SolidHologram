@@ -8,7 +8,7 @@ public class LineDraw_Net : NetworkBehaviour
     //PREFAB DRAW
     [SerializeField] GameObject lineObjectPrefab; //this needs to be the line prefab in the assets folder
 
-    //ENUM-dropdownMenu
+    //ENUM-dropdownMenu+PHYSICS
     public bool usePhysics = true;
     public enum PhysicsType
     {
@@ -27,23 +27,27 @@ public class LineDraw_Net : NetworkBehaviour
         return RigidbodyType2D.Dynamic;
     }
     public PhysicsType bodyType;
-    //----------------------------------------------
-
-    //OTHER CUSTOM PARAMETERS
     public float colliderThickness = 0.1f;
     [SerializeField] float pointInterval = 30f; //the maximum distance in pixels between each point of line
     public float mass = 10.0f;
 
+    //OTHER CUSTOM PARAMETERS
+    public Shader shader;
+    public Color color;
+    public float startWidth = 0.1f; //Try to maintain the ratio of start-endWitdh...
+    public float endWidth = 0.1f;  //or the collider will be in troubles!
+    
     public float deathTime = 0;
     public float drawTime = 3;
 
+    //GLOBAL VARIABLES
     Vector3 oldMousePos; //we store the mouse position when user first clicks
     List<Vector3> positionsLine = new List<Vector3>();
+    private float drawTimer;
 
     // Update is called once per frame
     void Update()
     {
-
         //only the server can draw
         if (!isServer)
             return;
@@ -61,10 +65,11 @@ public class LineDraw_Net : NetworkBehaviour
 
             //spawn new line object on server and all clients
             CmdMakeNewLine(mwc);
+            drawTimer = 0;
         }
 
-        //if mouse button is down
-        if (Input.GetMouseButton(0))
+        //if mouse button is down, and the draw restrictions are true
+        if (Input.GetMouseButton(0) && ((drawTimer < drawTime)) && (isDrawableSurface()))
         {
             Vector3 mp = Input.mousePosition;
             //if we have dragged mouse more than pointInterval pixels
@@ -77,7 +82,7 @@ public class LineDraw_Net : NetworkBehaviour
                 //update line on all clients
                 RpcUpdateLine(mwc);
             }
-
+            drawTimer += Time.deltaTime;
         }
 
         //if mouse button is up
@@ -104,6 +109,7 @@ public class LineDraw_Net : NetworkBehaviour
         //create a new line object. NOTE: NetworkServer.Spawn spawns a default copy of the gameobject
         //if we change any properties here they will NOT be sent to client
         GameObject instance = Instantiate(lineObjectPrefab, mouseWorldCoords, Quaternion.identity) as GameObject;
+
         NetworkServer.Spawn(instance);
 
     }
@@ -115,6 +121,21 @@ public class LineDraw_Net : NetworkBehaviour
         GameObject lineObject = GameObject.FindWithTag("line");
         //get line renderer component
         LineRenderer lr = lineObject.GetComponent<LineRenderer>();
+        
+        //Auto-destruction object
+        if ((deathTime != 0) && (deathTime > 0))
+        {
+            Destroy(lr.gameObject, deathTime);
+        }
+
+        //ToDo: Move this out of the updateLineLoop
+        //Custom LR settings
+        lr.transform.SetParent(transform);//Set the line renderer new objects as a child of the object who calls the script
+        lr.material = new Material(shader);
+        lr.material.color = color;
+        lr.startWidth = startWidth;
+        lr.endWidth = endWidth;
+        //instance.gameObject.GetComponent<LineRenderer>().useWorldSpace = false;//Set positions to relative, in this case, to the parent object --> the camera
 
         // the line renderer's points are set to 'local', not world.
         // so we have to transform the world position of new point in local coords
@@ -159,4 +180,25 @@ public class LineDraw_Net : NetworkBehaviour
         positionsLine.Clear();
 
     }
+
+    bool isDrawableSurface()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+
+        if ((hit.collider != null))
+        {
+            //Has collider and is Drawable
+            if (hit.collider.gameObject.GetComponent<isDrawable>() != null)
+            {
+                return true;
+            }
+            //Has collider but is not Drawable
+            Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
+            Debug.Log("Target Name: " + hit.collider.gameObject.name);
+            return false;
+        }
+        return true;
+    }
+
 }
