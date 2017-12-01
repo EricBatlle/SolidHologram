@@ -23,7 +23,7 @@ public class killPlayer : MonoBehaviour {
             //collision.gameObject.SetActive(false);
             //Respawn
             collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-            ;
+            
         }
         
     }

@@ -38,7 +38,7 @@ public class LineDraw_Net : NetworkBehaviour
     public float endWidth = 0.1f;  //or the collider will be in troubles!
     
     public float deathTime = 0;
-    public float drawTime = 3;
+    public float drawTime = 3; // 0 == inf
 
     //GLOBAL VARIABLES
     Vector3 oldMousePos; //we store the mouse position when user first clicks
@@ -69,7 +69,7 @@ public class LineDraw_Net : NetworkBehaviour
         }
 
         //if mouse button is down, and the draw restrictions are true
-        if (Input.GetMouseButton(0) && ((drawTimer < drawTime)) && (isDrawableSurface()))
+		if (Input.GetMouseButton(0) && ((drawTime == 0) || (drawTimer <= drawTime)) && (isDrawableSurface()))
         {
             Vector3 mp = Input.mousePosition;
             //if we have dragged mouse more than pointInterval pixels
@@ -144,7 +144,6 @@ public class LineDraw_Net : NetworkBehaviour
         //add the new position to line renderer
         positionsLine.Add(newPosLocal);
 
-
         //lr.positionCount++;
         lr.positionCount = positionsLine.Count;
         lr.SetPosition(lr.positionCount - 1, newPosLocal);
@@ -189,13 +188,14 @@ public class LineDraw_Net : NetworkBehaviour
         if ((hit.collider != null))
         {
             //Has collider and is Drawable
+			//Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
+			//Debug.Log("Target Name: " + hit.collider.gameObject.name);
             if (hit.collider.gameObject.GetComponent<isDrawable>() != null)
             {
                 return true;
             }
             //Has collider but is not Drawable
-            Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
-            Debug.Log("Target Name: " + hit.collider.gameObject.name);
+            
             return false;
         }
         return true;
