@@ -160,12 +160,12 @@ public class LineDraw_Net : NetworkBehaviour
 
         for (int i = 0; i < positionsLine.Count; i++)
         {
-            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y));
+            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y - colliderThickness/2));
         }
         //To allow convex problems
         for (int i = positionsLine.Count - 1; i >= 0; i--)
         {
-            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y + colliderThickness));
+            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y + colliderThickness/2));
         }
 
         PolygonCollider2D collider = lr.gameObject.AddComponent<PolygonCollider2D>();
