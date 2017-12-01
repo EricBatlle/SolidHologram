@@ -27,6 +27,7 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
+            Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
         }
 
 
