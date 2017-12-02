@@ -10,6 +10,7 @@ public class LineDraw_Net : NetworkBehaviour
 
     //ENUM-dropdownMenu+PHYSICS
     public bool usePhysics = true;
+	public bool useAutoMass = true;
     public enum PhysicsType
     {
         Dynamic,
@@ -28,8 +29,9 @@ public class LineDraw_Net : NetworkBehaviour
     }
     public PhysicsType bodyType;
     public float colliderThickness = 0.1f;
-    [SerializeField] float pointInterval = 30f; //the maximum distance in pixels between each point of line
+    [SerializeField] float pointInterval = 3f; //the maximum distance in pixels between each point of line
     public float mass = 10.0f;
+	public float density = 75.0f;
 
     //OTHER CUSTOM PARAMETERS
     public Shader shader;
@@ -105,6 +107,7 @@ public class LineDraw_Net : NetworkBehaviour
         {
             NetworkServer.Destroy(td);
         }
+		
 
         //create a new line object. NOTE: NetworkServer.Spawn spawns a default copy of the gameobject
         //if we change any properties here they will NOT be sent to client
@@ -171,9 +174,13 @@ public class LineDraw_Net : NetworkBehaviour
 
         collider.points = positionsCollider.ToArray();
         collider.gameObject.AddComponent<Rigidbody2D>();
-
         //Changing properties
-        lr.GetComponent<Rigidbody2D>().mass = mass;
+		lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
+		if(useAutoMass == true){
+			collider.density = density;
+		}else{
+			lr.GetComponent<Rigidbody2D>().mass = mass;
+		}
         lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
 
         positionsLine.Clear();

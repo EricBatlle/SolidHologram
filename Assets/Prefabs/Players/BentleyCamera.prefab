@@ -163,10 +163,12 @@ MonoBehaviour:
   lineObjectPrefab: {fileID: 1159826074647394, guid: 6ac229ad7ec1c844394ffc082e766c38,
     type: 2}
   usePhysics: 1
+  useAutoMass: 1
   bodyType: 0
   colliderThickness: 0.1
-  pointInterval: 30
-  mass: 10
+  pointInterval: 3
+  mass: 100
+  density: 75
   shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   color: {r: 0, g: 1, b: 1, a: 0}
   startWidth: 0.1
