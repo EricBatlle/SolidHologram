@@ -24,7 +24,7 @@ public class deleteWhenGround : MonoBehaviour {
             collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
             ;
         }
-        if ((collision.gameObject.CompareTag("Draw")) || (collision.gameObject.CompareTag("Wall")))
+        if ((collision.gameObject.CompareTag("line")) || (collision.gameObject.CompareTag("Wall")))
         {
             //Auto-Destroy
             Destroy(gameObject);

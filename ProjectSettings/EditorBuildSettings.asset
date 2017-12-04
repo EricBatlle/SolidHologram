@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PostPrototype/PostPrototype_v2.unity
     guid: 1ad997444d8bc9f4da6c24985d078ff6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PostPrototype/PostPrototype_lvl1.2.unity
     guid: 6f4b6c4c449bf1b43829ca7769588225
   - enabled: 0

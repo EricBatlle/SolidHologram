@@ -27,6 +27,7 @@ public class NetworkManager_MultiPlayer : NetworkManager
             chosenCharacter = character2;
             chosenSpawnPos = player2SpawnPos;
         }
+		chosenSpawnPos = GameObject.FindGameObjectWithTag("Spawn").transform.position;
 
         //create new object and add to server
         var player = (GameObject)GameObject.Instantiate(chosenCharacter, chosenSpawnPos, Quaternion.identity);
