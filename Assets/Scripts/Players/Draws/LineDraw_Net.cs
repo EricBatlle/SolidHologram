@@ -172,8 +172,12 @@ public class LineDraw_Net : NetworkBehaviour
 
         PolygonCollider2D collider = lr.gameObject.AddComponent<PolygonCollider2D>();
 
+
         collider.points = positionsCollider.ToArray();
         collider.gameObject.AddComponent<Rigidbody2D>();
+		//
+		//lr.gameObject.GetComponent<NetworkTransform> ().transformSyncMode = NetworkTransform.TransformSyncMode.SyncRigidbody2D;
+		//
         //Changing properties
 		lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
 		if(useAutoMass == true){
@@ -182,7 +186,6 @@ public class LineDraw_Net : NetworkBehaviour
 			lr.GetComponent<Rigidbody2D>().mass = mass;
 		}
         lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
-
         positionsLine.Clear();
 
     }
