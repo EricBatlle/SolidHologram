@@ -177,7 +177,7 @@ public class LineDraw_Net : NetworkBehaviour
         collider.gameObject.AddComponent<Rigidbody2D>();
 		//
 		//lr.gameObject.GetComponent<NetworkTransform> ().transformSyncMode = NetworkTransform.TransformSyncMode.SyncRigidbody2D;
-		//
+		
         //Changing properties
 		lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
 		if(useAutoMass == true){

@@ -27,4 +27,14 @@ public class killPlayer : MonoBehaviour {
         }
         
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            print(this);
+            
+            collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        }
+    }
 }

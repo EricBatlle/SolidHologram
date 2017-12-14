@@ -47,30 +47,24 @@ public class moveTo : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		vecDirection = getDirectionVector(direction);
+        print("vecDirec"+vecDirection);
 		Vector3 maxVecDirection = vecDirection * maxDisplacement;
 		vecDirection *= speed;
-		destination = this.transform.position + maxVecDirection;
-	}
+        destination = this.transform.position + maxVecDirection;
+        
+    }
 
-	// Update is called once per frame
-	void Update () {
-
-		//if( (startMoving == true) && (this.transform.position.y <= destination.y)){
-		if(startMoving == true){
+    // Update is called once per frame
+    void Update () {
+        if (!startMoving)
+        {
+            startMoving = transform.FindChild("DoorTrigger").gameObject.GetComponent<doorTrigger>().startMoving;
+        }
+        if (startMoving){
 			if (isAvailableDirection(direction)) {
-				transform.Translate(vecDirection * Time.deltaTime);
+                transform.Translate(vecDirection * Time.deltaTime);
 			}
 		}
-	}
-
-	//Start moving when Player touch the trigger
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.CompareTag("Player"))
-		{
-			startMoving = true;
-		}
-
 	}
 
 }
