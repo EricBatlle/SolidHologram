@@ -15,10 +15,12 @@ public class doorTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+       
         if (startMoving)
         {
             enabled = false;
         }
+        
 	}
 
     //Start moving when Player touch the trigger
@@ -26,7 +28,6 @@ public class doorTrigger : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            print("collision");
             startMoving = true;
         }
 

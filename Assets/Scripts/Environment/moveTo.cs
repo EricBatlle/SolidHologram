@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class moveTo : MonoBehaviour {
 
+    public GameObject trigger;
+
 	public Direction direction;
 	public enum Direction
 	{
@@ -41,29 +43,33 @@ public class moveTo : MonoBehaviour {
 	private Vector3 destination;
 	private bool startMoving = false;
 
-	public float maxDisplacement = 5;
+	public float maxDisplacement = 5; //if 0 -> returns to the origin
 	public float speed = 1;
 
 	// Use this for initialization
 	void Start () {
 		vecDirection = getDirectionVector(direction);
-        print("vecDirec"+vecDirection);
 		Vector3 maxVecDirection = vecDirection * maxDisplacement;
 		vecDirection *= speed;
         destination = this.transform.position + maxVecDirection;
-        
+
     }
 
     // Update is called once per frame
     void Update () {
         if (!startMoving)
         {
-            startMoving = transform.FindChild("DoorTrigger").gameObject.GetComponent<doorTrigger>().startMoving;
+            //startMoving = transform.Find("DoorTrigger").gameObject.GetComponent<doorTrigger>().startMoving;
+            startMoving = trigger.GetComponent<doorTrigger>().startMoving;
         }
         if (startMoving){
 			if (isAvailableDirection(direction)) {
                 transform.Translate(vecDirection * Time.deltaTime);
-			}
+            }
+            else
+            {
+                enabled = false;
+            }
 		}
 	}
 
