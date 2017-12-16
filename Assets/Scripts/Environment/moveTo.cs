@@ -41,10 +41,10 @@ public class moveTo : MonoBehaviour {
 
 	private Vector3 vecDirection;
 	private Vector3 destination;
-	private bool startMoving = false;
 
 	public float maxDisplacement = 5; //if 0 -> returns to the origin
 	public float speed = 1;
+	public bool startMoving = false;
 
 	// Use this for initialization
 	void Start () {
@@ -59,17 +59,11 @@ public class moveTo : MonoBehaviour {
     void Update () {
         if (!startMoving)
         {
-            //startMoving = transform.Find("DoorTrigger").gameObject.GetComponent<doorTrigger>().startMoving;
             startMoving = trigger.GetComponent<doorTrigger>().startMoving;
         }
         if (startMoving){
 			if (isAvailableDirection(direction)) {
                 transform.Translate(vecDirection * Time.deltaTime);
-            }
-			else
-            {
-				print ("primer moveTo desactivado");
-                enabled = false;
             }
 		}
 	}

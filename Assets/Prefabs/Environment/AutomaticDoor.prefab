@@ -276,6 +276,7 @@ MonoBehaviour:
   direction: 0
   maxDisplacement: 5
   speed: 1
+  startMoving: 0
 --- !u!114 &114550827597585800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,6 +289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoving: 0
+  dir: 1
+  components: []
 --- !u!114 &114744029543445398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,6 +303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoving: 0
+  dir: 0
+  components: []
 --- !u!114 &114749867891234186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,3 +320,4 @@ MonoBehaviour:
   direction: 1
   maxDisplacement: 0
   speed: 1
+  startMoving: 0
