@@ -66,8 +66,9 @@ public class moveTo : MonoBehaviour {
 			if (isAvailableDirection(direction)) {
                 transform.Translate(vecDirection * Time.deltaTime);
             }
-            else
+			else
             {
+				print ("primer moveTo desactivado");
                 enabled = false;
             }
 		}
