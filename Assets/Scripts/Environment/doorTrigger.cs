@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class doorTrigger : MonoBehaviour {
 
-	public enum Direction
-	{
-		Up,
-		Down,
-		Right,
-		Left
-	}
     public bool startMoving = false;
-	public Direction dir;
 	public Component[] components;
 
     // Use this for initialization
@@ -32,7 +24,7 @@ public class doorTrigger : MonoBehaviour {
 	}
 
     //Start moving when Player touch the trigger
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.CompareTag("Player"))
