@@ -170,17 +170,9 @@ public class LineDraw_Net : NetworkBehaviour
             positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y + colliderThickness/2));
         }
         PolygonCollider2D collider = lr.gameObject.AddComponent<PolygonCollider2D>();
-
         collider.points = positionsCollider.ToArray();
-        //collider.gameObject.AddComponent<Rigidbody2D>();
-		/*
-		if(collider.gameObject.GetComponent<Rigidbody2D>() != null){
-			lr.gameObject.GetComponent<NetworkTransform> ().transformSyncMode = NetworkTransform.TransformSyncMode.SyncRigidbody2D;
-		}
-		*/
-			
-        //Changing properties
 
+        //RigidBody Properties
 		lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
 		if(useAutoMass == true){
 			collider.density = density;

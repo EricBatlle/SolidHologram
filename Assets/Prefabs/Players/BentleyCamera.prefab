@@ -147,8 +147,8 @@ MonoBehaviour:
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  m_InterpolateRotation: 10
+  m_InterpolateMovement: 10
 --- !u!114 &114351475657428498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,8 +167,8 @@ MonoBehaviour:
   bodyType: 0
   colliderThickness: 0.1
   pointInterval: 3
-  mass: 100
-  density: 75
+  mass: 400
+  density: 150
   shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   color: {r: 0, g: 1, b: 1, a: 0}
   startWidth: 0.1

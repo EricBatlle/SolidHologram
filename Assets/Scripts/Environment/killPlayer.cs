@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class killPlayer : MonoBehaviour {
 
+	private Vector3 initialPos;
 	// Use this for initialization
 	void Start () {
-		
+		initialPos = this.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -32,9 +33,8 @@ public class killPlayer : MonoBehaviour {
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            print(this);
-            
             collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-        }
+			this.transform.position = initialPos; //just for the BouncyCapsule?
+		}
     }
 }

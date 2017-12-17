@@ -18,7 +18,7 @@ public class doorTrigger : MonoBehaviour {
 		//if the door is moving, we need to stop the trigger startMoving or the door update will never stop recovering this info
 		if(transform.GetComponentInParent<moveTo>().startMoving == true){
 			startMoving = false;
-			//enabled = false; -> this could improve performance but if the player go back and forward through triggers could stop the door
+			//enabled = false; -> this could improve performance BUT if the player go back and forward through triggers could stop the door
 		}
         
 	}
