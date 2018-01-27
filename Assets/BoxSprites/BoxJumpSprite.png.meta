@@ -1,0 +1,472 @@
+fileFormatVersion: 2
+guid: 249c9e5a50c27ed40bd6239240a94bdd
+timeCreated: 1516468100
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BoxJumpSprite_0
+    21300002: BoxJumpSprite_1
+    21300004: BoxJumpSprite_2
+    21300006: BoxJumpSprite_3
+    21300008: BoxJumpSprite_4
+    21300010: BoxJumpSprite_5
+    21300012: BoxJumpSprite_6
+    21300014: BoxJumpSprite_7
+    21300016: BoxJumpSprite_8
+    21300018: BoxJumpSprite_9
+    21300020: BoxJumpSprite_10
+    21300022: BoxJumpSprite_11
+    21300024: BoxJumpSprite_12
+    21300026: BoxJumpSprite_13
+    21300028: BoxJumpSprite_14
+    21300030: BoxJumpSprite_15
+    21300032: BoxJumpSprite_16
+    21300034: BoxJumpSprite_17
+    21300036: BoxJumpSprite_18
+    21300038: BoxJumpSprite_19
+    21300040: BoxJumpSprite_20
+    21300042: BoxJumpSprite_21
+    21300044: BoxJumpSprite_22
+    21300046: BoxJumpSprite_23
+    21300048: BoxJumpSprite_24
+    21300050: BoxJumpSprite_25
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BoxJumpSprite_0
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 1760
+        width: 103
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_1
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 1759
+        width: 104
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_2
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 1757
+        width: 103
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_3
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 1758
+        width: 104
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_4
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 1758
+        width: 104
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_5
+      rect:
+        serializedVersion: 2
+        x: 1491
+        y: 1759
+        width: 104
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_6
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 1757
+        width: 103
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_7
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 1388
+        width: 104
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_8
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 1388
+        width: 111
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_9
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 1387
+        width: 122
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_10
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 1388
+        width: 134
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_11
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 1387
+        width: 132
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_12
+      rect:
+        serializedVersion: 2
+        x: 1473
+        y: 1388
+        width: 129
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_13
+      rect:
+        serializedVersion: 2
+        x: 1747
+        y: 1390
+        width: 124
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_14
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1009
+        width: 124
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_15
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1008
+        width: 122
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_16
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 1008
+        width: 118
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_17
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 1009
+        width: 119
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_18
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 1009
+        width: 109
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_19
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1009
+        width: 103
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_20
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 1009
+        width: 103
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_21
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 633
+        width: 103
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_22
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 633
+        width: 103
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_23
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 633
+        width: 105
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_24
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 633
+        width: 104
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxJumpSprite_25
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 633
+        width: 103
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 81006499429498506}
   - component: {fileID: 114119993044117112}
   - component: {fileID: 114220282808715798}
-  - component: {fileID: 114351475657428498}
+  - component: {fileID: 114724684584371964}
   m_Layer: 0
   m_Name: BentleyCamera
   m_TagString: Bentley
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
   m_InterpolateMovement: 10
---- !u!114 &114351475657428498
+--- !u!114 &114724684584371964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -167,14 +167,14 @@ MonoBehaviour:
   bodyType: 0
   colliderThickness: 0.1
   pointInterval: 3
-  mass: 400
-  density: 150
+  mass: 10
+  density: 75
   shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
-  color: {r: 0, g: 1, b: 1, a: 0}
+  color: {r: 0, g: 0.7931032, b: 1, a: 0}
   startWidth: 0.1
   endWidth: 0.1
   deathTime: 0
-  drawTime: 0
+  drawTime: 3
 --- !u!124 &124848742141239626
 Behaviour:
   m_ObjectHideFlags: 1

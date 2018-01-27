@@ -10,7 +10,7 @@ public class LineDraw_Net : NetworkBehaviour
 
     //ENUM-dropdownMenu+PHYSICS
     public bool usePhysics = true;
-	public bool useAutoMass = true;
+    public bool useAutoMass = true;
     public enum PhysicsType
     {
         Dynamic,
@@ -31,14 +31,14 @@ public class LineDraw_Net : NetworkBehaviour
     public float colliderThickness = 0.1f;
     [SerializeField] float pointInterval = 3f; //the maximum distance in pixels between each point of line
     public float mass = 10.0f;
-	public float density = 75.0f;
+    public float density = 75.0f;
 
     //OTHER CUSTOM PARAMETERS
     public Shader shader;
     public Color color;
     public float startWidth = 0.1f; //Try to maintain the ratio of start-endWitdh...
     public float endWidth = 0.1f;  //or the collider will be in troubles!
-    
+
     public float deathTime = 0;
     public float drawTime = 3; // 0 == inf
 
@@ -46,6 +46,11 @@ public class LineDraw_Net : NetworkBehaviour
     Vector3 oldMousePos; //we store the mouse position when user first clicks
     List<Vector3> positionsLine = new List<Vector3>();
     private float drawTimer;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);       
+    }
 
     // Update is called once per frame
     void Update()
@@ -71,7 +76,7 @@ public class LineDraw_Net : NetworkBehaviour
         }
 
         //if mouse button is down, and the draw restrictions are true
-		if (Input.GetMouseButton(0) && ((drawTime == 0) || (drawTimer <= drawTime)) && (isDrawableSurface()))
+        if (Input.GetMouseButton(0) && ((drawTime == 0) || (drawTimer <= drawTime)) && (isDrawableSurface()))
         {
             Vector3 mp = Input.mousePosition;
             //if we have dragged mouse more than pointInterval pixels
@@ -107,14 +112,13 @@ public class LineDraw_Net : NetworkBehaviour
         {
             NetworkServer.Destroy(td);
         }
-		
+
 
         //create a new line object. NOTE: NetworkServer.Spawn spawns a default copy of the gameobject
         //if we change any properties here they will NOT be sent to client
         GameObject instance = Instantiate(lineObjectPrefab, mouseWorldCoords, Quaternion.identity) as GameObject;
 
         NetworkServer.Spawn(instance);
-
     }
 
     [ClientRpc]
@@ -124,7 +128,7 @@ public class LineDraw_Net : NetworkBehaviour
         GameObject lineObject = GameObject.FindWithTag("line");
         //get line renderer component
         LineRenderer lr = lineObject.GetComponent<LineRenderer>();
-        
+
         //Auto-destruction object
         if ((deathTime != 0) && (deathTime > 0))
         {
@@ -162,26 +166,29 @@ public class LineDraw_Net : NetworkBehaviour
 
         for (int i = 0; i < positionsLine.Count; i++)
         {
-            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y - colliderThickness/2));
+            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y - colliderThickness / 2));
         }
         //To allow convex problems
         for (int i = positionsLine.Count - 1; i >= 0; i--)
         {
-            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y + colliderThickness/2));
+            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y + colliderThickness / 2));
         }
         PolygonCollider2D collider = lr.gameObject.AddComponent<PolygonCollider2D>();
         collider.points = positionsCollider.ToArray();
 
         //RigidBody Properties
-		lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
-		if(useAutoMass == true){
-			collider.density = density;
-		}else{
-			lr.GetComponent<Rigidbody2D>().mass = mass;
-		}
+        lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
+        if (useAutoMass == true)
+        {
+            collider.density = density;
+        }
+        else
+        {
+            lr.GetComponent<Rigidbody2D>().mass = mass;
+        }
         lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
-		
-		positionsLine.Clear();
+
+        positionsLine.Clear();
 
     }
 
@@ -193,14 +200,14 @@ public class LineDraw_Net : NetworkBehaviour
         if ((hit.collider != null))
         {
             //Has collider and is Drawable
-			//Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
-			//Debug.Log("Target Name: " + hit.collider.gameObject.name);
+            //Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
+            //Debug.Log("Target Name: " + hit.collider.gameObject.name);
             if (hit.collider.gameObject.GetComponent<isDrawable>() != null)
             {
                 return true;
             }
             //Has collider but is not Drawable
-            
+
             return false;
         }
         return true;

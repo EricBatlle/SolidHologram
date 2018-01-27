@@ -1,0 +1,397 @@
+fileFormatVersion: 2
+guid: 89994a22f960b324ca21382925fbd010
+timeCreated: 1516214179
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BoxCrouchSprite_0
+    21300002: BoxCrouchSprite_1
+    21300004: BoxCrouchSprite_2
+    21300006: BoxCrouchSprite_3
+    21300008: BoxCrouchSprite_4
+    21300010: BoxCrouchSprite_5
+    21300012: BoxCrouchSprite_6
+    21300014: BoxCrouchSprite_7
+    21300016: BoxCrouchSprite_8
+    21300018: BoxCrouchSprite_9
+    21300020: BoxCrouchSprite_10
+    21300022: BoxCrouchSprite_11
+    21300024: BoxCrouchSprite_12
+    21300026: BoxCrouchSprite_13
+    21300028: BoxCrouchSprite_14
+    21300030: BoxCrouchSprite_15
+    21300032: BoxCrouchSprite_16
+    21300034: BoxCrouchSprite_17
+    21300036: BoxCrouchSprite_18
+    21300038: BoxCrouchSprite_19
+    21300040: BoxCrouchSprite_20
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BoxCrouchSprite_0
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 1784
+        width: 185
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_1
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 1784
+        width: 185
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_2
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 1784
+        width: 175
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_3
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 1784
+        width: 156
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_4
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1784
+        width: 148
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_5
+      rect:
+        serializedVersion: 2
+        x: 1486
+        y: 1784
+        width: 141
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_6
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 1785
+        width: 147
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_7
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1502
+        width: 165
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_8
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 1502
+        width: 174
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_9
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1502
+        width: 185
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_10
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 1502
+        width: 184
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_11
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 1502
+        width: 171
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_12
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 1500
+        width: 156
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_13
+      rect:
+        serializedVersion: 2
+        x: 1744
+        y: 1502
+        width: 153
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_14
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1219
+        width: 155
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_15
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 1223
+        width: 149
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_16
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 1223
+        width: 165
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_17
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1223
+        width: 169
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_18
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 1223
+        width: 174
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_19
+      rect:
+        serializedVersion: 2
+        x: 1441
+        y: 1223
+        width: 185
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxCrouchSprite_20
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 1223
+        width: 175
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,7 +14,7 @@ public class CameraFollow_Net : MonoBehaviour
         if (playerTransform != null)
         {
             transform.position = playerTransform.position + new Vector3(horizontalDisplacement, verticalDisplacement, depth);
-        }
+        }       
     }
 
     public void setTarget(Transform target)

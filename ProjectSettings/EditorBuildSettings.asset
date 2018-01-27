@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/PostPrototype/PostPrototype_v2.unity
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: cce20519c35c11549a9205e1dce3c391
+  - enabled: 1
+    path: Assets/Scenes/Levels/LvL1.1.unity
     guid: 1ad997444d8bc9f4da6c24985d078ff6
-  - enabled: 0
-    path: Assets/Scenes/PostPrototype/PostPrototype_lvl1.2.unity
-    guid: 6f4b6c4c449bf1b43829ca7769588225
-  - enabled: 0
-    path: Assets/Scenes/Prototype/Level1.unity
-    guid: 3008026392dba194f87c78a1f08beb5a
+  - enabled: 1
+    path: Assets/Scenes/Levels/LvL1.2.unity
+    guid: 8233c1e44944d744291f2ef8007a56a8

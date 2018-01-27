@@ -24,9 +24,9 @@ namespace UnityStandardAssets._2D
 
         private void Awake()
         {
+            DontDestroyOnLoad(transform.gameObject);
             m_Character = GetComponent<PlatformerCharacter2D>();
         }
-
 
         private void Update()
         {
