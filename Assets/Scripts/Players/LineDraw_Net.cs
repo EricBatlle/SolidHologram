@@ -2,24 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class LineDraw_Net : NetworkBehaviour
 {
-    public Button normalDrawButton;
-    public Button messageDrawButton;
-
     //PREFAB DRAW
-    [Header("Draw Prefab")]
     [SerializeField] GameObject lineObjectPrefab; //this needs to be the line prefab in the assets folder
-    private Color color;
-    public Color messageColor;
-    public Color normalColor;
-
-    public Shader shader;
 
     //ENUM-dropdownMenu+PHYSICS
-    [Header("Physics Parameters")]
     public bool usePhysics = true;
     public bool useAutoMass = true;
     public enum PhysicsType
@@ -45,9 +34,11 @@ public class LineDraw_Net : NetworkBehaviour
     public float density = 75.0f;
 
     //OTHER CUSTOM PARAMETERS
-    [Header("Gameplay Parameters")]
+    public Shader shader;
+    public Color color;
     public float startWidth = 0.1f; //Try to maintain the ratio of start-endWitdh...
     public float endWidth = 0.1f;  //or the collider will be in troubles!
+
     public float deathTime = 0;
     public float drawTime = 3; // 0 == inf
 
@@ -55,25 +46,10 @@ public class LineDraw_Net : NetworkBehaviour
     Vector3 oldMousePos; //we store the mouse position when user first clicks
     List<Vector3> positionsLine = new List<Vector3>();
     private float drawTimer;
+
     private void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
-        color = normalColor;
-    }
-
-    public void Start()
-    {
-        if (isServer)
-        {
-            //Set Listeners to the HUD buttons
-            normalDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("normal"); });
-            messageDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("message"); });
-        }
-        else //hide the Bentley HUD
-        {
-            transform.Find("HUD").gameObject.SetActive(false);
-        }
-        
+        DontDestroyOnLoad(transform.gameObject);       
     }
 
     // Update is called once per frame
@@ -82,7 +58,7 @@ public class LineDraw_Net : NetworkBehaviour
         //only the server can draw
         if (!isServer)
             return;
-        
+
         //when user first clicks mouse
         if (Input.GetMouseButtonDown(0))
         {
@@ -98,7 +74,7 @@ public class LineDraw_Net : NetworkBehaviour
             CmdMakeNewLine(mwc);
             drawTimer = 0;
         }
-        
+
         //if mouse button is down, and the draw restrictions are true
         if (Input.GetMouseButton(0) && ((drawTime == 0) || (drawTimer <= drawTime)) && (isDrawableSurface()))
         {
@@ -124,13 +100,7 @@ public class LineDraw_Net : NetworkBehaviour
                 //Add collider to the lr
                 RpcUpdateLineCollider();
             }
-            else
-            {
-                //clean positionsLine in case that the next draw have physical
-                positionsLine.Clear();
-            }
         }
-        
     }
 
     [Command]
@@ -243,19 +213,4 @@ public class LineDraw_Net : NetworkBehaviour
         return true;
     }
 
-    [ClientRpc]
-    void RpcOnChangeDrawType(string type)
-    {
-        switch (type)
-        {
-            case "normal":
-                color = normalColor;
-                usePhysics = true;
-                break;
-            case "message":
-                color = messageColor;
-                usePhysics = false;
-                break;
-        }
-    }
 }

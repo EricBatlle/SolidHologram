@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class nextLevel : NetworkBehaviour {
+public class nextLevel : MonoBehaviour {
 
     public Prototype.NetworkLobby.LobbyManager lobbyManager;
     public string nextSceneName;    
@@ -12,13 +11,9 @@ public class nextLevel : NetworkBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            RpcChangeScene();            
+            lobbyManager.ServerChangeScene(nextSceneName);
+            collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+
         }
-    }
-    
-    [ClientRpc]
-    public void RpcChangeScene()
-    {
-        lobbyManager.ServerChangeScene(nextSceneName);
     }
 }
