@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4103814076969050}
   - component: {fileID: 60829606041448918}
+  - component: {fileID: 114536837026004838}
   - component: {fileID: 114378599652491004}
   m_Layer: 0
   m_Name: NextLevel
@@ -83,3 +84,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyManager: {fileID: 11475086, guid: c0978251ff7b10d4fb954a4b56acd9f0, type: 2}
   nextSceneName: LvL1.2
+--- !u!114 &114536837026004838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385266135650204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 207
+    i1: 212
+    i2: 135
+    i3: 146
+    i4: 81
+    i5: 137
+    i6: 29
+    i7: 212
+    i8: 154
+    i9: 181
+    i10: 99
+    i11: 24
+    i12: 207
+    i13: 136
+    i14: 85
+    i15: 176
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

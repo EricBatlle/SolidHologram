@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 48aaa57df75a73949a8f91a764c55b4c
-timeCreated: 1511990173
+timeCreated: 1517149808
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - normalDrawButton: {fileID: 114433824158454316, guid: 0cee93634214f1e4fa467475c722d828,
+      type: 2}
+  - messageDrawButton: {fileID: 114845816056105560, guid: 530c5ef28389330489326f8447d899f6,
+      type: 2}
+  - lineObjectPrefab: {instanceID: 0}
+  - shader: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

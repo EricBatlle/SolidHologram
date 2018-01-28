@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace UnityStandardAssets._2D
 {
-    public class PlatformerCharacter2D : MonoBehaviour
+    public class PlatformerCharacter2D : NetworkBehaviour
     {
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
@@ -30,12 +31,34 @@ namespace UnityStandardAssets._2D
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
         }
 
-        //Every time the scene changes, the camera needs to reference again the player
+        //Every time the scene changes...
         public void OnLevelWasLoaded(int level)
         {
-            print(gameObject.transform);
-            print(Camera.main);
+            //...the camera needs to reference again the player
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
+            //print("la pos"+gameObject.transform.position);
+            //...the player has to be realocated to the new spawn point
+            //if (isServer)
+            //{
+            //    RpcChangePos();
+            //}
+            //else
+            //{
+            //    CmdChangePos();
+            //}
+        }
+
+        [ClientRpc]
+        public void RpcChangePos()
+        {
+            print("que tal si me actualizo? RPC");
+            gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        }
+        [Command]
+        public void CmdChangePos()
+        {
+            print("que tal si me actualizo? CMD");
+            gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
 
         private void FixedUpdate()
