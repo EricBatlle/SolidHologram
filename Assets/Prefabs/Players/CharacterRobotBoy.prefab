@@ -41,6 +41,8 @@ GameObject:
   - component: {fileID: 114367664942769580}
   - component: {fileID: 114562623036670890}
   - component: {fileID: 61725621598294700}
+  - component: {fileID: 114961914395682802}
+  - component: {fileID: 114215231130457894}
   m_Layer: 0
   m_Name: CharacterRobotBoy
   m_TagString: Player
@@ -70,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1106072068305566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.154, y: 8.045, z: 0}
+  m_LocalPosition: {x: -2.93, y: 8.045, z: 0}
   m_LocalScale: {x: 0.8212485, y: 0.82124734, z: 0.46358073}
   m_Children:
   - {fileID: 4438741242532480}
@@ -155,7 +157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.02, y: 2.65}
+    oldSize: {x: 1.02, y: 2.66}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -181,6 +183,27 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114215231130457894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1106072068305566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.09090909
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 5
 --- !u!114 &114367664942769580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +233,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d7b34a3bb2d4e4b926e7e729d3d410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114961914395682802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1106072068305566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 10
+    i1: 84
+    i2: 34
+    i3: 83
+    i4: 218
+    i5: 135
+    i6: 43
+    i7: 212
+    i8: 121
+    i9: 80
+    i10: 145
+    i11: 219
+    i12: 134
+    i13: 43
+    i14: 8
+    i15: 5
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!212 &212996759665195344
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -242,7 +297,7 @@ SpriteRenderer:
   m_SortingLayerID: -1783731295
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 7dfdaab30d077ca42964c2f277d5757e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8efb215f7db1a3f45b4581b256ac8d53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

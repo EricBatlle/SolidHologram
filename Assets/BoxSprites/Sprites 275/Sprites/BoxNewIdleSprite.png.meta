@@ -1,0 +1,514 @@
+fileFormatVersion: 2
+guid: 8efb215f7db1a3f45b4581b256ac8d53
+timeCreated: 1517154865
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BoxNewIdleSprite_0
+    21300002: BoxNewIdleSprite_1
+    21300004: BoxNewIdleSprite_2
+    21300006: BoxNewIdleSprite_3
+    21300008: BoxNewIdleSprite_4
+    21300010: BoxNewIdleSprite_5
+    21300012: BoxNewIdleSprite_6
+    21300014: BoxNewIdleSprite_7
+    21300016: BoxNewIdleSprite_8
+    21300018: BoxNewIdleSprite_9
+    21300020: BoxNewIdleSprite_10
+    21300022: BoxNewIdleSprite_11
+    21300024: BoxNewIdleSprite_12
+    21300026: BoxNewIdleSprite_13
+    21300028: BoxNewIdleSprite_14
+    21300030: BoxNewIdleSprite_15
+    21300032: BoxNewIdleSprite_16
+    21300034: BoxNewIdleSprite_17
+    21300036: BoxNewIdleSprite_18
+    21300038: BoxNewIdleSprite_19
+    21300040: BoxNewIdleSprite_20
+    21300042: BoxNewIdleSprite_21
+    21300044: BoxNewIdleSprite_22
+    21300046: BoxNewIdleSprite_23
+    21300048: BoxNewIdleSprite_24
+    21300050: BoxNewIdleSprite_25
+    21300052: BoxNewIdleSprite_26
+    21300054: BoxNewIdleSprite_27
+    21300056: BoxNewIdleSprite_28
+    21300058: BoxNewIdleSprite_29
+    21300060: BoxNewIdleSprite_30
+    21300062: BoxNewIdleSprite_31
+    21300064: BoxNewIdleSprite_32
+    21300066: BoxNewIdleSprite_33
+    21300068: BoxNewIdleSprite_34
+    21300070: BoxNewIdleSprite_35
+    21300072: BoxNewIdleSprite_36
+    21300074: BoxNewIdleSprite_37
+    21300076: BoxNewIdleSprite_38
+    21300078: BoxNewIdleSprite_39
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_0
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1782
+        width: 102
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_1
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1782
+        width: 104
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_2
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 1782
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_3
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 1782
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_4
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 1780
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_5
+      rect:
+        serializedVersion: 2
+        x: 1457
+        y: 1781
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_6
+      rect:
+        serializedVersion: 2
+        x: 1723
+        y: 1782
+        width: 105
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_7
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1508
+        width: 106
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_8
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 1508
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_9
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 1508
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_10
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1508
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_11
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 1508
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_12
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 1507
+        width: 105
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_13
+      rect:
+        serializedVersion: 2
+        x: 1729
+        y: 1508
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_14
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 1234
+        width: 104
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_15
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1232
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_16
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 1234
+        width: 104
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_17
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 1232
+        width: 104
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_18
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 1232
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_19
+      rect:
+        serializedVersion: 2
+        x: 1453
+        y: 1232
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_20
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 1233
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_21
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 957
+        width: 105
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_22
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 957
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_23
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 956
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_24
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 956
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_25
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 957
+        width: 105
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_26
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 956
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoxNewIdleSprite_27
+      rect:
+        serializedVersion: 2
+        x: 1729
+        y: 957
+        width: 103
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
