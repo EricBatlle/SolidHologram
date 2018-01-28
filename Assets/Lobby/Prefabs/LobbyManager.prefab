@@ -3289,8 +3289,8 @@ MonoBehaviour:
   hostInfo: {fileID: 11415712}
   _playerNumber: 0
   _isMatchmaking: 0
-  player1SpawnPos: {x: 6, y: 9, z: 0}
-  player2SpawnPos: {x: 6, y: 9, z: 0}
+  player1SpawnPos: {x: 8, y: 8, z: 0}
+  player2SpawnPos: {x: 8, y: 8, z: 0}
   character1: {fileID: 1083407084184776, guid: 86b2e7482dc53d546af1c956c429144f, type: 2}
   character2: {fileID: 1816532449734644, guid: e31322a399283ce4596072067ae12fa3, type: 2}
 --- !u!114 &11476426

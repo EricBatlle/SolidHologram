@@ -30,12 +30,13 @@ namespace UnityStandardAssets._2D
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
         }
 
-        //Every time the scene changes, the camera needs to reference again the player
+        //Every time the scene changes...
         public void OnLevelWasLoaded(int level)
         {
-            print(gameObject.transform);
-            print(Camera.main);
+            //...the camera needs to reference again the player
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
+            //...the player has to be realocated to the new spawn point
+            gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
 
         private void FixedUpdate()

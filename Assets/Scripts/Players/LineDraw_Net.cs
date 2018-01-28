@@ -63,9 +63,17 @@ public class LineDraw_Net : NetworkBehaviour
 
     public void Start()
     {
-        //Set Listeners to the HUD buttons
-        normalDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("normal"); });
-        messageDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("message"); });        
+        if (isServer)
+        {
+            //Set Listeners to the HUD buttons
+            normalDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("normal"); });
+            messageDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("message"); });
+        }
+        else //hide the Bentley HUD
+        {
+            transform.Find("HUD").gameObject.SetActive(false);
+        }
+        
     }
 
     // Update is called once per frame
