@@ -3289,8 +3289,13 @@ MonoBehaviour:
   hostInfo: {fileID: 11415712}
   _playerNumber: 0
   _isMatchmaking: 0
+<<<<<<< HEAD
   player1SpawnPos: {x: 6, y: 0, z: 0}
   player2SpawnPos: {x: 6, y: 9, z: 0}
+=======
+  player1SpawnPos: {x: 8, y: 8, z: 0}
+  player2SpawnPos: {x: 8, y: 8, z: 0}
+>>>>>>> SH_M2_HUD
   character1: {fileID: 1083407084184776, guid: 86b2e7482dc53d546af1c956c429144f, type: 2}
   character2: {fileID: 1106072068305566, guid: 0a542253da872bd4795091db862b0805, type: 2}
 --- !u!114 &11476426
