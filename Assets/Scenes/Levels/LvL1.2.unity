@@ -2219,22 +2219,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 254
-    i1: 186
-    i2: 25
-    i3: 236
-    i4: 23
-    i5: 191
-    i6: 154
-    i7: 68
-    i8: 27
-    i9: 121
-    i10: 43
-    i11: 228
-    i12: 141
-    i13: 172
-    i14: 140
-    i15: 77
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &371792800
@@ -4803,22 +4803,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 254
-    i1: 186
-    i2: 25
-    i3: 236
-    i4: 23
-    i5: 191
-    i6: 154
-    i7: 68
-    i8: 27
-    i9: 121
-    i10: 43
-    i11: 228
-    i12: 141
-    i13: 172
-    i14: 140
-    i15: 77
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!70 &710328104
@@ -9398,22 +9398,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 254
-    i1: 186
-    i2: 25
-    i3: 236
-    i4: 23
-    i5: 191
-    i6: 154
-    i7: 68
-    i8: 27
-    i9: 121
-    i10: 43
-    i11: 228
-    i12: 141
-    i13: 172
-    i14: 140
-    i15: 77
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
 --- !u!1 &1263682061
@@ -10404,22 +10404,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 254
-    i1: 186
-    i2: 25
-    i3: 236
-    i4: 23
-    i5: 191
-    i6: 154
-    i7: 68
-    i8: 27
-    i9: 121
-    i10: 43
-    i11: 228
-    i12: 141
-    i13: 172
-    i14: 140
-    i15: 77
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!70 &1361042993
@@ -13881,22 +13881,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 254
-    i1: 186
-    i2: 25
-    i3: 236
-    i4: 23
-    i5: 191
-    i6: 154
-    i7: 68
-    i8: 27
-    i9: 121
-    i10: 43
-    i11: 228
-    i12: 141
-    i13: 172
-    i14: 140
-    i15: 77
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &1649706380
@@ -14025,22 +14025,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 254
-    i1: 186
-    i2: 25
-    i3: 236
-    i4: 23
-    i5: 191
-    i6: 154
-    i7: 68
-    i8: 27
-    i9: 121
-    i10: 43
-    i11: 228
-    i12: 141
-    i13: 172
-    i14: 140
-    i15: 77
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!1 &1674535517
@@ -14347,22 +14347,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 254
-    i1: 186
-    i2: 25
-    i3: 236
-    i4: 23
-    i5: 191
-    i6: 154
-    i7: 68
-    i8: 27
-    i9: 121
-    i10: 43
-    i11: 228
-    i12: 141
-    i13: 172
-    i14: 140
-    i15: 77
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &1748160059
