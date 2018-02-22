@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class deleteWhenGround : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Sprite collisionSprite;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,14 +13,20 @@ public class deleteWhenGround : MonoBehaviour {
             //Kill
             //collision.gameObject.SetActive(false);
             //Respawn
-            collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-            ;
+            collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;            
         }
         if ((collision.gameObject.CompareTag("line")) || (collision.gameObject.CompareTag("Wall")))
         {
-            //Auto-Destroy
-            Destroy(gameObject);
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = collisionSprite;
+            //Auto-Destroy after few time (to allow the players to see the collision sprite)
+            StartCoroutine(DestroyAfterTime(0.1f));
         }
 
+    }
+
+    IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }

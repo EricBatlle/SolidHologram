@@ -1873,6 +1873,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1823048754164722, guid: 3d337e4d859607c4fa452f5722c6f9f6,
         type: 2}
+    - target: {fileID: 114892321246321648, guid: af248db8d59349e4282a6f7f2916a42e,
+        type: 2}
+      propertyPath: random_0_dropEvery
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af248db8d59349e4282a6f7f2916a42e, type: 2}
   m_IsPrefabParent: 0

@@ -359,7 +359,7 @@ MonoBehaviour:
   normalColor: {r: 0, g: 1, b: 1, a: 0}
   shader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
   usePhysics: 1
-  useAutoMass: 1
+  useAutoMass: 0
   bodyType: 0
   colliderThickness: 0.1
   pointInterval: 3
