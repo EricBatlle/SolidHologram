@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 728313199}
   - component: {fileID: 728313198}
   - component: {fileID: 728313200}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: borde
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1896,7 +1896,7 @@ GameObject:
   - component: {fileID: 844649692}
   - component: {fileID: 844649691}
   - component: {fileID: 844649693}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ventilador (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2149,7 +2149,7 @@ GameObject:
   - component: {fileID: 1034532309}
   - component: {fileID: 1034532311}
   - component: {fileID: 1034532310}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: miniborde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2420,7 +2420,7 @@ GameObject:
   - component: {fileID: 1173915684}
   - component: {fileID: 1173915683}
   - component: {fileID: 1173915682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: miniborde2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,6 +11,7 @@ namespace UnityStandardAssets._2D
         [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+        [SerializeField] private float collidersRaycastDistance = .6f;          // Raycast distance to check if moving is allowed
 
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -99,21 +100,41 @@ namespace UnityStandardAssets._2D
             if (m_Grounded || m_AirControl)
             {
                 // Reduce the speed if crouching by the crouchSpeed multiplier
-                move = (crouch ? move*m_CrouchSpeed : move);
+                move = (crouch ? move * m_CrouchSpeed : move);
 
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
-                // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                //Prevent the movement if the future position collides to Layer Wall
+                int layermask = (1 << 8);
+                //int layermask2 = (1 << 10);
+                //int finallayermask = layermask | layermask2;
+                RaycastHit2D hit_CeilingCheck;
+                RaycastHit2D hit_GroundCheck;
+                Vector2 raycastDirection = (IsLooking("right", move)) ? Vector2.right : Vector2.left;
 
+                //Ceiling Raycast Check
+                Vector2 endPos = new Vector2(transform.position.x, transform.position.y) + raycastDirection * collidersRaycastDistance;//m_GroundCheck.position;
+                Debug.DrawLine(transform.position, endPos, Color.red);
+                hit_CeilingCheck = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), raycastDirection, collidersRaycastDistance, layermask);
+
+                //Ground Raycast Check
+                Vector2 endPos2 = new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y) + raycastDirection * collidersRaycastDistance;//m_GroundCheck.position;
+                Debug.DrawLine(m_GroundCheck.position, endPos2, Color.red);
+                hit_GroundCheck = Physics2D.Raycast(new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y), raycastDirection, collidersRaycastDistance, layermask);
+
+                if ((hit_CeilingCheck.collider == null) && (hit_GroundCheck.collider == null))
+                {
+                    // Move the character
+                    m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                }
                 // If the input is moving the player right and the player is facing left...
                 if (move > 0 && !m_FacingRight)
                 {
                     // ... flip the player.
                     Flip();
                 }
-                    // Otherwise if the input is moving the player left and the player is facing right...
+                // Otherwise if the input is moving the player left and the player is facing right...
                 else if (move < 0 && m_FacingRight)
                 {
                     // ... flip the player.
@@ -128,10 +149,20 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             }
-
-
         }
 
+        //Returns if the player is looking to the specified direction (right or left)
+        private bool IsLooking(string direction, float move)
+        {
+            if (move >= 0)
+            {
+                return (direction.Equals("right")) ? true : false;
+            }
+            else
+            {
+                return (direction.Equals("right")) ? false : true;
+            }
+        }
 
         private void Flip()
         {
@@ -145,3 +176,4 @@ namespace UnityStandardAssets._2D
         }
     }
 }
+
