@@ -197,18 +197,46 @@ public class LineDraw_Net : NetworkBehaviour
         LineRenderer lr = lineObject.GetComponent<LineRenderer>();
         List<Vector2> positionsCollider = new List<Vector2>();
 
-        for (int i = 0; i < positionsLine.Count; i++)
+        //COLLIDER DIRTY VERSION
+        //for (int i = 0; i < positionsLine.Count; i++)
+        //{
+        //    positionsCollider.Add(new Vector2(positionsLine[i].x - colliderThickness / 2, positionsLine[i].y - colliderThickness / 2));
+        //}
+        ////To allow convex problems
+        //for (int i = positionsLine.Count - 1; i >= 0; i--)
+        //{
+        //    positionsCollider.Add(new Vector2(positionsLine[i].x + colliderThickness / 2, positionsLine[i].y + colliderThickness / 2));
+        //}
+
+        //COLLIDER CLEARN VERSION
+        float ux = 0, uy = 0;
+        for (int iEdge = 0; iEdge < positionsLine.Count - 1; iEdge++)
         {
-            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y - colliderThickness / 2));
+            float vx = positionsLine[iEdge + 1].x - positionsLine[iEdge].x;
+            float vy = positionsLine[iEdge + 1].y - positionsLine[iEdge].y;
+            float vlen = (float)System.Math.Sqrt(vx * vx + vy * vy);
+            if(vlen != 0.0)
+            {
+                vx /= vlen; vy /= vlen;
+                ux = -vy; uy = vx;
+            }
+            positionsCollider.Add(new Vector2(positionsLine[iEdge].x + ux * colliderThickness / 2, positionsLine[iEdge].y + uy * colliderThickness / 2));
+            if(iEdge == positionsLine.Count - 2)
+            {
+                positionsCollider.Add(new Vector2(positionsLine[iEdge].x + ux * colliderThickness / 2, positionsLine[iEdge].y + uy * colliderThickness / 2));
+            }
         }
-        //To allow convex problems
-        for (int i = positionsLine.Count - 1; i >= 0; i--)
+        for(int i = positionsLine.Count - 1; i >= 0; i--)
         {
-            positionsCollider.Add(new Vector2(positionsLine[i].x, positionsLine[i].y + colliderThickness / 2));
+            float vx = positionsCollider[i].x, vy = positionsCollider[i].y;
+            float px = positionsLine[i].x, py = positionsLine[i].y;
+            px = px - (vx - px); py = py - (vy - py);
+            positionsCollider.Add(new Vector2(px, py));
         }
+
         PolygonCollider2D collider = lr.gameObject.AddComponent<PolygonCollider2D>();
         collider.points = positionsCollider.ToArray();
-
+        
         //RigidBody Properties
         lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
         if (useAutoMass == true)
