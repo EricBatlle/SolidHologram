@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -82,55 +83,57 @@ public class LineDraw_Net : NetworkBehaviour
         //only the server can draw
         if (!isServer)
             return;
-        
-        //when user first clicks mouse
-        if (Input.GetMouseButtonDown(0))
+        //To avoid confusions between HUD and draw_interaction
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            //get mouse screen position and store it
-            Vector3 mp = Input.mousePosition;
-            oldMousePos = mp;
-
-            //get world position and reset z coord so it's same as characters
-            Vector3 mwc = Camera.main.ScreenToWorldPoint(mp);
-            mwc.z = 0;
-
-            //spawn new line object on server and all clients
-            CmdMakeNewLine(mwc);
-            drawTimer = 0;
-        }
-        
-        //if mouse button is down, and the draw restrictions are true
-        if (Input.GetMouseButton(0) && ((drawTime == 0) || (drawTimer <= drawTime)) && (isDrawableSurface()))
-        {
-            Vector3 mp = Input.mousePosition;
-            //if we have dragged mouse more than pointInterval pixels
-            if (Vector3.Distance(mp, oldMousePos) > pointInterval)
+            //when user first clicks mouse
+            if (Input.GetMouseButtonDown(0))
             {
-                //get mouse world coords
+                //get mouse screen position and store it
+                Vector3 mp = Input.mousePosition;
+                oldMousePos = mp;
+
+                //get world position and reset z coord so it's same as characters
                 Vector3 mwc = Camera.main.ScreenToWorldPoint(mp);
                 mwc.z = 0;
 
-                //update line on all clients
-                RpcUpdateLine(mwc);
+                //spawn new line object on server and all clients
+                CmdMakeNewLine(mwc);
+                drawTimer = 0;
             }
-            drawTimer += Time.deltaTime;
-        }
 
-        //if mouse button is up
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (usePhysics == true)
+            //if mouse button is down, and the draw restrictions are true
+            if (Input.GetMouseButton(0) && ((drawTime == 0) || (drawTimer <= drawTime)) && (isDrawableSurface()))
             {
-                //Add collider to the lr
-                RpcUpdateLineCollider();
+                Vector3 mp = Input.mousePosition;
+                //if we have dragged mouse more than pointInterval pixels
+                if (Vector3.Distance(mp, oldMousePos) > pointInterval)
+                {
+                    //get mouse world coords
+                    Vector3 mwc = Camera.main.ScreenToWorldPoint(mp);
+                    mwc.z = 0;
+
+                    //update line on all clients
+                    RpcUpdateLine(mwc);
+                }
+                drawTimer += Time.deltaTime;
             }
-            else
+
+            //if mouse button is up
+            if (Input.GetMouseButtonUp(0))
             {
-                //clean positionsLine in case that the next draw have physical
-                positionsLine.Clear();
+                if (usePhysics == true)
+                {
+                    //Add collider to the lr
+                    RpcUpdateLineCollider();
+                }
+                else
+                {
+                    //clean positionsLine in case that the next draw have physical
+                    positionsLine.Clear();
+                }
             }
-        }
-        
+        }                
     }
 
     [Command]
