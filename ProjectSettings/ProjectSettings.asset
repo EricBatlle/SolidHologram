@@ -140,7 +140,8 @@ PlayerSettings:
   useHDRDisplay: 0
   targetPixelDensity: 0
   resolutionScalingMode: 0
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.SH.SH
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -597,9 +598,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 66415ece-37b8-4c90-9bab-795b7e2817c1
-  projectName: Bifrost_Eric (1)
-  organizationId: ericbatlle
+  cloudProjectId: 484dcfe0-2917-426f-921f-9243bf6dbb16
+  projectName: SolidHologram
+  organizationId: eric-3932800
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
