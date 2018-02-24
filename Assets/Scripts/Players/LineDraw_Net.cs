@@ -78,8 +78,17 @@ public class LineDraw_Net : NetworkBehaviour
         else 
         {
             //Set Listeners to the HUD buttons
-            normalDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("normal"); });
-            messageDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("message"); });
+            if (isServer)
+            {
+                normalDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("normal"); });
+                messageDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("message"); });
+            }
+            else
+            {
+                normalDrawButton.onClick.AddListener(delegate { CmdOnChangeDrawType("normal"); });
+                messageDrawButton.onClick.AddListener(delegate { CmdOnChangeDrawType("message"); });
+            }
+            
         }       
     }
 
@@ -121,7 +130,9 @@ public class LineDraw_Net : NetworkBehaviour
 
                     //update line on all clients
                     if (isServer)
+                    {
                         RpcUpdateLine(mwc);
+                    }
                     else
                     {
                         CmdUpdateLine(mwc); //updates on server (And it will update locally)                        
@@ -148,12 +159,19 @@ public class LineDraw_Net : NetworkBehaviour
                 }
                 else
                 {
-                    //clean positionsLine in case that the next draw have physical
-                    positionsLine.Clear();
+                    //Clean positionsLine in case that the next draw have physics
+                    if (isServer)
+                    {
+                        RpcCleanLinePositions();
+                    }
+                    else
+                    {
+                        CmdCleanLinePositions(); //updates on server
+                    }
                 }
             }
         }                
-    }
+    }   
 
     //Server creates new draw instance
     [Command]
@@ -421,6 +439,18 @@ public class LineDraw_Net : NetworkBehaviour
         {
             Destroy(lineObject);
         }
+    }
+
+    //Clean positionsLine in case that the next draw have physics
+    [Command]
+    void CmdCleanLinePositions()
+    {
+        RpcCleanLinePositions();
+    }
+    [ClientRpc]
+    void RpcCleanLinePositions()
+    {
+        positionsLine.Clear();
     }
 
     //Handlers to change draw type 
