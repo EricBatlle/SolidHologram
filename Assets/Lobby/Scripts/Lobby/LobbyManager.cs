@@ -14,7 +14,7 @@ namespace Prototype.NetworkLobby
     {
         //ERIC STUFF
         public int avatarIndex;
-        public Dictionary<int, int> currentPlayers;
+        public Dictionary<int, int[]> currentPlayers; //characterType, playerType
         //---
         static short MsgKicked = MsgType.Highest + 1;
 
@@ -61,7 +61,7 @@ namespace Prototype.NetworkLobby
         void Start()
         {
             //ERIC STUFF
-            currentPlayers = new Dictionary<int, int>();
+            currentPlayers = new Dictionary<int, int[]>();
             //-----
             s_Singleton = this;
             _lobbyHooks = GetComponent<Prototype.NetworkLobby.LobbyHook>();
@@ -288,7 +288,8 @@ namespace Prototype.NetworkLobby
             //ERIC STUFF
             if (!currentPlayers.ContainsKey(conn.connectionId))
             {
-                currentPlayers.Add(conn.connectionId, 0);
+                int[] newInfoPlayer = { 0, 0 };
+                currentPlayers.Add(conn.connectionId,newInfoPlayer);
             }
             //------
             GameObject obj = Instantiate(lobbyPlayerPrefab.gameObject) as GameObject;
@@ -444,11 +445,10 @@ namespace Prototype.NetworkLobby
 
         public override GameObject OnLobbyServerCreateGamePlayer (NetworkConnection conn, short playerControllerId)
 		{
-            int index = currentPlayers[conn.connectionId];
-            
+            int[] infoPlayer = currentPlayers[conn.connectionId];
             GameObject chosenCharacter;
-            Vector3 chosenSpawnPos;
-            if (index == 1) //BENTLEY
+            Vector3 chosenSpawnPos;            
+            if (infoPlayer[0] == 1) //BENTLEY
             {
                 chosenCharacter = character1;
                 chosenSpawnPos = player1SpawnPos;
@@ -459,16 +459,20 @@ namespace Prototype.NetworkLobby
                 chosenCharacter = character2;
                 chosenSpawnPos = player2SpawnPos;
 
-            }
+            }            
+            chosenCharacter.GetComponent<PlayerInfo>().playerType = infoPlayer[1];
 
-			GameObject playerPrefab = (GameObject)GameObject.Instantiate (chosenCharacter, chosenSpawnPos, Quaternion.identity);
+            GameObject playerPrefab = (GameObject)GameObject.Instantiate (chosenCharacter, chosenSpawnPos, Quaternion.identity);
 			return playerPrefab;
 		}
 
-        public void SetPlayerTypeLobby(NetworkConnection conn, int type)
+        public void SetPlayerTypeLobby(NetworkConnection conn, int characterType, int playerType)
         {
             if (currentPlayers.ContainsKey(conn.connectionId))
-                currentPlayers[conn.connectionId] = type;
+            {
+                currentPlayers[conn.connectionId][0] = characterType; //0->Box ; 1->Bentley 
+                currentPlayers[conn.connectionId][1] = playerType; //0->isClient ; 1->isServer 
+            }
         }
 
         //-----

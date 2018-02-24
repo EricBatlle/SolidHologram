@@ -155,6 +155,9 @@ namespace Prototype.NetworkLobby
         //ERIC STUFF 
         void AvatarPicker(string buttonName)
         {
+            if (!isLocalPlayer)
+                return;
+
             print(buttonName);
             switch (buttonName)
             {
@@ -171,23 +174,23 @@ namespace Prototype.NetworkLobby
 
             if (isServer)
             {
-                RpcAvatarPicked(avatarIndex);
+                RpcAvatarPicked(avatarIndex,1);
             }
             else
             {
-                CmdAvatarPicked(avatarIndex);
+                CmdAvatarPicked(avatarIndex,0);
             }
         }
 
         [ClientRpc]
-        public void RpcAvatarPicked(int avIndex)
+        public void RpcAvatarPicked(int avIndex,int playerType)
         {
-            CmdAvatarPicked(avIndex);
+            CmdAvatarPicked(avIndex, playerType);
         }
         [Command]
-        public void CmdAvatarPicked(int avIndex)
+        public void CmdAvatarPicked(int avIndex, int playerType)
         {
-            LobbyManager.s_Singleton.SetPlayerTypeLobby(GetComponent<NetworkIdentity>().connectionToClient, avIndex);
+            LobbyManager.s_Singleton.SetPlayerTypeLobby(GetComponent<NetworkIdentity>().connectionToClient, avIndex, playerType);
         }
         //-----
 
