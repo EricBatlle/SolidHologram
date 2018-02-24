@@ -79,10 +79,10 @@ public class LineDraw_Net : NetworkBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        //only the server can draw
-        if (!isServer)
-            return;
+    {     
+        if (!isLocalPlayer)
+            return;        
+
         //To avoid confusions between HUD and draw_interaction
         if (!EventSystem.current.IsPointerOverGameObject())
         {
@@ -114,7 +114,12 @@ public class LineDraw_Net : NetworkBehaviour
                     mwc.z = 0;
 
                     //update line on all clients
-                    RpcUpdateLine(mwc);
+                    if (isServer)
+                        RpcUpdateLine(mwc);
+                    else
+                    {
+                        CmdUpdateLine(mwc); //updates on server (And it will update locally)                        
+                    }
                 }
                 drawTimer += Time.deltaTime;
             }
@@ -124,8 +129,16 @@ public class LineDraw_Net : NetworkBehaviour
             {
                 if (usePhysics == true)
                 {
-                    //Add collider to the lr
-                    RpcUpdateLineCollider();
+                    //Add collider to the lr                    
+                    if (isServer)
+                    {
+                        RpcUpdateLineCollider();
+                    }
+                    else
+                    {
+                        LocalUpdateLineCollider(); //updates locally first to avoid problems creating colliders on movement
+                        CmdUpdateLineCollider(); //updates on server
+                    }
                 }
                 else
                 {
@@ -136,6 +149,7 @@ public class LineDraw_Net : NetworkBehaviour
         }                
     }
 
+    //Server creates new draw instance
     [Command]
     void CmdMakeNewLine(Vector3 mouseWorldCoords)
     {
@@ -154,6 +168,12 @@ public class LineDraw_Net : NetworkBehaviour
         NetworkServer.Spawn(instance);
     }
 
+    //Updates line renderer while drawing
+    [Command]
+    void CmdUpdateLine(Vector3 newPosWorld)
+    {
+        RpcUpdateLine(newPosWorld);
+    }
     [ClientRpc]
     void RpcUpdateLine(Vector3 newPosWorld)
     {
@@ -189,6 +209,139 @@ public class LineDraw_Net : NetworkBehaviour
         lr.SetPosition(lr.positionCount - 1, newPosLocal);
     }
 
+    //Updates line renderer collider
+    void LocalUpdateLineCollider()
+    {
+        GameObject lineObject = GameObject.FindWithTag("line");
+        //get line renderer component
+        LineRenderer lr = lineObject.GetComponent<LineRenderer>();
+        //Check if the draw object distance is enough to saw it on screen
+        if (lr.positionCount > 1)
+        {
+            List<Vector2> positionsCollider = new List<Vector2>();
+
+            //COLLIDER DIRTY VERSION
+            //for (int i = 0; i < positionsLine.Count; i++)
+            //{
+            //    positionsCollider.Add(new Vector2(positionsLine[i].x - colliderThickness / 2, positionsLine[i].y - colliderThickness / 2));
+            //}
+            ////To allow convex problems
+            //for (int i = positionsLine.Count - 1; i >= 0; i--)
+            //{
+            //    positionsCollider.Add(new Vector2(positionsLine[i].x + colliderThickness / 2, positionsLine[i].y + colliderThickness / 2));
+            //}
+
+            //COLLIDER CLEARN VERSION
+            float ux = 0, uy = 0;
+            for (int iEdge = 0; iEdge < positionsLine.Count - 1; iEdge++)
+            {
+                float vx = positionsLine[iEdge + 1].x - positionsLine[iEdge].x;
+                float vy = positionsLine[iEdge + 1].y - positionsLine[iEdge].y;
+                float vlen = (float)System.Math.Sqrt(vx * vx + vy * vy);
+                if (vlen != 0.0)
+                {
+                    vx /= vlen; vy /= vlen;
+                    ux = -vy; uy = vx;
+                }
+                positionsCollider.Add(new Vector2(positionsLine[iEdge].x + ux * colliderThickness / 2, positionsLine[iEdge].y + uy * colliderThickness / 2));
+                if (iEdge == positionsLine.Count - 2)
+                {
+                    positionsCollider.Add(new Vector2(positionsLine[iEdge].x + ux * colliderThickness / 2, positionsLine[iEdge].y + uy * colliderThickness / 2));
+                }
+            }
+            for (int i = positionsLine.Count - 1; i >= 0; i--)
+            {
+                float vx = positionsCollider[i].x, vy = positionsCollider[i].y;
+                float px = positionsLine[i].x, py = positionsLine[i].y;
+                px = px - (vx - px); py = py - (vy - py);
+                positionsCollider.Add(new Vector2(px, py));
+            }
+
+            PolygonCollider2D collider = lr.gameObject.AddComponent<PolygonCollider2D>();
+            collider.points = positionsCollider.ToArray();
+
+            //RigidBody Properties
+            lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
+            if (useAutoMass == true)
+            {
+                collider.density = density;
+            }
+            else
+            {
+                lr.GetComponent<Rigidbody2D>().mass = mass;
+            }
+            lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
+
+            positionsLine.Clear();
+        }
+    }
+    [Command]
+    void CmdUpdateLineCollider()
+    {
+        //RpcUpdateLineCollider();
+        GameObject lineObject = GameObject.FindWithTag("line");
+        //get line renderer component
+        LineRenderer lr = lineObject.GetComponent<LineRenderer>();
+        //Check if the draw object distance is enough to saw it on screen
+        if (lr.positionCount > 1)
+        {
+            List<Vector2> positionsCollider = new List<Vector2>();
+
+            //COLLIDER DIRTY VERSION
+            //for (int i = 0; i < positionsLine.Count; i++)
+            //{
+            //    positionsCollider.Add(new Vector2(positionsLine[i].x - colliderThickness / 2, positionsLine[i].y - colliderThickness / 2));
+            //}
+            ////To allow convex problems
+            //for (int i = positionsLine.Count - 1; i >= 0; i--)
+            //{
+            //    positionsCollider.Add(new Vector2(positionsLine[i].x + colliderThickness / 2, positionsLine[i].y + colliderThickness / 2));
+            //}
+
+            //COLLIDER CLEARN VERSION
+            float ux = 0, uy = 0;
+            for (int iEdge = 0; iEdge < positionsLine.Count - 1; iEdge++)
+            {
+                float vx = positionsLine[iEdge + 1].x - positionsLine[iEdge].x;
+                float vy = positionsLine[iEdge + 1].y - positionsLine[iEdge].y;
+                float vlen = (float)System.Math.Sqrt(vx * vx + vy * vy);
+                if (vlen != 0.0)
+                {
+                    vx /= vlen; vy /= vlen;
+                    ux = -vy; uy = vx;
+                }
+                positionsCollider.Add(new Vector2(positionsLine[iEdge].x + ux * colliderThickness / 2, positionsLine[iEdge].y + uy * colliderThickness / 2));
+                if (iEdge == positionsLine.Count - 2)
+                {
+                    positionsCollider.Add(new Vector2(positionsLine[iEdge].x + ux * colliderThickness / 2, positionsLine[iEdge].y + uy * colliderThickness / 2));
+                }
+            }
+            for (int i = positionsLine.Count - 1; i >= 0; i--)
+            {
+                float vx = positionsCollider[i].x, vy = positionsCollider[i].y;
+                float px = positionsLine[i].x, py = positionsLine[i].y;
+                px = px - (vx - px); py = py - (vy - py);
+                positionsCollider.Add(new Vector2(px, py));
+            }
+
+            PolygonCollider2D collider = lr.gameObject.AddComponent<PolygonCollider2D>();
+            collider.points = positionsCollider.ToArray();
+
+            //RigidBody Properties
+            lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
+            if (useAutoMass == true)
+            {
+                collider.density = density;
+            }
+            else
+            {
+                lr.GetComponent<Rigidbody2D>().mass = mass;
+            }
+            lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
+
+            positionsLine.Clear();
+        }
+    }
     [ClientRpc]
     void RpcUpdateLineCollider()
     {
@@ -256,6 +409,29 @@ public class LineDraw_Net : NetworkBehaviour
         }
     }
 
+    //Handlers to change draw type 
+    [Command]
+    void CmdOnChangeDrawType(string type)
+    {
+        RpcOnChangeDrawType(type);
+    }
+    [ClientRpc]
+    void RpcOnChangeDrawType(string type)
+    {
+        switch (type)
+        {
+            case "normal":
+                color = normalColor;
+                usePhysics = true;
+                break;
+            case "message":
+                color = messageColor;
+                usePhysics = false;
+                break;
+        }
+    }
+
+    //Decides if the surface is drawable or not
     bool isDrawableSurface()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -277,19 +453,5 @@ public class LineDraw_Net : NetworkBehaviour
         return true;
     }
 
-    [ClientRpc]
-    void RpcOnChangeDrawType(string type)
-    {
-        switch (type)
-        {
-            case "normal":
-                color = normalColor;
-                usePhysics = true;
-                break;
-            case "message":
-                color = messageColor;
-                usePhysics = false;
-                break;
-        }
-    }
+    
 }
