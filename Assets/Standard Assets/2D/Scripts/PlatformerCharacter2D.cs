@@ -6,12 +6,15 @@ namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : NetworkBehaviour
     {
-        [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
-        [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
-        [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
-        [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
-        [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
-        [SerializeField] private float collidersRaycastDistance = .6f;          // Raycast distance to check if moving is allowed
+        [SerializeField] private float m_MaxSpeed = 10f;                                // The fastest the player can travel in the x axis.
+        [SerializeField] private float m_JumpForce = 400f;                              // Amount of force added when the player jumps.
+        [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;              // Amount of maxSpeed applied to crouching movement. 1 = 100%
+        [SerializeField] private bool m_AirControl = false;                             // Whether or not a player can steer while jumping;
+        [SerializeField] private LayerMask m_WhatIsGround;                              // A mask determining what is ground to the character
+        [SerializeField] private float collidersRaycastDistance = .6f;                  // Raycast distance to check if moving is allowed
+        [SerializeField] private float ceilingAltitude = 0.78f;
+        [SerializeField] private float collidersRaycastDistanceCrouchDifference = 0.5f; //Those values needs to be calculated manually 
+        [SerializeField] private float ceilingAltitudeCrouchDifference = -0.3f;         //...if the crouch animation change
 
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -21,7 +24,6 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-
         private void Awake()
         {
             // Setting up references.
@@ -110,20 +112,38 @@ namespace UnityStandardAssets._2D
                 //int layermask2 = (1 << 10);
                 //int finallayermask = layermask | layermask2;
                 RaycastHit2D hit_CeilingCheck;
+                RaycastHit2D hit_BodyCheck;
                 RaycastHit2D hit_GroundCheck;
                 Vector2 raycastDirection = (IsLooking("right", move)) ? Vector2.right : Vector2.left;
-
+                float updatedCeilingAltitude;
+                float updatedCollidersRaycastDistance;
+                //Update raycasts if the player is crouching, cause colliders shrink and stretch
+                if (crouch)
+                {
+                    updatedCeilingAltitude = ceilingAltitude + ceilingAltitudeCrouchDifference;
+                    updatedCollidersRaycastDistance = collidersRaycastDistance + collidersRaycastDistanceCrouchDifference;
+                }
+                else
+                {
+                    updatedCeilingAltitude = ceilingAltitude;
+                    updatedCollidersRaycastDistance = collidersRaycastDistance;        
+                }
                 //Ceiling Raycast Check
-                Vector2 endPos = new Vector2(transform.position.x, transform.position.y) + raycastDirection * collidersRaycastDistance;//m_GroundCheck.position;
-                Debug.DrawLine(transform.position, endPos, Color.red);
-                hit_CeilingCheck = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), raycastDirection, collidersRaycastDistance, layermask);
+                Vector2 endPos = new Vector2(transform.position.x, transform.position.y+ updatedCeilingAltitude) + raycastDirection * updatedCollidersRaycastDistance;//m_GroundCheck.position;
+                Debug.DrawLine(transform.position+new Vector3(0, updatedCeilingAltitude, 0), endPos, Color.red);
+                hit_CeilingCheck = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y+ updatedCeilingAltitude), raycastDirection, updatedCollidersRaycastDistance, layermask);
+
+                //Body Raycast Check
+                Vector2 endPos_body = new Vector2(transform.position.x, transform.position.y) + raycastDirection * updatedCollidersRaycastDistance;//m_GroundCheck.position;
+                Debug.DrawLine(transform.position, endPos_body, Color.red);
+                hit_BodyCheck = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), raycastDirection, updatedCollidersRaycastDistance, layermask);
 
                 //Ground Raycast Check
-                Vector2 endPos2 = new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y) + raycastDirection * collidersRaycastDistance;//m_GroundCheck.position;
-                Debug.DrawLine(m_GroundCheck.position, endPos2, Color.red);
-                hit_GroundCheck = Physics2D.Raycast(new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y), raycastDirection, collidersRaycastDistance, layermask);
+                Vector2 endPos_ground = new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y) + raycastDirection * updatedCollidersRaycastDistance;//m_GroundCheck.position;
+                Debug.DrawLine(m_GroundCheck.position, endPos_ground, Color.red);
+                hit_GroundCheck = Physics2D.Raycast(new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y), raycastDirection, updatedCollidersRaycastDistance, layermask);
 
-                if ((hit_CeilingCheck.collider == null) && (hit_GroundCheck.collider == null))
+                if ((hit_CeilingCheck.collider == null) && (hit_BodyCheck.collider == null) && (hit_GroundCheck.collider == null))
                 {
                     // Move the character
                     m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
