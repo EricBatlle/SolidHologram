@@ -24,6 +24,7 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+
         private void Awake()
         {
             // Setting up references.
@@ -34,6 +35,12 @@ namespace UnityStandardAssets._2D
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
         }
 
+        private void Start()
+        {
+            //Player has to be realocated to the first spawn point
+            gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        }
+
         //Every time the scene changes...
         public void OnLevelWasLoaded(int level)
         {
@@ -41,9 +48,7 @@ namespace UnityStandardAssets._2D
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
             
             //...the player has to be realocated to the new spawn point
-            print(GameObject.FindGameObjectWithTag("Spawn").transform.position);
-            //gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-            gameObject.transform.position = new Vector3(45, -27, 0);                       
+            gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
 
         [ClientRpc]
@@ -136,11 +141,13 @@ namespace UnityStandardAssets._2D
                 Debug.DrawLine(m_GroundCheck.position, endPos_ground, Color.red);
                 hit_GroundCheck = Physics2D.Raycast(new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y), raycastDirection, updatedCollidersRaycastDistance, layermask);
 
+                //If none of the raycasts are colliding to anything...
                 if ((hit_CeilingCheck.collider == null) && (hit_BodyCheck.collider == null) && (hit_GroundCheck.collider == null))
                 {
-                    // Move the character
+                    //... Move the character
                     m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
                 }
+
                 // If the input is moving the player right and the player is facing left...
                 if (move > 0 && !m_FacingRight)
                 {
