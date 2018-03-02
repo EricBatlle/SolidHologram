@@ -16,10 +16,10 @@ public class nextLevel : NetworkBehaviour {
             {
                 RpcChangeScene();
             }
-            //else
-            //{
-            //    CmdChangeScene();
-            //}
+            else
+            {
+                CmdChangeScene();
+            }
         }
     }
     
@@ -32,7 +32,7 @@ public class nextLevel : NetworkBehaviour {
     [Command]
     public void CmdChangeScene()
     {
-        lobbyManager.ServerChangeScene(nextSceneName);
+        RpcChangeScene();
     }
 
 }

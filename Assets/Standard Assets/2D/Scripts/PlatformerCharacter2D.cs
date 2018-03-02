@@ -39,29 +39,22 @@ namespace UnityStandardAssets._2D
         {
             //...the camera needs to reference again the player
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
-            //print("la pos"+gameObject.transform.position);
+            
             //...the player has to be realocated to the new spawn point
-            //if (isServer)
-            //{
-            //    RpcChangePos();
-            //}
-            //else
-            //{
-            //    CmdChangePos();
-            //}
+            print(GameObject.FindGameObjectWithTag("Spawn").transform.position);
+            //gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+            gameObject.transform.position = new Vector3(45, -27, 0);                       
         }
 
         [ClientRpc]
         public void RpcChangePos()
-        {
-            print("que tal si me actualizo? RPC");
+        {         
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
         [Command]
         public void CmdChangePos()
-        {
-            print("que tal si me actualizo? CMD");
-            gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        {                        
+            RpcChangePos();
         }
 
         private void FixedUpdate()
