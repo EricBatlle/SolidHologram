@@ -15,6 +15,7 @@ namespace Prototype.NetworkLobby
         //ERIC STUFF
         public int avatarIndex;
         public Dictionary<int, int[]> currentPlayers; //characterType, playerType
+        public LinkedList<RectTransform> userTrail = new LinkedList<RectTransform>();
         //---
         static short MsgKicked = MsgType.Highest + 1;
 
@@ -66,7 +67,7 @@ namespace Prototype.NetworkLobby
             s_Singleton = this;
             _lobbyHooks = GetComponent<Prototype.NetworkLobby.LobbyHook>();
             currentPanel = mainMenuPanel;
-
+            userTrail.AddLast(currentPanel);
             backButton.gameObject.SetActive(false);
             GetComponent<Canvas>().enabled = true;
 
@@ -136,9 +137,32 @@ namespace Prototype.NetworkLobby
             {
                 newPanel.gameObject.SetActive(true);
             }
-
             currentPanel = newPanel;
+            userTrail.AddLast(newPanel);            
+            if (currentPanel != mainMenuPanel)
+            {
+                backButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                backButton.gameObject.SetActive(false);
+                SetServerInfo("Offline", "None");
+                _isMatchmaking = false;
+            }
+        }
 
+        public void BackTo(RectTransform newPanel)
+        {
+            if (currentPanel != null)
+            {
+                currentPanel.gameObject.SetActive(false);
+            }
+
+            if (newPanel != null)
+            {
+                newPanel.gameObject.SetActive(true);
+            }
+            currentPanel = newPanel;            
             if (currentPanel != mainMenuPanel)
             {
                 backButton.gameObject.SetActive(true);
@@ -168,8 +192,15 @@ namespace Prototype.NetworkLobby
         public BackButtonDelegate backDelegate;
         public void GoBackButton()
         {
-            backDelegate();
-			topPanel.isInGame = false;
+            //if he is on the lobby, back = auto_delete the player
+            s_Singleton.RemovePlayer;
+
+            //ERIC VERSION
+            //userTrail.RemoveLast();
+            //BackTo(userTrail.Last.Value);
+
+            //backDelegate();
+            //topPanel.isInGame = false;
         }
 
         // ----------------- Server management

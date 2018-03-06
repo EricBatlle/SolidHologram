@@ -1481,12 +1481,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224505875323264712, guid: 7e75a4cf41e3821409057a1aa13c8445,
     type: 2}
   m_PrefabInternal: {fileID: 308114387}
---- !u!114 &308114389 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114759267536439578, guid: 7e75a4cf41e3821409057a1aa13c8445,
-    type: 2}
-  m_PrefabInternal: {fileID: 308114387}
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &337704315
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,7 +2243,7 @@ MonoBehaviour:
   infoPanel: {fileID: 387540681}
   countdownPanel: {fileID: 694671751}
   addPlayerButton: {fileID: 495743252}
-  backButton: {fileID: 308114389}
+  backButton: {fileID: 815259423}
   statusInfo: {fileID: 44674081}
   hostInfo: {fileID: 169742257}
   _playerNumber: 0
@@ -3530,6 +3524,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114759267536439578, guid: 7e75a4cf41e3821409057a1aa13c8445,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoBackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759267536439578, guid: 7e75a4cf41e3821409057a1aa13c8445,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 469598661}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e75a4cf41e3821409057a1aa13c8445, type: 2}
   m_IsPrefabParent: 0
@@ -4455,6 +4459,12 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 811760853}
+--- !u!114 &815259423 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114759267536439578, guid: 7e75a4cf41e3821409057a1aa13c8445,
+    type: 2}
+  m_PrefabInternal: {fileID: 638474522}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &849451345
 GameObject:
   m_ObjectHideFlags: 0

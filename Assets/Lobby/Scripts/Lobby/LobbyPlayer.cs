@@ -278,8 +278,7 @@ namespace Prototype.NetworkLobby
                 RemovePlayer();
             }
             else if (isServer)
-                LobbyManager.s_Singleton.KickPlayer(connectionToClient);
-                
+                LobbyManager.s_Singleton.KickPlayer(connectionToClient);                
         }
 
         public void ToggleJoinButton(bool enabled)
