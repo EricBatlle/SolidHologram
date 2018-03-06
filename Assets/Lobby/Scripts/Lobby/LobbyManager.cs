@@ -191,15 +191,12 @@ namespace Prototype.NetworkLobby
         public delegate void BackButtonDelegate();
         public BackButtonDelegate backDelegate;
         public void GoBackButton()
-        {
-            //if he is on the lobby, back = auto_delete the player
-            s_Singleton.RemovePlayer;
-
+        {            
             //ERIC VERSION
-            //userTrail.RemoveLast();
-            //BackTo(userTrail.Last.Value);
-
-            //backDelegate();
+            userTrail.RemoveLast();
+            BackTo(userTrail.Last.Value);
+            
+            backDelegate();
             //topPanel.isInGame = false;
         }
 
