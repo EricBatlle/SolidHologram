@@ -598,9 +598,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: ee33650b-948a-4075-ab28-e40cb39868f8
-  projectName: Bifrost_Eric (2)
-  organizationId: ericbatlle
+  cloudProjectId: f91ad4fd-448d-4c95-a299-2b633f065d2b
+  projectName: SolidHologram
+  organizationId: airhune
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

@@ -42,7 +42,9 @@ namespace Prototype.NetworkLobby
 
         public void OnAcceptLevel()
         {            
-            lobbyManager.StartHost();
+            //lobbyManager.StartHost();
+
+            this.OnClickCreateMatchmakingGame();
         }
 
         public void OnClickJoin()
