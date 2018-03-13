@@ -191,12 +191,15 @@ namespace Prototype.NetworkLobby
         public delegate void BackButtonDelegate();
         public BackButtonDelegate backDelegate;
         public void GoBackButton()
-        {            
+        {
             //ERIC VERSION
             userTrail.RemoveLast();
+
             BackTo(userTrail.Last.Value);
-            
-            backDelegate();
+            if (backDelegate != null)
+            {
+                backDelegate();
+            }
             //topPanel.isInGame = false;
         }
 
@@ -230,7 +233,7 @@ namespace Prototype.NetworkLobby
             }
 
             
-            ChangeTo(mainMenuPanel);
+            //ChangeTo(mainMenuPanel);
         }
 
         public void StopClientClbk()
