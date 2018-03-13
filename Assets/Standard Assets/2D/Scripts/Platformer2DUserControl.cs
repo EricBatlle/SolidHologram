@@ -55,6 +55,7 @@ namespace UnityStandardAssets._2D
 			float h = CrossPlatformInputManager.GetAxis ("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
 
+
 #if MOBILE_INPUT
             bool crouch = (v < crouchSensibility) ? true : false;
 #else
