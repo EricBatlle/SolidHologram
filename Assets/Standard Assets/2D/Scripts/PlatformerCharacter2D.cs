@@ -6,14 +6,18 @@ namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : NetworkBehaviour
     {
+        [Header("Main Attributes")]
         [SerializeField] private float m_MaxSpeed = 10f;                                // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                              // Amount of force added when the player jumps.
-        [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;              // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                             // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                              // A mask determining what is ground to the character
+        [Header("Standard Raycasts")]
         [SerializeField] private float collidersRaycastDistance = .6f;                  // Raycast distance to check if moving is allowed
         [SerializeField] private float ceilingAltitude = 0.78f;
-        [SerializeField] private float collidersRaycastDistanceCrouchDifference = 0.5f; //Those values needs to be calculated manually 
+        [SerializeField] private float rampDetection = 0.25f;
+        [Header("Crouch settings")]
+        [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;              // Amount of maxSpeed applied to crouching movement. 1 = 100%
+        [SerializeField] private float collidersRayDistCrouchDifference = 0.5f; //Those values needs to be calculated manually 
         [SerializeField] private float ceilingAltitudeCrouchDifference = -0.3f;         //...if the crouch animation change
 
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
@@ -24,6 +28,7 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+
 
         private void Awake()
         {
@@ -119,7 +124,7 @@ namespace UnityStandardAssets._2D
                 if (crouch)
                 {
                     updatedCeilingAltitude = ceilingAltitude + ceilingAltitudeCrouchDifference;
-                    updatedCollidersRaycastDistance = collidersRaycastDistance + collidersRaycastDistanceCrouchDifference;
+                    updatedCollidersRaycastDistance = collidersRaycastDistance + collidersRayDistCrouchDifference;
                 }
                 else
                 {
@@ -137,9 +142,9 @@ namespace UnityStandardAssets._2D
                 hit_BodyCheck = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), raycastDirection, updatedCollidersRaycastDistance, layermask);
 
                 //Ground Raycast Check
-                Vector2 endPos_ground = new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y) + raycastDirection * updatedCollidersRaycastDistance;//m_GroundCheck.position;
+                Vector2 endPos_ground = new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y+rampDetection) + raycastDirection * updatedCollidersRaycastDistance;//m_GroundCheck.position;
                 Debug.DrawLine(m_GroundCheck.position, endPos_ground, Color.red);
-                hit_GroundCheck = Physics2D.Raycast(new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y), raycastDirection, updatedCollidersRaycastDistance, layermask);
+                hit_GroundCheck = Physics2D.Raycast(new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y+rampDetection), raycastDirection, updatedCollidersRaycastDistance, layermask);
 
                 //If none of the raycasts are colliding to anything...
                 if ((hit_CeilingCheck.collider == null) && (hit_BodyCheck.collider == null) && (hit_GroundCheck.collider == null))

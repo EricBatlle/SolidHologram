@@ -34,7 +34,6 @@ namespace UnityStandardAssets.CrossPlatformInput
         {
             //m_StartPos = transform.position;
             m_StartPos = new Vector3(125,100,0);
-            print(m_StartPos);
             CreateVirtualAxes();
         }
 

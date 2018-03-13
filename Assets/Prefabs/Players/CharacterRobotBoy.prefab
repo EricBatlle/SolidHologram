@@ -70,7 +70,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1536627872044242
 GameObject:
   m_ObjectHideFlags: 1
@@ -88,7 +88,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1714462546213486
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,14 +419,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxSpeed: 10
   m_JumpForce: 800
-  m_CrouchSpeed: 0.25
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
   collidersRaycastDistance: 0.4
   ceilingAltitude: 0.78
-  collidersRaycastDistanceCrouchDifference: 0.2
+  rampDetection: 0.25
+  m_CrouchSpeed: 0.25
+  collidersRayDistCrouchDifference: 0.5
   ceilingAltitudeCrouchDifference: -0.5
 --- !u!114 &114562623036670890
 MonoBehaviour:
