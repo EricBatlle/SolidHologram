@@ -598,9 +598,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: f91ad4fd-448d-4c95-a299-2b633f065d2b
+  cloudProjectId: 484dcfe0-2917-426f-921f-9243bf6dbb16
   projectName: SolidHologram
-  organizationId: airhune
+  organizationId: eric-3932800
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
