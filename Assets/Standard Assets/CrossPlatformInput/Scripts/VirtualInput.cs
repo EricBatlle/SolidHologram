@@ -35,6 +35,10 @@ namespace UnityStandardAssets.CrossPlatformInput
             // check if we already have an axis with that name and log and error if we do
             if (m_VirtualAxes.ContainsKey(axis.name))
             {
+                //Just if the editor don't get already the new platform axis
+                UnRegisterVirtualAxis(axis.name);
+                RegisterVirtualAxis(axis);
+                //------
                 Debug.LogError("There is already a virtual axis named " + axis.name + " registered.");
             }
             else

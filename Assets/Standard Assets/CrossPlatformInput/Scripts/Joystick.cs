@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
@@ -24,16 +25,23 @@ namespace UnityStandardAssets.CrossPlatformInput
 		bool m_UseY; // Toggle for using the Y axis
 		CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis; // Reference to the joystick in the cross platform input
 		CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis; // Reference to the joystick in the cross platform input
+        [Space]
+        [SerializeField] private GameObject m_joystickHover;
+        //void OnEnable()
+        //{
+        //	CreateVirtualAxes();
+        //}
 
-		//void OnEnable()
-		//{
-		//	CreateVirtualAxes();
-		//}
+        private void Awake()
+        {
+            m_StartPos = transform.position;
+            m_joystickHover.GetComponent<Image>().enabled = false;
+        }
 
         void Start()
         {
             //m_StartPos = transform.position;
-            m_StartPos = new Vector3(125,100,0);
+            //m_StartPos = new Vector3(125,100,0);
             CreateVirtualAxes();
         }
 
@@ -101,12 +109,16 @@ namespace UnityStandardAssets.CrossPlatformInput
 		{
             transform.position = m_StartPos;
 			UpdateVirtualAxes(m_StartPos);
-		}
+            m_joystickHover.GetComponent<Image>().enabled = false;
+
+        }
 
 
-		public void OnPointerDown(PointerEventData data) { }
+        public void OnPointerDown(PointerEventData data) {
+            m_joystickHover.GetComponent<Image>().enabled = true;
+        }
 
-		void OnDisable()
+        void OnDisable()
 		{
 			// remove the joysticks from the cross platform input
 			if (m_UseX)
