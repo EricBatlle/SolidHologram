@@ -26,7 +26,7 @@ namespace UnityStandardAssets._2D
         {
             if (!isLocalPlayer)
             {
-                GameObject mobileControl = transform.Find("MobileSingleStickControl").gameObject;
+                GameObject mobileControl = GameObject.FindGameObjectWithTag("MobileController");
                 Destroy(mobileControl);
                 Destroy(this);
                 return;

@@ -11,6 +11,7 @@ TagManager:
   - Draw
   - Wall
   - line
+  - MobileController
   layers:
   - Default
   - TransparentFX
