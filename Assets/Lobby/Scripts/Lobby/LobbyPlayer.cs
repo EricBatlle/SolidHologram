@@ -98,6 +98,7 @@ namespace Prototype.NetworkLobby
 
         void SetupOtherPlayer()
         {
+            
             nameInput.interactable = false;
             removePlayerButton.interactable = NetworkServer.active;
 
@@ -105,6 +106,8 @@ namespace Prototype.NetworkLobby
 
             readyButton.transform.GetChild(0).GetComponent<Text>().text = "...";
             readyButton.interactable = false;
+            boxButton.interactable = false;
+            bentleyButton.interactable = false;
 
             OnClientReady(false);
         }
@@ -113,7 +116,10 @@ namespace Prototype.NetworkLobby
         {
             //ERIC SUTFF
             boxButton.onClick.AddListener(delegate { AvatarPicker(boxButton.name); });
-            bentleyButton.onClick.AddListener(delegate { AvatarPicker(bentleyButton.name); });     
+            bentleyButton.onClick.AddListener(delegate { AvatarPicker(bentleyButton.name); });
+
+            boxButton.interactable = true;
+            bentleyButton.interactable = true;
             //-----
 
             nameInput.interactable = true;
