@@ -226,13 +226,15 @@ namespace Prototype.NetworkLobby
             {
 				matchMaker.DestroyMatch((NetworkID)_currentMatchID, 0, OnDestroyMatch);
 				_disconnectServer = true;
+
+                //Just in case we want that in the case you left lobby, go back to the menu (the same if you leave the game)
+                ChangeTo(mainMenuPanel);
             }
             else
             {
                 StopHost();
             }
 
-            
             //ChangeTo(mainMenuPanel);
         }
 
