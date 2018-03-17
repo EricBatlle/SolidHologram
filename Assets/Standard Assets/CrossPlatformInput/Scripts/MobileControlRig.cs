@@ -3,12 +3,12 @@ using System;
 using UnityEditor;
 #endif
 using UnityEngine;
-using UnityEngine.Networking;
+
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
     [ExecuteInEditMode]
-    public class MobileControlRig : NetworkBehaviour
+    public class MobileControlRig : MonoBehaviour
 #if UNITY_EDITOR
         , UnityEditor.Build.IActiveBuildTargetChanged
 #endif
@@ -36,8 +36,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 #endif
 
         private void Start()
-        {           
-                
+        {
 #if UNITY_EDITOR
             if (Application.isPlaying) //if in the editor, need to check if we are playing, as start is also called just after exiting play
 #endif
