@@ -5,8 +5,10 @@ using UnityEngine;
 public class killPlayer : MonoBehaviour {
 
 	private Vector3 initialPos;
+    [SerializeField]private bool debugMode = false;
 	// Use this for initialization
 	void Start () {
+        if (debugMode) Destroy(this);
 		initialPos = this.transform.position;
 	}
 	
