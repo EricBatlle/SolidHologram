@@ -12,6 +12,12 @@ public class nextLevel : NetworkBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            //find any/all lines and destroy them
+            GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
+            foreach (GameObject td in toDestroy)
+            {
+                NetworkServer.Destroy(td);
+            }
             if (isServer)
             {
                 RpcChangeScene();

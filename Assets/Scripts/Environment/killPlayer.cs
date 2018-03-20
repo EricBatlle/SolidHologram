@@ -12,11 +12,6 @@ public class killPlayer : MonoBehaviour {
 		initialPos = this.transform.position;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        
-    }
-
     //killPlayer behaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
