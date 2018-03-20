@@ -5744,6 +5744,7 @@ Transform:
   - {fileID: 1363705498}
   - {fileID: 524346222}
   - {fileID: 251166150}
+  - {fileID: 1632325449}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12315,7 +12316,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1568214005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.1, y: -26.4, z: 0}
+  m_LocalPosition: {x: 22.2, y: -26.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13121,6 +13122,110 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1631256070}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1632325448
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 802254507}
+    m_Modifications:
+    - target: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 45.537186
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 8.243289
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461041664767706, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114892321246321648, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 1a07de97ce82bf34e9b005ae9f63f902, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1632325449 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4270846633360624, guid: 1a07de97ce82bf34e9b005ae9f63f902,
+    type: 2}
+  m_PrefabInternal: {fileID: 1632325448}
+--- !u!1 &1632325450 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1461041664767706, guid: 1a07de97ce82bf34e9b005ae9f63f902,
+    type: 2}
+  m_PrefabInternal: {fileID: 1632325448}
+--- !u!114 &1632325451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632325450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01a7c1f3c484ba45863b251e5171857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 1823048754164722, guid: b48bdb38089121a43b95bed1279096a0, type: 2}
+  random_0_dropEvery: 0
+  dropEvery: 2
+  startDropping: 0
+--- !u!114 &1632325452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632325450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 26
+    i1: 7
+    i2: 222
+    i3: 151
+    i4: 206
+    i5: 130
+    i6: 191
+    i7: 52
+    i8: 233
+    i9: 176
+    i10: 5
+    i11: 174
+    i12: 159
+    i13: 99
+    i14: 249
+    i15: 2
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1639642002
 GameObject:
   m_ObjectHideFlags: 0

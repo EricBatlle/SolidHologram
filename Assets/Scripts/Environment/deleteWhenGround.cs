@@ -6,6 +6,11 @@ public class deleteWhenGround : MonoBehaviour {
 
     public Sprite collisionSprite;
 
+    public void Start()
+    {
+        StartCoroutine(DestroyAfterTime(5f));
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
