@@ -15,7 +15,7 @@ public class MoverTrigger : MonoBehaviour, IInteractable
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("line"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             PlayerInteraction();
         }

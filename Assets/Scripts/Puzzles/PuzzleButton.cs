@@ -6,12 +6,16 @@ using UnityEngine.Networking;
 
 public class PuzzleButton : NetworkBehaviour, IInteractable {
     
-    [SerializeField] private Material[] materials;
-    private int materialsCount = 0;
+    [SerializeField] private Sprite[] sprites;
+    private int spritesCount = 0;
 
-    public Material currMaterial;
+    public Sprite currSprite;
     public event Action OnColorChange;
-   
+
+    private void Start()
+    {
+        currSprite = this.GetComponent<SpriteRenderer>().sprite;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision){
 		if (collision.gameObject.CompareTag ("Player") || collision.gameObject.CompareTag ("line")) {
@@ -34,13 +38,13 @@ public class PuzzleButton : NetworkBehaviour, IInteractable {
     //Set Next Color
     private void nextColor()
     {
-        if (materialsCount >= materials.Length)
+        if (spritesCount >= sprites.Length)
         {
-            materialsCount = 0;
+            spritesCount = 0;
         }
-        this.GetComponent<MeshRenderer>().material = materials[materialsCount];
-        currMaterial = materials[materialsCount];
-        materialsCount++;
+        this.GetComponent<SpriteRenderer>().sprite = sprites[spritesCount];
+        currSprite = sprites[spritesCount];
+        spritesCount++;
 
         OnColorChange();
     }

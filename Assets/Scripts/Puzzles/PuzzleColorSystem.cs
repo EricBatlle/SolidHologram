@@ -6,7 +6,7 @@ using UnityEngine;
 public class PuzzleColorSystem : MonoBehaviour {
 
     [SerializeField] private PuzzleButton[] puzzleButtons;
-    [SerializeField] private Material materialSolution;
+    [SerializeField] private Sprite spriteSolution;
     [SerializeField] private Mover puzzleDoorMover;
 
     public event Action OnPuzzleSolved;
@@ -40,7 +40,7 @@ public class PuzzleColorSystem : MonoBehaviour {
         puzzleSolved = true;
         foreach (PuzzleButton puzzleButton in puzzleButtons)
         {
-            if (puzzleButton.currMaterial != materialSolution)
+            if (puzzleButton.currSprite != spriteSolution)
             {
                 puzzleSolved = false;
             }
