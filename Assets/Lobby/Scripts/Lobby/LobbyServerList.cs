@@ -19,7 +19,7 @@ namespace Prototype.NetworkLobby
         protected int previousPage = 0;
 
         static Color OddServerColor = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-        static Color EvenServerColor = new Color(.94f, .94f, .94f, 1.0f);
+        //static Color EvenServerColor = new Color(.94f, .94f, .94f, 1.0f);
 
         void OnEnable()
         {
@@ -56,9 +56,10 @@ namespace Prototype.NetworkLobby
 			{
                 GameObject o = Instantiate(serverEntryPrefab) as GameObject;
 
-				o.GetComponent<LobbyServerEntry>().Populate(matches[i], lobbyManager, (i % 2 == 0) ? OddServerColor : EvenServerColor);
+                //o.GetComponent<LobbyServerEntry>().Populate(matches[i], lobbyManager, (i % 2 == 0) ? OddServerColor : EvenServerColor); //server list with different colors
+                o.GetComponent<LobbyServerEntry>().Populate(matches[i], lobbyManager, OddServerColor); 
 
-				o.transform.SetParent(serverListRect, false);
+                o.transform.SetParent(serverListRect, false);
             }
         }
 
