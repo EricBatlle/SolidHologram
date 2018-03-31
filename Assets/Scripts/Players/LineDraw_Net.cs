@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class LineDraw_Net : NetworkBehaviour
 {
+    #region variables
     //PLAYER INFORMATION
     [Header("Player Information")]
     [SerializeField] PlayerInfo playerInfo; //Information about the current player
@@ -62,6 +63,8 @@ public class LineDraw_Net : NetworkBehaviour
     Vector3 oldMousePos; //we store the mouse position when user first clicks
     List<Vector3> positionsLine = new List<Vector3>();
     private float drawTimer;
+#endregion
+
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
@@ -73,7 +76,6 @@ public class LineDraw_Net : NetworkBehaviour
         if (!isLocalPlayer)//hide Bentley HUD
         {
             transform.Find("HUD").gameObject.SetActive(false);
-
         }
         else 
         {
@@ -183,8 +185,7 @@ public class LineDraw_Net : NetworkBehaviour
         {
             NetworkServer.Destroy(td);
         }
-
-
+        //destroyAllLines();
         //create a new line object. NOTE: NetworkServer.Spawn spawns a default copy of the gameobject
         //if we change any properties here they will NOT be sent to client
         GameObject instance = Instantiate(lineObjectPrefab, mouseWorldCoords, Quaternion.identity) as GameObject;

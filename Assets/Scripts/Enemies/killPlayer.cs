@@ -6,6 +6,7 @@ public class killPlayer : MonoBehaviour {
 
 	private Vector3 initialPos;
     [SerializeField]private bool debugMode = false;
+
 	// Use this for initialization
 	void Start () {
         if (debugMode) Destroy(this);
@@ -21,7 +22,8 @@ public class killPlayer : MonoBehaviour {
             //collision.gameObject.SetActive(false);
             //Respawn
             collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-            
+            //Remove all draws
+            //GameObject.FindGameObjectWithTag("Bentley").GetComponent<LineDraw_Net>().RpcDestroyAllLines();
         }
         
     }
