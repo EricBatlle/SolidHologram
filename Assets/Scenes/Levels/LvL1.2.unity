@@ -8927,6 +8927,8 @@ GameObject:
   - component: {fileID: 1744419585}
   - component: {fileID: 1744419584}
   - component: {fileID: 1744419586}
+  - component: {fileID: 1744419588}
+  - component: {fileID: 1744419587}
   m_Layer: 0
   m_Name: FloatingPlatform
   m_TagString: Wall
@@ -8983,7 +8985,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1744419583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68.603714, y: -14.141443, z: -2.28375}
+  m_LocalPosition: {x: 68.603714, y: -19.7, z: -2.28375}
   m_LocalScale: {x: 2.0895166, y: 2.0895166, z: 2.0895166}
   m_Children: []
   m_Father: {fileID: 238264889}
@@ -9031,6 +9033,34 @@ PolygonCollider2D:
       - {x: -0.94, y: -0.265}
       - {x: -1.0802983, y: -0.051325932}
       - {x: 1.0699999, y: -0.055}
+--- !u!114 &1744419587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744419583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d87dad380b08e048aeeba92db3d0900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openDirection: 0
+  closeDirection: 1
+  maxDisplacement: 10
+  speed: 3
+--- !u!114 &1744419588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744419583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78baa502cc6fdeb4bbf3b37b448f867b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 1744419587}
+  moveEvery: 5
 --- !u!1 &1755611329
 GameObject:
   m_ObjectHideFlags: 0

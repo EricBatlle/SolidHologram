@@ -69,10 +69,14 @@ public class Mover : MonoBehaviour {
         if (close)
         {
             Open();
+            open = true;
+            close = false;
         }
         else
         {
             Close();
+            open = false;
+            close = true;
         }
     }
 
