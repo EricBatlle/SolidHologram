@@ -9,45 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1121588277811140}
+  m_RootGameObject: {fileID: 1953327803612384}
   m_IsPrefabParent: 1
---- !u!1 &1121588277811140
+--- !u!1 &1953327803612384
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4692273804357876}
-  - component: {fileID: 33636964573485488}
-  - component: {fileID: 23135541643541892}
-  - component: {fileID: 60490028814356586}
+  - component: {fileID: 4552461101069138}
+  - component: {fileID: 33853108735510100}
+  - component: {fileID: 23997338963648526}
+  - component: {fileID: 60155507035647106}
+  - component: {fileID: 50795524228182146}
+  - component: {fileID: 233153987150451996}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Trapdoor3D
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4692273804357876
+--- !u!4 &4552461101069138
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121588277811140}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08255, y: -0.4875623, z: 0}
-  m_LocalScale: {x: 14.974999, y: 1, z: 1}
+  m_GameObject: {fileID: 1953327803612384}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 37.048, y: 8.364, z: 0}
+  m_LocalScale: {x: 1.5885999, y: 0.12258768, z: 0.31091294}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23135541643541892
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!23 &23997338963648526
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121588277811140}
+  m_GameObject: {fileID: 1953327803612384}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -74,19 +76,39 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33636964573485488
+--- !u!33 &33853108735510100
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121588277811140}
+  m_GameObject: {fileID: 1953327803612384}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!60 &60490028814356586
+--- !u!50 &50795524228182146
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953327803612384}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &60155507035647106
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121588277811140}
+  m_GameObject: {fileID: 1953327803612384}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -105,8 +127,31 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5, y: 0.5}
-      - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: 0, y: 0.5}
+      - {x: -0.4958154, y: 0.49408787}
+      - {x: -0.496758, y: -0.4045085}
+      - {x: 0.496758, y: -0.44695586}
+      - {x: 0.49581474, y: 0.5365363}
+--- !u!233 &233153987150451996
+HingeJoint2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953327803612384}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0.51, y: -0.42}
+  m_ConnectedAnchor: {x: 37.099487, y: 9.174187}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 1
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: -95
