@@ -5515,6 +5515,7 @@ GameObject:
   - component: {fileID: 1149306693}
   - component: {fileID: 1149306692}
   - component: {fileID: 1149306691}
+  - component: {fileID: 1149306694}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Wall
@@ -5663,6 +5664,18 @@ Transform:
   m_Father: {fileID: 238264889}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1149306694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1149306690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1 &1153511630
 GameObject:
   m_ObjectHideFlags: 0
@@ -8863,6 +8876,11 @@ Prefab:
       propertyPath: puzzleDoorMover
       value: 
       objectReference: {fileID: 1978161009}
+    - target: {fileID: 114293996725338750, guid: 05bed0acc1396be43b961e8cca85c766,
+        type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
   m_IsPrefabParent: 0
@@ -9408,6 +9426,16 @@ Prefab:
         type: 2}
       propertyPath: m_AssetId.i15
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 50216583729513986, guid: 427b4dc8d1c81a841846f781b4600d1e,
+        type: 2}
+      propertyPath: m_SleepingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50216583729513986, guid: 427b4dc8d1c81a841846f781b4600d1e,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 427b4dc8d1c81a841846f781b4600d1e, type: 2}

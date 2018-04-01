@@ -6,6 +6,7 @@ namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : NetworkBehaviour
     {
+        #region variables 
         [Header("Main Attributes")]
         [SerializeField] private float m_MaxSpeed = 10f;                                // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                              // Amount of force added when the player jumps.
@@ -27,8 +28,10 @@ namespace UnityStandardAssets._2D
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
-        private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        private bool m_FacingRight = true;  // For determining which way the player is currently facing.        
 
+        public event Action OnPlayerKilled;
+        #endregion
 
         private void Awake()
         {
@@ -40,10 +43,9 @@ namespace UnityStandardAssets._2D
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            //Player has to be realocated to the first spawn point
-            gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+            this.OnPlayerKilled += RespawnPlayer;
         }
 
         //Every time the scene changes...
@@ -51,22 +53,23 @@ namespace UnityStandardAssets._2D
         {
             //...the camera needs to reference again the player
             Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
-            
+
             //...the player has to be realocated to the new spawn point
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
 
-        [ClientRpc]
-        public void RpcChangePos()
-        {         
+        private void Start()
+        {
+            //Player has to be realocated to the first spawn point
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
-        [Command]
-        public void CmdChangePos()
-        {                        
-            RpcChangePos();
+
+        private void OnDisable()
+        {
+            this.OnPlayerKilled -= RespawnPlayer;
         }
 
+        //MAIN LOOP         
         private void FixedUpdate()
         {
             if (!isLocalPlayer)
@@ -88,6 +91,37 @@ namespace UnityStandardAssets._2D
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
         }
 
+
+        public void PlayerKilled()
+        {
+            if (OnPlayerKilled != null)
+                OnPlayerKilled();
+        }
+
+        //Relocate player
+        #region respawnPlayer
+        public void RespawnPlayer()
+        {
+            if (isServer)
+            {
+                RpcRespawnPlayer();
+            }
+            else
+            {
+                CmdRespawnPlayer();
+            }
+        }
+
+        [Command]
+        void CmdRespawnPlayer()
+        {
+            RpcRespawnPlayer();
+        }
+        void RpcRespawnPlayer()
+        {
+            this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        }
+        #endregion
 
         public void Move(float move, bool crouch, bool jump)
         {
@@ -192,6 +226,8 @@ namespace UnityStandardAssets._2D
             }
         }
 
+        //flip sprite to look where you're moving
+        #region flip
         private void Flip()
         {
             if (isServer)
@@ -237,6 +273,7 @@ namespace UnityStandardAssets._2D
             theScale.x *= -1;
             transform.localScale = theScale;
         }
+        #endregion
     }
 }
 

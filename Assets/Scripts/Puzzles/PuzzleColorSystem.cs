@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 public class PuzzleColorSystem : MonoBehaviour {
 
@@ -15,6 +16,38 @@ public class PuzzleColorSystem : MonoBehaviour {
     private bool puzzleSolved = false;
     private bool puzzleHasBeenSolvedOnce = false;
 
+#region setPlayersReference
+    private LineDraw_Net bentley;
+    private PlatformerCharacter2D box;
+
+    private bool findBoxReference = false;
+    private bool findBentleyReference = false;
+#endregion
+    
+    //Used to set players reference
+    private void FixedUpdate()
+    {
+        //Set Players References       
+        if (!findBoxReference)
+        {
+            GameObject boxGO = GameObject.FindGameObjectWithTag("Player");
+            if (boxGO != null)
+            {
+                box = boxGO.GetComponent<PlatformerCharacter2D>();
+                findBoxReference = true;
+            }
+        }
+        if (!findBentleyReference)
+        {
+            GameObject bentleyGO = GameObject.FindGameObjectWithTag("Bentley");
+            if (bentleyGO != null)
+            {
+                bentley = bentleyGO.GetComponent<LineDraw_Net>();
+                findBentleyReference = true;
+            }
+        }
+    }
+
     private void OnEnable()
     {
         foreach (PuzzleButton puzzleButton in puzzleButtons)
@@ -22,7 +55,7 @@ public class PuzzleColorSystem : MonoBehaviour {
             puzzleButton.OnColorChange += checkSolution;
         }
         this.OnPuzzleSolved += puzzleDoorMover.Open;
-        this.OnPuzzleNotSolved += puzzleDoorMover.Close;
+        this.OnPuzzleNotSolved += puzzleDoorMover.Close;        
     }
 
     private void OnDisable()
@@ -33,6 +66,21 @@ public class PuzzleColorSystem : MonoBehaviour {
         }
         this.OnPuzzleSolved -= puzzleDoorMover.Open;
         this.OnPuzzleNotSolved -= puzzleDoorMover.Close;
+
+        if(box != null)
+            box.OnPlayerKilled -= resetPuzzle;
+    }
+
+    private void resetPuzzle()
+    {
+        //Restart boolean variables
+        puzzleSolved = false;
+        puzzleHasBeenSolvedOnce = false;
+        //Set buttons to original state
+        foreach (PuzzleButton puzzleButton in puzzleButtons)
+        {
+            puzzleButton.resetButton();
+        }
     }
 
     private void checkSolution()

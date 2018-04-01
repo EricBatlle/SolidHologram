@@ -143,7 +143,6 @@ public class LineDraw_Net : NetworkBehaviour
         }                
     }
 
-
     //Server creates new draw instance
     [Command]
     void CmdMakeNewLine(Vector3 mouseWorldCoords)
@@ -171,7 +170,7 @@ public class LineDraw_Net : NetworkBehaviour
         }
         else
         {
-            CmdDestroyAllLines();
+            CmdDestroyAllLines();          
         }
     }
     [Command]
@@ -182,7 +181,6 @@ public class LineDraw_Net : NetworkBehaviour
     [ClientRpc]
     void RpcDestroyAllLines()
     {
-        print("destroyAllLinesText");
         //find any/all lines and destroy them
         GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
         foreach (GameObject td in toDestroy)
