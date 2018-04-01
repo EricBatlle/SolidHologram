@@ -23,7 +23,7 @@ public class killPlayer : MonoBehaviour {
             //Respawn
             collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
             //Remove all draws
-            //GameObject.FindGameObjectWithTag("Bentley").GetComponent<LineDraw_Net>().RpcDestroyAllLines();
+            GameObject.FindGameObjectWithTag("Bentley").GetComponent<LineDraw_Net>().destroyAllLines();
         }
         
     }
@@ -34,6 +34,8 @@ public class killPlayer : MonoBehaviour {
         {
             collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
 			this.transform.position = initialPos; //just for the BouncyCapsule?
-		}
+            //Remove all draws
+            GameObject.FindGameObjectWithTag("Bentley").GetComponent<LineDraw_Net>().destroyAllLines();
+        }
     }
 }
