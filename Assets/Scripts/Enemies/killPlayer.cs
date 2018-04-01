@@ -6,8 +6,9 @@ using UnityStandardAssets._2D;
 
 public class killPlayer : MonoBehaviour {
 
-	private Vector3 initialPos;
+	public Vector3 initialPos;
     [SerializeField]private bool debugMode = false;
+    public event Action OnKill;
 
     #region setPlayersReference
     private LineDraw_Net bentley;
@@ -73,7 +74,7 @@ public class killPlayer : MonoBehaviour {
                 box.PlayerKilled();
 
             collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-            this.transform.position = initialPos; //just for the BouncyCapsule?
+            OnKill();
         }
     }
 }
