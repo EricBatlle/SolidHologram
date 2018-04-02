@@ -261,7 +261,9 @@ namespace Prototype.NetworkLobby
         {
             conn.Send(MsgKicked, new KickMsg());
         }
-       
+
+
+
 
         public void KickedMessageHandler(NetworkMessage netMsg)
         {

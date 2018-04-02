@@ -14,8 +14,8 @@ namespace Prototype.NetworkLobby
 
         //ERIC STUFF
         public int avatarIndex = 0;
-        public PlayerButton boxButton;
-        public PlayerButton bentleyButton;
+        public Button boxButton;
+        public Button bentleyButton;
         //-----
 
         static Color[] Colors = new Color[] { Color.magenta, Color.red, Color.cyan, Color.blue, Color.green, Color.yellow };
@@ -47,6 +47,7 @@ namespace Prototype.NetworkLobby
 
         //static Color NormalColor = new Color(0.0f, 219.0f, 2.0f, 1.0f);
 
+
         //static Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         //static Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
 
@@ -62,12 +63,10 @@ namespace Prototype.NetworkLobby
 
             if (isLocalPlayer)
             {
-                print("is local Player");
                 SetupLocalPlayer();
             }
             else
             {
-                print("is  NOT local Player");
                 SetupOtherPlayer();
             }
 
@@ -98,7 +97,8 @@ namespace Prototype.NetworkLobby
         }
 
         void SetupOtherPlayer()
-        {            
+        {
+            
             nameInput.interactable = false;
             removePlayerButton.interactable = NetworkServer.active;
 
@@ -106,16 +106,8 @@ namespace Prototype.NetworkLobby
 
             readyButton.transform.GetChild(0).GetComponent<Text>().text = "...";
             readyButton.interactable = false;
-            //boxButton.interactable = false;
-            //bentleyButton.interactable = false;
-            bentleyButton.GetComponentInParent<Image>().raycastTarget = false;
-            boxButton.GetComponentInParent<Image>().raycastTarget = false;
-
-            bentleyButton.GetComponentInParent<Image>().sprite = bentleyButton.currSprite;
-            boxButton.GetComponentInParent<Image>().sprite = boxButton.currSprite;
-
-            boxButton.onClick.RemoveAllListeners();
-            bentleyButton.onClick.RemoveAllListeners();
+            boxButton.interactable = false;
+            bentleyButton.interactable = false;
 
             OnClientReady(false);
         }
@@ -128,9 +120,6 @@ namespace Prototype.NetworkLobby
 
             boxButton.interactable = true;
             bentleyButton.interactable = true;
-
-            bentleyButton.GetComponentInParent<Image>().sprite = bentleyButton.currSprite;
-            boxButton.GetComponentInParent<Image>().sprite = boxButton.currSprite;
             //-----
 
             nameInput.interactable = true;
@@ -169,69 +158,20 @@ namespace Prototype.NetworkLobby
             if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(0);
         }
 
-        //ERIC STUFF
-        //set selected image to inform other players which player has been picked
-#region updateAvatarPicked
-
-        void updateAvatarPicked(string buttonName)
-        {
-            if (isServer)
-            {
-                RpcUpdateAvatarPicked(buttonName);
-            }
-            else
-            {
-                CmdUpdateAvatarPicked(buttonName);
-            }
-        }
-        [ClientRpc]
-        void RpcUpdateAvatarPicked(string buttonName)
-        {
-            switch (buttonName)
-            {
-                case "bentleyButton":
-                    //Set button
-                    bentleyButton.GetComponentInParent<Image>().sprite = bentleyButton.pressedSprite;
-                    bentleyButton.currSprite = bentleyButton.GetComponentInParent<Image>().sprite;
-                    //Disable the other
-                    boxButton.GetComponentInParent<Image>().sprite = boxButton.spriteState.disabledSprite;
-                    boxButton.currSprite = boxButton.GetComponentInParent<Image>().sprite;
-                    break;
-                case "boxButton":
-                    boxButton.GetComponentInParent<Image>().sprite = boxButton.pressedSprite;
-                    boxButton.currSprite = boxButton.GetComponentInParent<Image>().sprite;
-                    //Disable the other
-                    bentleyButton.GetComponentInParent<Image>().sprite = bentleyButton.spriteState.disabledSprite;
-                    bentleyButton.currSprite = bentleyButton.GetComponentInParent<Image>().sprite;
-                    break;
-                default:
-                    print("error update avatar picker");
-                    break;
-            }
-        }
-
-        [Command]
-        void CmdUpdateAvatarPicked(string buttonName)
-        {
-            RpcUpdateAvatarPicked(buttonName);
-        }
-
-#endregion
-
+        //ERIC STUFF 
         void AvatarPicker(string buttonName)
         {
             if (!isLocalPlayer)
                 return;
 
+            print(buttonName);
             switch (buttonName)
             {
                 case "bentleyButton":
-                    updateAvatarPicked(buttonName);
                     avatarIndex = 1;
                     break;
                 case "boxButton":
-                    updateAvatarPicked(buttonName);
-                    avatarIndex = 2;                    
+                    avatarIndex = 2;
                     break;
                 default:
                     print("error avatar picker");
@@ -316,8 +256,7 @@ namespace Prototype.NetworkLobby
         {
             playerColor = newColor;
             colorButton.GetComponent<Image>().color = newColor;
-        }        
-        //------------
+        }
 
         //===== UI Handler
 
