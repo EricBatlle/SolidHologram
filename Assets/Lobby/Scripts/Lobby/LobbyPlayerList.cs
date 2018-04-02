@@ -63,6 +63,7 @@ namespace Prototype.NetworkLobby
             foreach (LobbyPlayer p in _players)
             {
                 p.OnPlayerListChanged(i);
+                //p.bentleyButton.GetComponentInParent<Image>().sprite = p.bentleyButton.startSprite;
                 ++i;
             }
         }
