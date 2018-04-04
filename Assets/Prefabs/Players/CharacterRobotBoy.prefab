@@ -44,7 +44,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1039917271638516
 GameObject:
   m_ObjectHideFlags: 1
@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1106072068305566
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 114215231130457894}
   - component: {fileID: 114817567073581884}
   - component: {fileID: 114056054094237848}
+  - component: {fileID: 114575423672337578}
   m_Layer: 0
   m_Name: CharacterRobotBoy
   m_TagString: Player
@@ -105,7 +106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1741207070116306
 GameObject:
   m_ObjectHideFlags: 1
@@ -229,11 +230,11 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06, y: -1}
+  m_Offset: {x: -0.06, y: -0.95}
   serializedVersion: 2
-  m_Radius: 0.31
+  m_Radius: 0.4
 --- !u!61 &61725621598294700
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -249,7 +250,7 @@ BoxCollider2D:
   m_Offset: {x: -0.07, y: 0.12}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5842761, y: 0.51327354}
+    pivot: {x: 0.583116, y: 0.5170536}
     oldSize: {x: 1.02, y: 2.66}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -314,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbe225cac59ba744b6f20d8088dffb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerType: 1
+  playerType: 0
 --- !u!114 &114101969634965676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -536,6 +537,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crouchKey: 0
   crouchSensibility: -0.506
+--- !u!114 &114575423672337578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1106072068305566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!114 &114643893140379806
 MonoBehaviour:
   m_ObjectHideFlags: 1

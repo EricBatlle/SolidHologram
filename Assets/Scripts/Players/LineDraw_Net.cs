@@ -63,7 +63,10 @@ public class LineDraw_Net : NetworkBehaviour
     Vector3 oldMousePos; //we store the mouse position when user first clicks
     List<Vector3> positionsLine = new List<Vector3>();
     private float drawTimer;
-#endregion
+    bool waitUntilNextDraw = false;         //Set to true when draws over undrawable surface, to cancel the draw
+
+    #endregion
+
 
     private void Awake()
     {
@@ -108,9 +111,9 @@ public class LineDraw_Net : NetworkBehaviour
                 CmdMakeNewLine(mwc);
                 drawTimer = 0;
             }
-
+            
             //if mouse button is down, and the draw restrictions are true
-            if (Input.GetMouseButton(0) && ((drawTime == 0) || (drawTimer <= drawTime)) && (isDrawableSurface()))
+            if (Input.GetMouseButton(0) && (((drawTime == 0) || (drawTimer <= drawTime))) && (!waitUntilNextDraw) )
             {
                 Vector3 mp = Input.mousePosition;
                 //if we have dragged mouse more than pointInterval pixels
@@ -124,11 +127,17 @@ public class LineDraw_Net : NetworkBehaviour
                     updateLine(mwc);                    
                 }
                 drawTimer += Time.deltaTime;
+                //In case user is drawing over an undrawable part, negate the draw capacity until next draw
+                if (!isDrawableSurface())
+                {
+                    waitUntilNextDraw = true;
+                }
             }
 
             //if mouse button is up
             if (Input.GetMouseButtonUp(0))
             {
+                waitUntilNextDraw = false; //Next draw
                 if (usePhysics)
                 {
                     //Add collider to the lr                    
@@ -479,7 +488,6 @@ public class LineDraw_Net : NetworkBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-
         if ((hit.collider != null))
         {
             //Has collider and is Drawable
@@ -487,11 +495,8 @@ public class LineDraw_Net : NetworkBehaviour
             //Debug.Log("Target Name: " + hit.collider.gameObject.name);
             if (hit.collider.gameObject.GetComponent<isDrawable>() != null)
             {
-                return true;
+                return hit.collider.gameObject.GetComponent<isDrawable>().drawable;
             }
-            //Has collider but is not Drawable
-
-            return false;
         }
         return true;
     }

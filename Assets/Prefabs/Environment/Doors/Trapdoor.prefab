@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 50946076144578546}
   - component: {fileID: 233270417770921478}
   - component: {fileID: 114549785884994988}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trapdoor
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

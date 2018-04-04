@@ -71,6 +71,7 @@ public class killPlayer : MonoBehaviour {
             if(box != null)
                 box.PlayerKilled();
 
+            //ToDo:
             collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
             OnKill();
         }

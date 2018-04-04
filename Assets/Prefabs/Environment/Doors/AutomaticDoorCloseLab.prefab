@@ -69,6 +69,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4490392843254730}
+  - component: {fileID: 114616701246125726}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -233,6 +234,18 @@ MonoBehaviour:
   closeDirection: 1
   maxDisplacement: 5
   speed: 1
+--- !u!114 &114616701246125726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1840361872039770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!114 &114790652390135602
 MonoBehaviour:
   m_ObjectHideFlags: 1

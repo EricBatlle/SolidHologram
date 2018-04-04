@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4096820305726038}
   - component: {fileID: 212653898256729362}
+  - component: {fileID: 114009455218085352}
   m_Layer: 0
   m_Name: spriteIndicator
   m_TagString: Untagged
@@ -70,6 +71,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114009455218085352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1213859571291720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!114 &114870299289673234
 MonoBehaviour:
   m_ObjectHideFlags: 1
