@@ -7,6 +7,13 @@ public class BouncingCapsule : ActivableObject {
     [SerializeField] private Rigidbody2D rigidBody2D;
     [SerializeField] private killPlayer killingObject;
 
+    private Vector3 initialPos;
+
+    private void Start()
+    {
+        initialPos = this.transform.position;
+    }
+
     private void OnEnable()
     {
         killingObject.OnKill += EndBehaviour;
@@ -24,7 +31,7 @@ public class BouncingCapsule : ActivableObject {
     public override void EndBehaviour()
     {
         rigidBody2D.bodyType = RigidbodyType2D.Static;
-        killingObject.transform.position = killingObject.initialPos;
+        this.transform.position = this.initialPos;
         rigidBody2D.bodyType = RigidbodyType2D.Dynamic;
     }
 

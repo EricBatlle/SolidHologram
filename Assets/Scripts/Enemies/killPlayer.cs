@@ -6,11 +6,10 @@ using UnityStandardAssets._2D;
 
 public class killPlayer : MonoBehaviour {
 
-	public Vector3 initialPos;
     [SerializeField]private bool debugMode = false;
     public event Action OnKill;
 
-    #region setPlayersReference
+    #region setPlayersReference variables
     private LineDraw_Net bentley;
     private PlatformerCharacter2D box;
 
@@ -21,7 +20,6 @@ public class killPlayer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         if (debugMode) Destroy(this);
-		initialPos = this.transform.position;
     }
     
     //Used to set players reference
