@@ -176,17 +176,24 @@ public class LineDraw_Net : NetworkBehaviour
     [Command]
     void CmdDestroyAllLines()
     {
-        RpcDestroyAllLines();
-    }
-    [ClientRpc]
-    void RpcDestroyAllLines()
-    {
+        //RpcDestroyAllLines();
         //find any/all lines and destroy them
         GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
         foreach (GameObject td in toDestroy)
         {
             NetworkServer.Destroy(td);
         }
+    }
+    [ClientRpc]
+    void RpcDestroyAllLines()
+    {
+        ////find any/all lines and destroy them
+        //GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
+        //foreach (GameObject td in toDestroy)
+        //{
+        //    NetworkServer.Destroy(td);
+        //}
+        CmdDestroyAllLines();
     }
     #endregion
 

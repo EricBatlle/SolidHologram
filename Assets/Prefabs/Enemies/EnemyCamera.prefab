@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 50548310987788514}
   - component: {fileID: 233580011488397232}
   - component: {fileID: 114484858960574814}
+  - component: {fileID: 114450466797350424}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -276,6 +277,18 @@ PolygonCollider2D:
       - {x: 1.0308475, y: -3.313736}
       - {x: 0.40161884, y: -0.29005966}
       - {x: 0.44348046, y: -0.3033056}
+--- !u!114 &114450466797350424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957644333378884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!114 &114484858960574814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,7 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb19a38cf271b6241a0dc312817429f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPos: {x: 0, y: 0, z: 0}
   debugMode: 0
 --- !u!212 &212088397712444596
 SpriteRenderer:

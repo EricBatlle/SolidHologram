@@ -102,14 +102,18 @@ namespace UnityStandardAssets._2D
         #region respawnPlayer
         public void RespawnPlayer()
         {
-            if (isServer)
-            {
-                RpcRespawnPlayer();
-            }
-            else
-            {
-                CmdRespawnPlayer();
-            }
+            this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+            //if (!isLocalPlayer)
+            //    return;
+
+            //if (isServer)
+            //{
+            //    RpcRespawnPlayer();
+            //}
+            //else
+            //{
+            //    CmdRespawnPlayer();
+            //}
         }
 
         [Command]
@@ -182,12 +186,20 @@ namespace UnityStandardAssets._2D
                 Vector2 endPos_ground = new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y+rampDetection) + raycastDirection * updatedCollidersRaycastDistance;//m_GroundCheck.position;
                 Debug.DrawLine(m_GroundCheck.position, endPos_ground, Color.red);
                 hit_GroundCheck = Physics2D.Raycast(new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y+rampDetection), raycastDirection, updatedCollidersRaycastDistance, layermask);
+                
+                
 
                 //If none of the raycasts are colliding to anything...
                 if ((hit_CeilingCheck.collider == null) && (hit_BodyCheck.collider == null) && (hit_GroundCheck.collider == null))
                 {
                     //... Move the character
                     m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                }
+                else
+                {
+                    print("ceiling" + hit_CeilingCheck.collider);
+                    print("body" + hit_BodyCheck.collider.name);
+                    print("ground" + hit_GroundCheck.collider.name);
                 }
 
                 // If the input is moving the player right and the player is facing left...
@@ -203,6 +215,7 @@ namespace UnityStandardAssets._2D
                     Flip();
                 }
             }
+            
             // If the player should jump...
             if (m_Grounded && jump && m_Anim.GetBool("Ground"))
             {
