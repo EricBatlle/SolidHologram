@@ -119,9 +119,9 @@ GameObject:
   m_Component:
   - component: {fileID: 130358210}
   - component: {fileID: 130358209}
-  - component: {fileID: 130358208}
   - component: {fileID: 130358207}
   - component: {fileID: 130358211}
+  - component: {fileID: 130358208}
   m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Wall
@@ -161,18 +161,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &130358208
-BoxCollider:
+--- !u!114 &130358208
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130358206}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!33 &130358209
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -193,18 +193,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!65 &130358211
-BoxCollider:
+--- !u!60 &130358211
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130358206}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1.0000002, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.50332147, y: 0.5944433}
+      - {x: -0.4986874, y: 0.4850664}
+      - {x: -0.29389265, y: -0.40450862}
+      - {x: -0.49460378, y: -0.45173073}
+      - {x: 0.29389274, y: -0.40450856}
+      - {x: 0.5028064, y: -0.42309856}
 --- !u!1 &582268308
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,9 +232,9 @@ GameObject:
   m_Component:
   - component: {fileID: 582268312}
   - component: {fileID: 582268311}
-  - component: {fileID: 582268310}
   - component: {fileID: 582268309}
   - component: {fileID: 582268313}
+  - component: {fileID: 582268310}
   m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Wall
@@ -256,18 +274,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &582268310
-BoxCollider:
+--- !u!114 &582268310
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 582268308}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!33 &582268311
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -288,18 +306,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &582268313
-BoxCollider:
+--- !u!60 &582268313
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 582268308}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5}
+      - {x: -0.47552827, y: 0.15450849}
+      - {x: -0.3526452, y: -0.4045086}
+      - {x: 0.36733344, y: -0.4045086}
+      - {x: 0.47552824, y: 0.15450856}
 --- !u!1 &1000038038
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,9 +493,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1208631832}
   - component: {fileID: 1208631831}
-  - component: {fileID: 1208631830}
   - component: {fileID: 1208631829}
   - component: {fileID: 1208631833}
+  - component: {fileID: 1208631830}
   m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Wall
@@ -500,18 +535,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1208631830
-BoxCollider:
+--- !u!114 &1208631830
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1208631828}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!33 &1208631831
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -532,18 +567,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!65 &1208631833
-BoxCollider:
+--- !u!60 &1208631833
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1208631828}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1.0000002, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5000001}
+      - {x: -0.4876596, y: 0.5395794}
+      - {x: -0.29389265, y: -0.40450862}
+      - {x: 0.29389274, y: -0.40450856}
+      - {x: 0.49803913, y: 0.4766264}
 --- !u!1 &1328823358
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,9 +676,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1432870405}
   - component: {fileID: 1432870404}
-  - component: {fileID: 1432870403}
   - component: {fileID: 1432870402}
   - component: {fileID: 1432870406}
+  - component: {fileID: 1432870403}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Wall
@@ -666,18 +718,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1432870403
-BoxCollider:
+--- !u!114 &1432870403
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1432870401}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!33 &1432870404
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -698,18 +750,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1432870406
-BoxCollider:
+--- !u!60 &1432870406
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1432870401}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5}
+      - {x: -0.49656457, y: 0.5681305}
+      - {x: -0.4982453, y: -0.5423813}
+      - {x: 0.49373767, y: -0.49642563}
+      - {x: 0.49956986, y: 0.47621155}
 --- !u!1 &1568214005
 GameObject:
   m_ObjectHideFlags: 0
