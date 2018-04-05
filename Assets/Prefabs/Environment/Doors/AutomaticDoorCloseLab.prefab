@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4512567151946650}
   - component: {fileID: 60255200447152630}
   - component: {fileID: 114790652390135602}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CloseTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

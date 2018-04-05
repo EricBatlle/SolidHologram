@@ -1372,6 +1372,7 @@ GameObject:
   - component: {fileID: 728313199}
   - component: {fileID: 728313198}
   - component: {fileID: 728313200}
+  - component: {fileID: 728313201}
   m_Layer: 8
   m_Name: borde
   m_TagString: Wall
@@ -1685,6 +1686,18 @@ PolygonCollider2D:
       - {x: 3.4771678, y: 5.070156}
       - {x: 7.6223626, y: 5.070156}
       - {x: 7.6223626, y: 5.258574}
+--- !u!114 &728313201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 728313197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!4 &732929401 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4270846633360624, guid: af248db8d59349e4282a6f7f2916a42e,
@@ -1805,7 +1818,7 @@ GameObject:
   - component: {fileID: 779937218}
   - component: {fileID: 779937217}
   - component: {fileID: 779937216}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ventiladorAspasSprite_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2086,6 +2099,7 @@ GameObject:
   - component: {fileID: 844649692}
   - component: {fileID: 844649691}
   - component: {fileID: 844649693}
+  - component: {fileID: 844649694}
   m_Layer: 8
   m_Name: ventilador
   m_TagString: Untagged
@@ -2176,6 +2190,18 @@ PolygonCollider2D:
       - {x: -1.365, y: -1.365}
       - {x: 1.365, y: -1.365}
       - {x: 1.365, y: 1.365}
+--- !u!114 &844649694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 844649690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1 &903826729
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,9 +2242,10 @@ GameObject:
   - component: {fileID: 928515364}
   - component: {fileID: 928515363}
   - component: {fileID: 928515365}
-  m_Layer: 0
+  - component: {fileID: 928515366}
+  m_Layer: 8
   m_Name: RadioactiveContainer
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2359,6 +2386,18 @@ PolygonCollider2D:
       - {x: -0.51576024, y: 0.7054189}
       - {x: -0.56499964, y: 0.7307992}
       - {x: -0.68730056, y: 0.7100194}
+--- !u!114 &928515366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 928515362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1 &1034532308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,6 +2408,7 @@ GameObject:
   - component: {fileID: 1034532309}
   - component: {fileID: 1034532311}
   - component: {fileID: 1034532310}
+  - component: {fileID: 1034532312}
   m_Layer: 8
   m_Name: miniborde
   m_TagString: Untagged
@@ -2460,6 +2500,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1034532312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1034532308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1 &1078705648
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,6 +2692,7 @@ GameObject:
   - component: {fileID: 1173915684}
   - component: {fileID: 1173915683}
   - component: {fileID: 1173915682}
+  - component: {fileID: 1173915685}
   m_Layer: 8
   m_Name: miniborde2
   m_TagString: Untagged
@@ -2731,6 +2784,18 @@ Transform:
   m_Father: {fileID: 1790783996}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1173915685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1173915681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1001 &1206770780
 Prefab:
   m_ObjectHideFlags: 0
@@ -2959,6 +3024,7 @@ GameObject:
   - component: {fileID: 1469332984}
   - component: {fileID: 1469332983}
   - component: {fileID: 1469332985}
+  - component: {fileID: 1469332986}
   m_Layer: 0
   m_Name: juntaRotaSuperior
   m_TagString: Untagged
@@ -3053,6 +3119,18 @@ PolygonCollider2D:
       - {x: 0.57, y: -0.26}
       - {x: -0.2563837, y: -0.28177488}
       - {x: -0.24, y: 0.53999996}
+--- !u!114 &1469332986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1469332982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1 &1484533321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,11 +3348,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4103814076969050, guid: cfd4879251891dd49ab56318cf8855b0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 24.09
+      value: 25.76
       objectReference: {fileID: 0}
     - target: {fileID: 4103814076969050, guid: cfd4879251891dd49ab56318cf8855b0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -26.25
+      value: -32.57
       objectReference: {fileID: 0}
     - target: {fileID: 4103814076969050, guid: cfd4879251891dd49ab56318cf8855b0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3308,6 +3386,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 4.53751
       objectReference: {fileID: 0}
+    - target: {fileID: 1385266135650204, guid: cfd4879251891dd49ab56318cf8855b0, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfd4879251891dd49ab56318cf8855b0, type: 2}
   m_IsPrefabParent: 0
@@ -3320,7 +3402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1565953045}
   - component: {fileID: 1565953044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ventiladorRejas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3395,6 +3477,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1614804678}
+  - component: {fileID: 1614804679}
   m_Layer: 0
   m_Name: Irons
   m_TagString: Untagged
@@ -3420,6 +3503,18 @@ Transform:
   m_Father: {fileID: 1223188030}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1614804679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1614804677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!4 &1746446915 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4972510953050052, guid: 1d400ed44a174d743aaaa959d72b42f8,
@@ -3433,9 +3528,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1790783996}
-  m_Layer: 0
+  - component: {fileID: 1790783997}
+  m_Layer: 8
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3456,6 +3552,18 @@ Transform:
   m_Father: {fileID: 1223188030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1790783997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1790783995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1 &1809439594
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,6 +3683,7 @@ GameObject:
   - component: {fileID: 1915992659}
   - component: {fileID: 1915992658}
   - component: {fileID: 1915992660}
+  - component: {fileID: 1915992661}
   m_Layer: 0
   m_Name: juntaRotaSuperior (1)
   m_TagString: Untagged
@@ -3669,6 +3778,18 @@ PolygonCollider2D:
       - {x: 0.57, y: -0.26}
       - {x: -0.24885488, y: -0.27440456}
       - {x: -0.24, y: 0.53999996}
+--- !u!114 &1915992661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1915992657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1 &1937938674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3677,9 +3798,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1937938675}
-  m_Layer: 0
+  - component: {fileID: 1937938676}
+  m_Layer: 8
   m_Name: Ventilator
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3700,6 +3822,18 @@ Transform:
   m_Father: {fileID: 1223188030}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1937938676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1937938674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!1001 &1984793744
 Prefab:
   m_ObjectHideFlags: 0
