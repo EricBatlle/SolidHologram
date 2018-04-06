@@ -13,8 +13,9 @@ public class LineDraw_Net : NetworkBehaviour
     [SerializeField] PlayerInfo playerInfo; //Information about the current player
 
     [Header("HUD Interaction")]
-    public Button normalDrawButton;
-    public Button messageDrawButton;
+    public DrawButton[] hudButtons;
+    public DrawButton messageDrawButton;
+    public DrawButton normalDrawButton;
 
 
     //PREFAB DRAW
@@ -71,7 +72,7 @@ public class LineDraw_Net : NetworkBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        color = normalColor;
+        color = messageColor;                       //Starts with the message type color, needs to be on the awake for network troubles
     }
 
     public void Start()
@@ -82,9 +83,10 @@ public class LineDraw_Net : NetworkBehaviour
         }
         else 
         {
-            //Set Listeners to the HUD buttons
-            changeDrawType();            
-        }       
+            //Initiate DrawButtons
+            changeDrawType();                       //Set Listeners to the HUD buttons
+            messageDrawButton.initiatePressed();    //Starts with the message type button
+        }
     }
 
     // Update is called once per frame
@@ -452,13 +454,13 @@ public class LineDraw_Net : NetworkBehaviour
     {
         if (isServer)
         {
-            normalDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("normal"); });
             messageDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("message"); });
+            normalDrawButton.onClick.AddListener(delegate { RpcOnChangeDrawType("normal"); });
         }
         else
         {
-            normalDrawButton.onClick.AddListener(delegate { CmdOnChangeDrawType("normal"); });
             messageDrawButton.onClick.AddListener(delegate { CmdOnChangeDrawType("message"); });
+            normalDrawButton.onClick.AddListener(delegate { CmdOnChangeDrawType("normal"); });
         }
     }
     [Command]
@@ -471,14 +473,14 @@ public class LineDraw_Net : NetworkBehaviour
     {
         switch (type)
         {
-            case "normal":
-                color = normalColor;
-                usePhysics = true;
-                break;
             case "message":
                 color = messageColor;
                 usePhysics = false;
                 break;
+            case "normal":
+                color = normalColor;
+                usePhysics = true;
+                break;            
         }
     }
     #endregion
