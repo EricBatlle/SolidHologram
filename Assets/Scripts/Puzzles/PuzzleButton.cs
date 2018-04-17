@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PuzzleButton : NetworkBehaviour {
+public class PuzzleButton : NetworkInteractiveObject
+{
     
     [SerializeField] private Sprite[] sprites;
     private int spritesCount = 0;
@@ -36,10 +37,22 @@ public class PuzzleButton : NetworkBehaviour {
         }
         else
         {
-            CmdNextColor();
+            if (!hasAuthority)
+            {
+                this.OnInteraction += NmCmdNextColor;
+                setLocalAuthority();
+            }
+            else
+            {
+                CmdNextColor();
+            }
         }
     }
 
+    private void NmCmdNextColor()
+    {
+        CmdNextColor();
+    }
     [Command]
     private void CmdNextColor()
     {
@@ -70,19 +83,26 @@ public class PuzzleButton : NetworkBehaviour {
         }
         else
         {
-            //RpcResetButton();
-            currSprite = startSprite;
-            this.GetComponent<SpriteRenderer>().sprite = currSprite;
-            spritesCount = 0;
+            if (!hasAuthority)
+            {
+                this.OnInteraction += NmCmdResetButton;
+                setLocalAuthority();
+            }
+            else
+            {
+                CmdResetButton();
+            }
         }
     }
-
+    void NmCmdResetButton()
+    {
+        CmdResetButton();
+    }
     [Command]
     void CmdResetButton()
     {
         RpcResetButton();
     }
-
     [ClientRpc]
     void RpcResetButton()
     {

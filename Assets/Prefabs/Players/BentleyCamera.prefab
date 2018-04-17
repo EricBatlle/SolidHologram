@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114220282808715798}
   - component: {fileID: 114724684584371964}
   - component: {fileID: 114182333874579164}
+  - component: {fileID: 114665255751092290}
   m_Layer: 0
   m_Name: BentleyCamera
   m_TagString: Bentley
@@ -290,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbe225cac59ba744b6f20d8088dffb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerType: 1
+  playerType: 0
 --- !u!114 &114220282808715798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,6 +377,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114665255751092290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1083407084184776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d1ee00b2fcaf64c946dc57d1abbbed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocal: 0
 --- !u!114 &114724684584371964
 MonoBehaviour:
   m_ObjectHideFlags: 1

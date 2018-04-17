@@ -2213,11 +2213,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.5
+      value: 143.7
       objectReference: {fileID: 0}
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -18.4
+      value: -40.3
       objectReference: {fileID: 0}
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3359,6 +3359,16 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 0e0f0f8ab521723478a6216e2417cd8b,
         type: 3}
+    - target: {fileID: 114293996725338750, guid: 05bed0acc1396be43b961e8cca85c766,
+        type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114971481424956408, guid: 05bed0acc1396be43b961e8cca85c766,
+        type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
   m_IsPrefabParent: 0
@@ -6202,6 +6212,11 @@ Prefab:
       propertyPath: m_LocalPlayerAuthority
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114971481424956408, guid: 05bed0acc1396be43b961e8cca85c766,
+        type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
   m_IsPrefabParent: 0
@@ -7053,7 +7068,7 @@ MonoBehaviour:
     i14: 199
     i15: 102
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!60 &1918002585
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7812,6 +7827,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 09a646587da095748a664d022593712f,
         type: 3}
+    - target: {fileID: 114413759028329522, guid: 3e36c2e88a7c10643b8a40c777c32d1a,
+        type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e36c2e88a7c10643b8a40c777c32d1a, type: 2}
   m_IsPrefabParent: 0
