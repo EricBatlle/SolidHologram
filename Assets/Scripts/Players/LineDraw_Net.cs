@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class LineDraw_Net : NetworkBehaviour
+public class LineDraw_Net : NetworkInteractiveObject
 {
     #region variables
     //PLAYER INFORMATION
@@ -179,32 +179,32 @@ public class LineDraw_Net : NetworkBehaviour
         {
             RpcDestroyAllLines();
         }
-        else
-        {
-            CmdDestroyAllLines();          
-        }
+        //else
+        //{
+        //    CmdDestroyAllLines();
+        //}
     }
     [Command]
     void CmdDestroyAllLines()
     {
-        //RpcDestroyAllLines();
+        RpcDestroyAllLines();
         //find any/all lines and destroy them
-        GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
-        foreach (GameObject td in toDestroy)
-        {
-            NetworkServer.Destroy(td);
-        }
-    }
-    [ClientRpc]
-    void RpcDestroyAllLines()
-    {
-        ////find any/all lines and destroy them
         //GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
         //foreach (GameObject td in toDestroy)
         //{
         //    NetworkServer.Destroy(td);
         //}
-        CmdDestroyAllLines();
+    }
+    [ClientRpc]
+    void RpcDestroyAllLines()
+    {
+        ////find any/all lines and destroy them
+        GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
+        foreach (GameObject td in toDestroy)
+        {
+            NetworkServer.Destroy(td);
+        }
+        //CmdDestroyAllLines();
     }
     #endregion
 

@@ -35,18 +35,18 @@ public class PuzzleButton : NetworkInteractiveObject
         {
             RpcNextColor();
         }
-        else
-        {
-            if (!hasAuthority)
-            {
-                this.OnInteraction += NmCmdNextColor;
-                setLocalAuthority();
-            }
-            else
-            {
-                CmdNextColor();
-            }
-        }
+        //else
+        //{
+        //    if (!hasAuthority)
+        //    {
+        //        this.OnInteraction += NmCmdNextColor;
+        //        setLocalAuthority();
+        //    }
+        //    else
+        //    {
+        //        CmdNextColor();
+        //    }
+        //}
     }
 
     private void NmCmdNextColor()

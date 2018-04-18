@@ -39,20 +39,21 @@ public class NetworkInteractiveObject : NetworkBehaviour
     public GameObject findLocalPlayer()
     {
         GameObject box = GameObject.FindWithTag("Player");
-        print(box);
         GameObject bentley = GameObject.FindWithTag("Bentley");
-        print(bentley);
 
-        if (box.GetComponent<PlayerAuthorityAssignator>().isLocal)
+        if (box != null && bentley != null)
         {
-            return box;
-        }
-        else if(bentley.GetComponent<PlayerAuthorityAssignator>().isLocal)
-        {
-            return bentley;
-        }
-
-        print("There is no local player?");
+            if (box.GetComponent<PlayerAuthorityAssignator>().isLocal)
+            {
+                return box;
+            }
+            else if (bentley.GetComponent<PlayerAuthorityAssignator>().isLocal)
+            {
+                return bentley;
+            }
+        }        
+        //Debug log
+        //print("There is no local player?");
 
         return null;
     }

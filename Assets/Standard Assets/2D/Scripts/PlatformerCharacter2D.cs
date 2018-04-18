@@ -47,6 +47,10 @@ namespace UnityStandardAssets._2D
         {
             this.OnPlayerKilled += RespawnPlayer;
         }
+        private void OnDisable()
+        {
+            this.OnPlayerKilled -= RespawnPlayer;
+        }
 
         //Every time the scene changes...
         public void OnLevelWasLoaded(int level)
@@ -64,11 +68,7 @@ namespace UnityStandardAssets._2D
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
 
-        private void OnDisable()
-        {
-            this.OnPlayerKilled -= RespawnPlayer;
-        }
-
+        
         //MAIN LOOP         
         private void FixedUpdate()
         {
@@ -105,7 +105,7 @@ namespace UnityStandardAssets._2D
             this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
             //if (!isLocalPlayer)
             //    return;
-
+            //print("respawnPlayer");
             //if (isServer)
             //{
             //    RpcRespawnPlayer();
