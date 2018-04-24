@@ -31,54 +31,10 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.        
 
-        public event Action OnPlayerKilled;
+        public event Action OnPlayerDies;
         #endregion
         
-        //#region tryingDestroyAllStuff
-        //private void OnCollisionEnter2D(Collision2D collision)
-        //{
-        //    if (collision.gameObject.CompareTag("Drop"))
-        //    {
-        //        print("Ha chocado con el player");                
-        //        //Call the functions suscribed to the action called when the player dies
-        //        if (this != null)
-        //        {
-        //            this.destroyAllLines();
-        //            this.OnPlayerKilled();
-        //        }
-                    
-        //    }
-        //}
-        //public void destroyAllLines()
-        //{
-        //    print("destroy");
-        //    if (isServer)
-        //    {
-        //        RpcDestroyAllLines();
-        //        print("destroy");
-        //    }
-        //    else
-        //    {
-        //        CmdDestroyAllLines();
-        //    }
-        //}
-        //[Command]
-        //void CmdDestroyAllLines()
-        //{
-        //    RpcDestroyAllLines();            
-        //}
-        //[ClientRpc]
-        //void RpcDestroyAllLines()
-        //{
-        //    print("rpcdestroy");
-        //    ////find any/all lines and destroy them
-        //    GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
-        //    foreach (GameObject td in toDestroy)
-        //    {
-        //        NetworkServer.Destroy(td);
-        //    }
-        //}
-        //#endregion
+        
 
         private void Awake()
         {
@@ -92,11 +48,11 @@ namespace UnityStandardAssets._2D
 
         private void OnEnable()
         {
-            this.OnPlayerKilled += RespawnPlayer;
+            this.OnPlayerDies += RespawnPlayer;
         }
         private void OnDisable()
         {
-            this.OnPlayerKilled -= RespawnPlayer;
+            this.OnPlayerDies -= RespawnPlayer;
         }
 
         //Every time the scene changes...
@@ -111,10 +67,9 @@ namespace UnityStandardAssets._2D
 
         private void Start()
         {
-            //Player has to be realocated to the first spawn point
+            //For the first lobby start, onlevelwasloaded is not called, so Player has to be realocated to the first spawn point
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
-
         
         //MAIN LOOP         
         private void FixedUpdate()
@@ -138,39 +93,41 @@ namespace UnityStandardAssets._2D
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
         }
 
-
+        //Die Collison and Trigger checks
+        #region dieBehaviour
+        //ToDo: Remove PlayerKilled, as killPlayer no longer should exists
         public void PlayerKilled()
         {
-            if (OnPlayerKilled != null)
-                OnPlayerKilled();
+            if (OnPlayerDies != null)
+                OnPlayerDies();
         }
 
+        //Killing Colliders
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Killer"))
+            {
+                if (OnPlayerDies != null)
+                    OnPlayerDies();                           
+            }
+        }
+
+        //Killing Triggers
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Killer"))
+            {
+                if (OnPlayerDies != null)
+                    OnPlayerDies();
+            }
+        }
+        #endregion
+        
         //Relocate player
         #region respawnPlayer
         public void RespawnPlayer()
         {
             this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;            
-            //if (!isLocalPlayer)
-            //    return;
-            //print("respawnPlayer");
-            //if (isServer)
-            //{
-            //    RpcRespawnPlayer();
-            //}
-            //else
-            //{
-            //    CmdRespawnPlayer();
-            //}
-        }
-
-        [Command]
-        void CmdRespawnPlayer()
-        {
-            RpcRespawnPlayer();
-        }
-        void RpcRespawnPlayer()
-        {
-            this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
         #endregion
 
@@ -205,7 +162,7 @@ namespace UnityStandardAssets._2D
                 RaycastHit2D hit_CeilingCheck;
                 RaycastHit2D hit_BodyCheck;
                 RaycastHit2D hit_GroundCheck;
-                Vector2 raycastDirection = (IsLooking("right", move)) ? Vector2.right : Vector2.left;
+                Vector2 raycastDirection = (IsLookingAt("right", move)) ? Vector2.right : Vector2.left;
                 float updatedCeilingAltitude;
                 float updatedCollidersRaycastDistance;
                 //Update raycasts if the player is crouching, cause colliders shrink and stretch
@@ -268,7 +225,7 @@ namespace UnityStandardAssets._2D
         }
 
         //Returns if the player is looking to the specified direction (right or left)
-        private bool IsLooking(string direction, float move)
+        private bool IsLookingAt(string direction, float move)
         {
             if (move >= 0)
             {

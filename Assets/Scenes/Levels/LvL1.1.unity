@@ -1016,7 +1016,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4972510953050052, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.965
+      value: -2.983
       objectReference: {fileID: 0}
     - target: {fileID: 4972510953050052, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1647,7 +1647,9 @@ PolygonCollider2D:
       - {x: 3.6655858, y: -10.808339}
       - {x: 3.6655858, y: -9.934765}
       - {x: 3.6484568, y: -9.746347}
-    - - {x: -13.137871, y: -4.9331245}
+    - - {x: -13.482362, y: -7.1690025}
+      - {x: -13.458167, y: -5.2948008}
+      - {x: -13.137871, y: -4.9331245}
       - {x: -13.891542, y: -4.9331245}
       - {x: -13.891542, y: -7.4339447}
       - {x: -6.320566, y: -7.4339447}
@@ -1989,7 +1991,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4972510953050052, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1823920285235458, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
       propertyPath: m_Name
@@ -2006,6 +2008,10 @@ Prefab:
     - target: {fileID: 4972510953050052, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823920285235458, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
@@ -2349,10 +2355,13 @@ PolygonCollider2D:
       - {x: 1.505, y: -1.4}
       - {x: 1.5849999, y: -1.18}
       - {x: 1.5849999, y: 0.69}
-      - {x: -0.555, y: 0.69}
-      - {x: -0.565, y: 0.7}
-      - {x: -0.59499997, y: 0.7}
-      - {x: -0.60499996, y: 0.69}
+      - {x: 1.2923285, y: 0.6633022}
+      - {x: 1.2829254, y: -0.90651286}
+      - {x: 0.986093, y: -1.4259155}
+      - {x: -0.30137163, y: -1.5526029}
+      - {x: -0.8586739, y: -1.3824177}
+      - {x: -1.2090458, y: -0.9285571}
+      - {x: -1.2457439, y: 0.6766514}
       - {x: -1.5849999, y: 0.69}
       - {x: -1.5849999, y: -1.17}
       - {x: -1.535, y: -1.3399999}
@@ -2370,14 +2379,14 @@ PolygonCollider2D:
       - {x: -0.525, y: -2.59}
       - {x: -0.475, y: -2.52}
       - {x: -0.465, y: -2.34}
-    - - {x: -0.645, y: 0.71999997}
-      - {x: -0.625, y: 0.7}
-      - {x: -0.475, y: 0.7}
-      - {x: -0.45499998, y: 0.71}
-      - {x: -0.44653988, y: 0.71463877}
-      - {x: -0.51576024, y: 0.7054189}
-      - {x: -0.56499964, y: 0.7307992}
-      - {x: -0.68730056, y: 0.7100194}
+    - - {x: -0.83188313, y: -1.3624173}
+      - {x: -0.3313247, y: -1.5159055}
+      - {x: 0.32592964, y: -1.529254}
+      - {x: 0.79979134, y: -1.3857654}
+      - {x: 0.11411015, y: -1.568011}
+      - {x: -0.6359006, y: -1.5505338}
+      - {x: -0.8720222, y: -1.3916639}
+      - {x: -0.83413684, y: -1.3190035}
 --- !u!114 &928515366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3900,7 +3909,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4972510953050052, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1823920285235458, guid: 1d400ed44a174d743aaaa959d72b42f8, type: 2}
       propertyPath: m_Name
@@ -3930,11 +3939,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4670560040861528, guid: 1cc653cac2f1835418aad74af7f11729, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.5
+      value: 3.17
       objectReference: {fileID: 0}
     - target: {fileID: 4670560040861528, guid: 1cc653cac2f1835418aad74af7f11729, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -26.3
+      value: -10.91
       objectReference: {fileID: 0}
     - target: {fileID: 4670560040861528, guid: 1cc653cac2f1835418aad74af7f11729, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4043,7 +4052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2140244380}
   m_Layer: 0
-  m_Name: DeadZone
+  m_Name: DeadZones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4061,8 +4070,8 @@ Transform:
   m_Children:
   - {fileID: 1746446915}
   - {fileID: 564531428}
-  - {fileID: 1855990573}
   - {fileID: 716939586}
+  - {fileID: 1855990573}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

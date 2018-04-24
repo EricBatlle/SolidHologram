@@ -68,7 +68,7 @@ public class PuzzleColorSystem : MonoBehaviour {
         this.OnPuzzleNotSolved -= puzzleDoorMover.Close;
 
         if(box != null)
-            box.OnPlayerKilled -= resetPuzzle;
+            box.OnPlayerDies -= resetPuzzle;
     }
 
     private void resetPuzzle()

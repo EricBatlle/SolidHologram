@@ -98,7 +98,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224956154198079136}
   - component: {fileID: 60343204337223198}
-  - component: {fileID: 114648044448482038}
   m_Layer: 2
   m_Name: VisionRange
   m_TagString: Untagged
@@ -302,18 +301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 233580011488397232}
   waitingTime: 2
---- !u!114 &114648044448482038
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633200920897324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb19a38cf271b6241a0dc312817429f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugMode: 0
 --- !u!212 &212088397712444596
 SpriteRenderer:
   m_ObjectHideFlags: 1
