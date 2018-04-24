@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -68,6 +69,17 @@ public class LineDraw_Net : NetworkInteractiveObject
 
     #endregion
 
+    public Action OnDestroyLines = null;
+
+    private void OnEnable()
+    {
+        OnDestroyLines += destroyAllLines;    
+    }
+
+    private void OnDisable()
+    {
+        OnDestroyLines -= destroyAllLines;
+    }
 
     private void Awake()
     {
@@ -175,14 +187,16 @@ public class LineDraw_Net : NetworkInteractiveObject
     #region destroyAllLines
     public void destroyAllLines()
     {
+        print("destroy");
         if (isServer)
         {
             RpcDestroyAllLines();
+            print("destroy");
         }
-        //else
-        //{
-        //    CmdDestroyAllLines();
-        //}
+        else
+        {
+            CmdDestroyAllLines();
+        }
     }
     [Command]
     void CmdDestroyAllLines()
@@ -198,6 +212,7 @@ public class LineDraw_Net : NetworkInteractiveObject
     [ClientRpc]
     void RpcDestroyAllLines()
     {
+        print("rpcdestroy");
         ////find any/all lines and destroy them
         GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
         foreach (GameObject td in toDestroy)

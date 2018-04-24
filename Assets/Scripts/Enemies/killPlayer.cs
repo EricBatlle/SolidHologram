@@ -51,9 +51,10 @@ public class killPlayer : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            print("OnTrigger");
             //Remove all draws
             if (bentley != null)
-                bentley.destroyAllLines();
+                bentley.OnDestroyLines();
             //Call the functions suscribed to the action called when the player dies
             if (box != null)
                 box.PlayerKilled();
@@ -64,9 +65,14 @@ public class killPlayer : MonoBehaviour {
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            print("Ha chocado con el player");
             //Remove all draws
             if(bentley != null)
-                bentley.destroyAllLines();
+            {
+                print("Bentley existe");
+                bentley.OnDestroyLines();
+            }
+                
             //Call the functions suscribed to the action called when the player dies
             if(box != null)
                 box.PlayerKilled();

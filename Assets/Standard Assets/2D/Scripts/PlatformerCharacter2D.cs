@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : NetworkBehaviour
@@ -32,6 +33,52 @@ namespace UnityStandardAssets._2D
 
         public event Action OnPlayerKilled;
         #endregion
+        
+        //#region tryingDestroyAllStuff
+        //private void OnCollisionEnter2D(Collision2D collision)
+        //{
+        //    if (collision.gameObject.CompareTag("Drop"))
+        //    {
+        //        print("Ha chocado con el player");                
+        //        //Call the functions suscribed to the action called when the player dies
+        //        if (this != null)
+        //        {
+        //            this.destroyAllLines();
+        //            this.OnPlayerKilled();
+        //        }
+                    
+        //    }
+        //}
+        //public void destroyAllLines()
+        //{
+        //    print("destroy");
+        //    if (isServer)
+        //    {
+        //        RpcDestroyAllLines();
+        //        print("destroy");
+        //    }
+        //    else
+        //    {
+        //        CmdDestroyAllLines();
+        //    }
+        //}
+        //[Command]
+        //void CmdDestroyAllLines()
+        //{
+        //    RpcDestroyAllLines();            
+        //}
+        //[ClientRpc]
+        //void RpcDestroyAllLines()
+        //{
+        //    print("rpcdestroy");
+        //    ////find any/all lines and destroy them
+        //    GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
+        //    foreach (GameObject td in toDestroy)
+        //    {
+        //        NetworkServer.Destroy(td);
+        //    }
+        //}
+        //#endregion
 
         private void Awake()
         {
@@ -102,7 +149,7 @@ namespace UnityStandardAssets._2D
         #region respawnPlayer
         public void RespawnPlayer()
         {
-            this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+            this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;            
             //if (!isLocalPlayer)
             //    return;
             //print("respawnPlayer");

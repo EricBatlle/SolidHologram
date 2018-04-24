@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - line
   - MobileController
+  - Drop
   layers:
   - Default
   - TransparentFX
