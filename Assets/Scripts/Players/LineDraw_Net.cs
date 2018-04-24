@@ -202,12 +202,6 @@ public class LineDraw_Net : NetworkInteractiveObject
     void CmdDestroyAllLines()
     {
         RpcDestroyAllLines();
-        //find any/all lines and destroy them
-        //GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
-        //foreach (GameObject td in toDestroy)
-        //{
-        //    NetworkServer.Destroy(td);
-        //}
     }
     [ClientRpc]
     void RpcDestroyAllLines()
@@ -219,7 +213,6 @@ public class LineDraw_Net : NetworkInteractiveObject
         {
             NetworkServer.Destroy(td);
         }
-        //CmdDestroyAllLines();
     }
     #endregion
 

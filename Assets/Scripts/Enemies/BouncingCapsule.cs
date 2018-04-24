@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 public class BouncingCapsule : ActivableObject {
 
     [SerializeField] private Rigidbody2D rigidBody2D;
-    [SerializeField] private killPlayer killingObject;
 
     private Vector3 initialPos;
 
@@ -16,12 +16,18 @@ public class BouncingCapsule : ActivableObject {
 
     private void OnEnable()
     {
-        killingObject.OnKill += EndBehaviour;
+        OnBoxReferenceFinded += setOnEnable;
+    }
+
+    private void setOnEnable()
+    {
+        box.OnPlayerDies += EndBehaviour;
     }
 
     private void OnDisable()
     {
-        killingObject.OnKill -= EndBehaviour;
+        if (box != null)
+            box.OnPlayerDies -= EndBehaviour;
     }
 
     public override void StartBehaviour()
@@ -30,9 +36,14 @@ public class BouncingCapsule : ActivableObject {
     }
     public override void EndBehaviour()
     {
+        Invoke("Realocate", 1.5f);
+    }
+    private void Realocate()
+    {
         rigidBody2D.bodyType = RigidbodyType2D.Static;
         this.transform.position = this.initialPos;
         rigidBody2D.bodyType = RigidbodyType2D.Dynamic;
+        rigidBody2D.velocity = new Vector2(0, 0);
     }
 
 }

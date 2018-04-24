@@ -31,11 +31,9 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.        
 
-        public event Action OnPlayerDies;
+        public event Action OnPlayerDies = null;
         #endregion
-        
-        
-
+                
         private void Awake()
         {
             // Setting up references.
@@ -49,10 +47,12 @@ namespace UnityStandardAssets._2D
         private void OnEnable()
         {
             this.OnPlayerDies += RespawnPlayer;
+            this.OnPlayerDies += destroyAllLines;
         }
         private void OnDisable()
         {
             this.OnPlayerDies -= RespawnPlayer;
+            this.OnPlayerDies -= destroyAllLines;
         }
 
         //Every time the scene changes...
@@ -122,12 +122,71 @@ namespace UnityStandardAssets._2D
             }
         }
         #endregion
-        
+
         //Relocate player
         #region respawnPlayer
         public void RespawnPlayer()
         {
-            this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;            
+            //Esto da problemas, porque cuando hay objetos "retractiles" como la capsula, esto se dispara rápido
+            //...en el servidor, pero en el cliente no llega aún, pero la capsula ya se ha reposicionado, debería mirar de hacer
+            //...algo con syncvars?
+            this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        }
+        //public void RespawnPlayer()
+        //{
+        //    if (!isLocalPlayer)
+        //        return;
+        //    print("respawn");
+        //    if (isServer)
+        //    {
+        //        print("isserver");
+        //        RpcDestroyAllLines();
+        //    }
+        //    else
+        //    {
+        //        print("notserver");
+        //        CmdDestroyAllLines();
+        //    }
+        //}
+        //[Command]
+        //void CmdRespawnPlayer()
+        //{
+        //    RpcRespawnPlayer();
+        //}
+        //[ClientRpc]
+        //void RpcRespawnPlayer()
+        //{
+        //    this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        //}
+        #endregion
+
+        //Find any/all lines and destroy them :: same function that has Bentley
+        #region destroyAllLines
+        public void destroyAllLines()
+        {
+            if (isServer)
+            {
+                RpcDestroyAllLines();
+            }
+            else
+            {
+                CmdDestroyAllLines();
+            }
+        }
+        [Command]
+        void CmdDestroyAllLines()
+        {
+            RpcDestroyAllLines();
+        }
+        [ClientRpc]
+        void RpcDestroyAllLines()
+        {
+            ////find any/all lines and destroy them
+            GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
+            foreach (GameObject td in toDestroy)
+            {
+                NetworkServer.Destroy(td);
+            }
         }
         #endregion
 
