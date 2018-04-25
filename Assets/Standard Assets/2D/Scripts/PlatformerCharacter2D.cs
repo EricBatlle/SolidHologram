@@ -41,7 +41,6 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
-            //Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
             Camera.main.GetComponent<CustomCinemachine>().setTarget(gameObject.transform);
         }
 
@@ -60,7 +59,7 @@ namespace UnityStandardAssets._2D
         public void OnLevelWasLoaded(int level)
         {
             //...the camera needs to reference again the player
-            Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
+            Camera.main.GetComponent<CustomCinemachine>().setTarget(gameObject.transform);
 
             //...the player has to be realocated to the new spawn point
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;

@@ -7,8 +7,6 @@ using UnityEngine;
 public class CustomCinemachine : MonoBehaviour
 {
     public CinemachineVirtualCamera cm;
-    public CinemachineVirtualCamera tempcm;
-    public Action OnRealocate; 
 
     private Transform playerTransform;    
 

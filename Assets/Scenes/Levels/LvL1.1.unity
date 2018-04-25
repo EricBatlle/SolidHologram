@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 10
+    OrthographicSize: 8
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -694,82 +694,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 20697198617849394, guid: 3f84cdeac9e682748bb6585e59b862e2,
+    - target: {fileID: 114463527960361192, guid: 3f84cdeac9e682748bb6585e59b862e2,
         type: 2}
-      propertyPath: near clip plane
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 20697198617849394, guid: 3f84cdeac9e682748bb6585e59b862e2,
-        type: 2}
-      propertyPath: far clip plane
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 20697198617849394, guid: 3f84cdeac9e682748bb6585e59b862e2,
-        type: 2}
-      propertyPath: field of view
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 114540822674997588, guid: 3f84cdeac9e682748bb6585e59b862e2,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: cm
+      value: 
+      objectReference: {fileID: 174651208}
     - target: {fileID: 20697198617849394, guid: 3f84cdeac9e682748bb6585e59b862e2,
         type: 2}
       propertyPath: orthographic size
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f84cdeac9e682748bb6585e59b862e2, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &298311529 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1130681696104662, guid: 3f84cdeac9e682748bb6585e59b862e2,
-    type: 2}
-  m_PrefabInternal: {fileID: 298311528}
---- !u!114 &298311530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 298311529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-  m_CustomBlends: {fileID: 11400000, guid: 63d4b3d369aa65846a4ec7645f974cd9, type: 2}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp-firstpass,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &298311531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 298311529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14b09a750fd57e6408701b37e49a4819, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cm: {fileID: 174651208}
-  tempcm: {fileID: 0}
 --- !u!1 &300512001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,7 +1993,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4746377044739386, guid: fac230e3b7ad01d42ba5ffe3247e0861, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1561306138641326, guid: fac230e3b7ad01d42ba5ffe3247e0861, type: 2}
       propertyPath: m_Name
