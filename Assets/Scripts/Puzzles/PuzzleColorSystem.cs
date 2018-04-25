@@ -35,6 +35,8 @@ public class PuzzleColorSystem : MonoBehaviour {
             {
                 box = boxGO.GetComponent<PlatformerCharacter2D>();
                 findBoxReference = true;
+                box.OnPlayerDies += resetPuzzle;
+
             }
         }
         if (!findBentleyReference)

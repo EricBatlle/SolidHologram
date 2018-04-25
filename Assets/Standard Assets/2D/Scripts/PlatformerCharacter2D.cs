@@ -165,6 +165,9 @@ namespace UnityStandardAssets._2D
         #region destroyAllLines
         public void destroyAllLines()
         {
+            if (!isLocalPlayer)
+                return;
+
             if (isServer)
             {
                 RpcDestroyAllLines();

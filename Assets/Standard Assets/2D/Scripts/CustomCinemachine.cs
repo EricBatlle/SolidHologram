@@ -14,7 +14,6 @@ public class CustomCinemachine : MonoBehaviour
         {
             //transform.position = playerTransform.position + new Vector3(horizontalDisplacement, verticalDisplacement, depth);
             cm.Follow = playerTransform;
-            cm.
         }
     }
 
