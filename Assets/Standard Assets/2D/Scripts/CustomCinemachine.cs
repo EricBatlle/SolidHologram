@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,10 @@ using UnityEngine;
 public class CustomCinemachine : MonoBehaviour
 {
     public CinemachineVirtualCamera cm;
-    public Transform playerTransform;
+    public CinemachineVirtualCamera tempcm;
+    public Action OnRealocate; 
+
+    private Transform playerTransform;    
 
     void Update()
     {

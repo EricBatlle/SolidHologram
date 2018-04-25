@@ -9,31 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36baaa8bdcb9d8b49b9199833965d2c3, type: 3}
-  m_Name: BlenderSettings_state machine
+  m_Name: 1.1CameraBlends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: '**ANY CAMERA**'
-    m_To: TURN ME ON CM_1
+  - m_From: CM vcam1
+    m_To: CM vcam3
     m_Blend:
       m_Style: 1
-      m_Time: 0.5
-  - m_From: '**ANY CAMERA**'
-    m_To: THEN TURN ME ON CM_2
-    m_Blend:
-      m_Style: 0
       m_Time: 2
-  - m_From: '**ANY CAMERA**'
-    m_To: WILL YOU TURN ME ON? CM_3
+  - m_From: CM vcam3
+    m_To: CM vcam1
+    m_Blend:
+      m_Style: 2
+      m_Time: 2
+  - m_From: CM vcam2
+    m_To: CM vcam1
     m_Blend:
       m_Style: 1
-      m_Time: 0.5
-  - m_From: '**ANY CAMERA**'
-    m_To: OK TURN ME ON TOO CM_4
-    m_Blend:
-      m_Style: 1
-      m_Time: 5
-  - m_From: (none)
-    m_To: (none)
-    m_Blend:
-      m_Style: 0
       m_Time: 2
