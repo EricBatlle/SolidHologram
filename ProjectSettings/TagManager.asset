@@ -15,6 +15,7 @@ TagManager:
   - Drop
   - Vcam
   - MainVcam
+  - BurningZone
   layers:
   - Default
   - TransparentFX
