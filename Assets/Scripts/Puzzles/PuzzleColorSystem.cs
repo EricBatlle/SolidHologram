@@ -17,11 +17,8 @@ public class PuzzleColorSystem : MonoBehaviour {
     private bool puzzleHasBeenSolvedOnce = false;
 
 #region setPlayersReference
-    private LineDraw_Net bentley;
     private PlatformerCharacter2D box;
-
     private bool findBoxReference = false;
-    private bool findBentleyReference = false;
 #endregion
     
     //Used to set players reference
@@ -37,15 +34,6 @@ public class PuzzleColorSystem : MonoBehaviour {
                 findBoxReference = true;
                 box.OnPlayerDies += resetPuzzle;
 
-            }
-        }
-        if (!findBentleyReference)
-        {
-            GameObject bentleyGO = GameObject.FindGameObjectWithTag("Bentley");
-            if (bentleyGO != null)
-            {
-                bentley = bentleyGO.GetComponent<LineDraw_Net>();
-                findBentleyReference = true;
             }
         }
     }

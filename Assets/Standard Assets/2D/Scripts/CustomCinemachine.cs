@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CustomCinemachine : MonoBehaviour
 {
-    public CinemachineVirtualCamera cm;
+    public CinemachineVirtualCamera mainVirtualCamera;
 
     private Transform playerTransform;    
 
@@ -15,7 +15,7 @@ public class CustomCinemachine : MonoBehaviour
         if (playerTransform != null)
         {
             //transform.position = playerTransform.position + new Vector3(horizontalDisplacement, verticalDisplacement, depth);
-            cm.Follow = playerTransform;
+            mainVirtualCamera.Follow = playerTransform;
         }
     }
 

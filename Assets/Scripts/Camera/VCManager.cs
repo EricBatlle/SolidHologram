@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class VCManager : MonoBehaviour {
 
-    [SerializeField] private Cinemachine.CinemachineVirtualCamera vc;
-    [SerializeField] private bool affectBox = false;
-    [SerializeField] private bool affectBentley = true;
+    [SerializeField] protected Cinemachine.CinemachineVirtualCamera vc;
+    [SerializeField] protected bool affectBox = false;
+    [SerializeField] protected bool affectBentley = true;
 
     [SerializeField] private CustomTrigger start;
     [SerializeField] private CustomTrigger end;
-
 
     private void Start()
     {
@@ -24,14 +23,14 @@ public class VCManager : MonoBehaviour {
         end.OnEnter -= OnEnd;
     }
 
-    private void OnStart()
+    public virtual void OnStart()
     {
         if (affectBox)
         {
             if (affectBentley)
             {
                 //Change bouth cameras
-                vc.Priority = 15;
+                CameraStartAction();
             }
             else
             {
@@ -41,8 +40,8 @@ public class VCManager : MonoBehaviour {
                 {
                     PlayerAuthorityAssignator boxAuthority = box.GetComponent<PlayerAuthorityAssignator>();
                     if (boxAuthority.isLocal)
-                        vc.Priority = 15;
-                }                               
+                        CameraStartAction();
+                }
             }
         }
         else
@@ -55,12 +54,21 @@ public class VCManager : MonoBehaviour {
                 {
                     PlayerAuthorityAssignator bentleyAuthority = bentley.GetComponent<PlayerAuthorityAssignator>();
                     if (bentleyAuthority.isLocal)
-                        vc.Priority = 15;
+                        CameraStartAction();
                 }                
             }
         }
     }
-    private void OnEnd()
+    public virtual void OnEnd()
+    {
+        CameraEndAction();
+    }
+
+    public virtual void CameraStartAction()
+    {
+        vc.Priority = 15;
+    }
+    public virtual void CameraEndAction()
     {
         vc.Priority = 0;
     }

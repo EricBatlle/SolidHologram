@@ -29,14 +29,11 @@ public class MaterialChanger : NetworkInteractiveObject, IPointerClickHandler {
         startMaterial = materials[0];
         this.GetComponent<Renderer>().material = startMaterial;
         currMaterial = this.GetComponent<Renderer>().material;
-    }
 
-    private void OnEnable()
-    {
         OnLeftClick += nextMaterial;
         OnRightClick += previousMaterial;
     }
-
+    
     private void OnDisable()
     {
         OnLeftClick -= nextMaterial;

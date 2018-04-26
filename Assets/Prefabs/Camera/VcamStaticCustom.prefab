@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114661828463787798}
   - component: {fileID: 114945698867775936}
   m_Layer: 0
-  m_Name: VcamCustom
+  m_Name: VcamStaticCustom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -292,5 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vc: {fileID: 114661828463787798}
+  affectBox: 0
+  affectBentley: 1
   start: {fileID: 114518670568847716}
   end: {fileID: 114072447922023656}
