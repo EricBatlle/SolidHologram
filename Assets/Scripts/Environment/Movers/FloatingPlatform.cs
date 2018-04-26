@@ -7,11 +7,22 @@ public class FloatingPlatform : MonoBehaviour {
 
     [SerializeField] private Mover mover;
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private CustomTrigger startTrigger;
+
     private int spritesCount = 0;
 
     public float moveEvery = 2.0f;
 
-    void Start()
+    private void OnEnable()
+    {
+        startTrigger.OnEnter += StartMovingPlatform;
+    }
+    private void OnDisable()
+    {
+        startTrigger.OnEnter -= null;
+    }
+
+    void StartMovingPlatform()
     {
         InvokeRepeating("movePlatform", 2.0f, moveEvery);
     }

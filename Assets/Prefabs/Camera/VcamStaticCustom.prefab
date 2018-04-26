@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4724838414895346}
   - component: {fileID: 61557854446497656}
   - component: {fileID: 114518670568847716}
+  - component: {fileID: 114807113419196992}
   m_Layer: 0
   m_Name: StartCamera
   m_TagString: Untagged
@@ -72,6 +73,7 @@ GameObject:
   - component: {fileID: 4494354378425818}
   - component: {fileID: 61685459422844106}
   - component: {fileID: 114072447922023656}
+  - component: {fileID: 114588591916118992}
   m_Layer: 0
   m_Name: EndCamera
   m_TagString: Untagged
@@ -217,6 +219,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e1dc6e654e43f4ea301d845cb2dd76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114588591916118992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1806084708516934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 1
 --- !u!114 &114661828463787798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -242,6 +256,18 @@ MonoBehaviour:
     FarClipPlane: 5000
     Dutch: 0
   m_ComponentOwner: {fileID: 4067200782797698}
+--- !u!114 &114807113419196992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1129339162331404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 1
 --- !u!114 &114818666550801552
 MonoBehaviour:
   m_ObjectHideFlags: 1

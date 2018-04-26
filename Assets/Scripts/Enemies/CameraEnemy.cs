@@ -6,17 +6,35 @@ public class CameraEnemy : MonoBehaviour {
 
     [SerializeField] private HingeJoint2D joint;
     [SerializeField] private float waitingTime = 2;     //Time that camera awaits until change direction
+    [SerializeField] private CustomTrigger startTrigger;
 
     private bool changingDirection = false;
+    private bool cameraEnabled = false;
+
+    private void OnEnable()
+    {
+        startTrigger.OnEnter += setCameraEnabled;
+    }
+    private void OnDisable()
+    {
+        startTrigger.OnEnter -= null;
+    }
+
+    private void setCameraEnabled()
+    {
+        cameraEnabled = true;
+    }
 
     // Update is called once per frame
-    void Update () {
-
-        if ((joint.limitState != JointLimitState2D.Inactive) && (!changingDirection) )
+    void FixedUpdate () {
+        if (cameraEnabled)
         {
-            changingDirection = true;
-            Invoke("changeMotorDirection", waitingTime);
-        }
+            if ((joint.limitState != JointLimitState2D.Inactive) && (!changingDirection))
+            {
+                changingDirection = true;
+                Invoke("changeMotorDirection", waitingTime);
+            }
+        }                
     }
     
     private void changeMotorDirection()
