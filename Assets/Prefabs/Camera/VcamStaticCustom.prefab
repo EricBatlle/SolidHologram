@@ -30,7 +30,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1507669621377718
 GameObject:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114945698867775936}
   m_Layer: 0
   m_Name: VcamStaticCustom
-  m_TagString: Untagged
+  m_TagString: Vcam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &4067200782797698
 Transform:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507669621377718}
@@ -99,8 +99,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1806084708516934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.72, y: -0.77000046, z: 7.2}
-  m_LocalScale: {x: 7.08031, y: 7.08032, z: 7.08032}
+  m_LocalPosition: {x: 12.55, y: -2.79, z: 7.2}
+  m_LocalScale: {x: 3.993701, y: 7.08032, z: 7.08032}
   m_Children: []
   m_Father: {fileID: 4746377044739386}
   m_RootOrder: 2
@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1129339162331404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.14, y: -0.77000046, z: 7.2}
+  m_LocalPosition: {x: -16.13, y: -1.96, z: 7.2}
   m_LocalScale: {x: 7.080314, y: 7.0803165, z: 7.0803165}
   m_Children: []
   m_Father: {fileID: 4746377044739386}
@@ -125,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561306138641326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.86, y: 0.77000046, z: -7.2}
+  m_LocalPosition: {x: 134.86, y: -20.76, z: -33.199997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4067200782797698}
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &114393800014787012
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507669621377718}
@@ -232,19 +232,19 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 5
+  m_Priority: 0
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 30
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
   m_ComponentOwner: {fileID: 4067200782797698}
 --- !u!114 &114818666550801552
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507669621377718}

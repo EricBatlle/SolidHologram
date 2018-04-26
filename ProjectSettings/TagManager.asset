@@ -13,6 +13,8 @@ TagManager:
   - line
   - MobileController
   - Drop
+  - Vcam
+  - MainVcam
   layers:
   - Default
   - TransparentFX

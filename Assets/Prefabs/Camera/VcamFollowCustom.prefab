@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114772785734625412}
   m_Layer: 0
   m_Name: VcamFollow
-  m_TagString: Untagged
+  m_TagString: Vcam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

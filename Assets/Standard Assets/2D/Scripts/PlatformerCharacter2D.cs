@@ -48,11 +48,13 @@ namespace UnityStandardAssets._2D
         {
             this.OnPlayerDies += RespawnPlayer;
             this.OnPlayerDies += destroyAllLines;
+            this.OnPlayerDies += RelocateCamera;
         }
         private void OnDisable()
         {
             this.OnPlayerDies -= RespawnPlayer;
             this.OnPlayerDies -= destroyAllLines;
+            this.OnPlayerDies -= RelocateCamera;
         }
 
         //Every time the scene changes...
@@ -108,7 +110,7 @@ namespace UnityStandardAssets._2D
             if (collision.gameObject.layer == LayerMask.NameToLayer("Killer"))
             {
                 if (OnPlayerDies != null)
-                    OnPlayerDies();                           
+                    OnPlayerDies();
             }
         }
 
@@ -160,6 +162,42 @@ namespace UnityStandardAssets._2D
         //}
         #endregion
 
+        //Relocate Camera
+        #region relocateCamera
+        public void RelocateCamera()
+        {
+            if (!isLocalPlayer)
+                return;
+
+            if (isServer)
+            {
+                RpcRelocateCamera();
+            }
+            else
+            {
+                CmdRelocateCamera();
+            }
+        }
+        [Command]
+        private void CmdRelocateCamera()
+        {
+            RpcRelocateCamera();
+        }
+        [ClientRpc]
+        private void RpcRelocateCamera()
+        {
+            //Find every virtual camera,
+            GameObject[] virtualCameras = GameObject.FindGameObjectsWithTag("Vcam");
+            foreach(GameObject vcam in virtualCameras)
+            {
+                //Set their priority to 0           
+                vcam.GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
+                //...better approach could be, if there are different prioritys, to make cameras store they "default" priority, and instead of force to 0, put them their original priority
+            }
+        }
+        
+        #endregion
+
         //Find any/all lines and destroy them :: same function that has Bentley
         #region destroyAllLines
         public void destroyAllLines()
@@ -191,7 +229,7 @@ namespace UnityStandardAssets._2D
                 NetworkServer.Destroy(td);
             }
         }
-        #endregion
+        #endregion       
 
         public void Move(float move, bool crouch, bool jump)
         {
