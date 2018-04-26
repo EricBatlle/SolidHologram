@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114536837026004838}
   - component: {fileID: 114378599652491004}
   - component: {fileID: 114089607455347986}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: NextLevel
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}

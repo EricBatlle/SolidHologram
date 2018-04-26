@@ -13,13 +13,6 @@ public class deleteWhenGround : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //Kill
-            //collision.gameObject.SetActive(false);
-            //Respawn
-            collision.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;            
-        }
         if ((collision.gameObject.CompareTag("line")) || (collision.gameObject.CompareTag("Wall")))
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = collisionSprite;

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114141845741916582}
   - component: {fileID: 114904228647223222}
   - component: {fileID: 114205722668944828}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ControlPoint
   m_TagString: DeadZone
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}

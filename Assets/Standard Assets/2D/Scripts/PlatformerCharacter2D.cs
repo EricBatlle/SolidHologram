@@ -2,10 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : NetworkBehaviour
     {
+        #region variables 
         [Header("Main Attributes")]
         [SerializeField] private float m_MaxSpeed = 10f;                                // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                              // Amount of force added when the player jumps.
@@ -27,9 +29,11 @@ namespace UnityStandardAssets._2D
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
-        private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        private bool m_FacingRight = true;  // For determining which way the player is currently facing.        
 
-
+        public event Action OnPlayerDies = null;
+        #endregion
+                
         private void Awake()
         {
             // Setting up references.
@@ -37,36 +41,37 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
-            Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
+            Camera.main.GetComponent<CustomCinemachine>().setTarget(gameObject.transform);
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            //Player has to be realocated to the first spawn point
-            gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+            this.OnPlayerDies += RespawnPlayer;
+            this.OnPlayerDies += destroyAllLines;
+        }
+        private void OnDisable()
+        {
+            this.OnPlayerDies -= RespawnPlayer;
+            this.OnPlayerDies -= destroyAllLines;
         }
 
         //Every time the scene changes...
         public void OnLevelWasLoaded(int level)
         {
             //...the camera needs to reference again the player
-            Camera.main.GetComponent<CameraFollow_Net>().setTarget(gameObject.transform);
-            
+            Camera.main.GetComponent<CustomCinemachine>().setTarget(gameObject.transform);
+
             //...the player has to be realocated to the new spawn point
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
 
-        [ClientRpc]
-        public void RpcChangePos()
-        {         
+        private void Start()
+        {
+            //For the first lobby start, onlevelwasloaded is not called, so Player has to be realocated to the first spawn point
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
-        [Command]
-        public void CmdChangePos()
-        {                        
-            RpcChangePos();
-        }
-
+        
+        //MAIN LOOP         
         private void FixedUpdate()
         {
             if (!isLocalPlayer)
@@ -88,6 +93,105 @@ namespace UnityStandardAssets._2D
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
         }
 
+        //Die Collison and Trigger checks
+        #region dieBehaviour
+        //ToDo: Remove PlayerKilled, as killPlayer no longer should exists
+        public void PlayerKilled()
+        {
+            if (OnPlayerDies != null)
+                OnPlayerDies();
+        }
+
+        //Killing Colliders
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Killer"))
+            {
+                if (OnPlayerDies != null)
+                    OnPlayerDies();                           
+            }
+        }
+
+        //Killing Triggers
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Killer"))
+            {
+                if (OnPlayerDies != null)
+                    OnPlayerDies();
+            }
+        }
+        #endregion
+
+        //Relocate player
+        #region respawnPlayer
+        public void RespawnPlayer()
+        {
+            //Esto da problemas, porque cuando hay objetos "retractiles" como la capsula, esto se dispara rápido
+            //...en el servidor, pero en el cliente no llega aún, pero la capsula ya se ha reposicionado, debería mirar de hacer
+            //...algo con syncvars?
+            this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        }
+        //public void RespawnPlayer()
+        //{
+        //    if (!isLocalPlayer)
+        //        return;
+        //    print("respawn");
+        //    if (isServer)
+        //    {
+        //        print("isserver");
+        //        RpcDestroyAllLines();
+        //    }
+        //    else
+        //    {
+        //        print("notserver");
+        //        CmdDestroyAllLines();
+        //    }
+        //}
+        //[Command]
+        //void CmdRespawnPlayer()
+        //{
+        //    RpcRespawnPlayer();
+        //}
+        //[ClientRpc]
+        //void RpcRespawnPlayer()
+        //{
+        //    this.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        //}
+        #endregion
+
+        //Find any/all lines and destroy them :: same function that has Bentley
+        #region destroyAllLines
+        public void destroyAllLines()
+        {
+            if (!isLocalPlayer)
+                return;
+
+            if (isServer)
+            {
+                RpcDestroyAllLines();
+            }
+            else
+            {
+                CmdDestroyAllLines();
+            }
+        }
+        [Command]
+        void CmdDestroyAllLines()
+        {
+            RpcDestroyAllLines();
+        }
+        [ClientRpc]
+        void RpcDestroyAllLines()
+        {
+            ////find any/all lines and destroy them
+            GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
+            foreach (GameObject td in toDestroy)
+            {
+                NetworkServer.Destroy(td);
+            }
+        }
+        #endregion
 
         public void Move(float move, bool crouch, bool jump)
         {
@@ -120,7 +224,7 @@ namespace UnityStandardAssets._2D
                 RaycastHit2D hit_CeilingCheck;
                 RaycastHit2D hit_BodyCheck;
                 RaycastHit2D hit_GroundCheck;
-                Vector2 raycastDirection = (IsLooking("right", move)) ? Vector2.right : Vector2.left;
+                Vector2 raycastDirection = (IsLookingAt("right", move)) ? Vector2.right : Vector2.left;
                 float updatedCeilingAltitude;
                 float updatedCollidersRaycastDistance;
                 //Update raycasts if the player is crouching, cause colliders shrink and stretch
@@ -148,6 +252,8 @@ namespace UnityStandardAssets._2D
                 Vector2 endPos_ground = new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y+rampDetection) + raycastDirection * updatedCollidersRaycastDistance;//m_GroundCheck.position;
                 Debug.DrawLine(m_GroundCheck.position, endPos_ground, Color.red);
                 hit_GroundCheck = Physics2D.Raycast(new Vector2(m_GroundCheck.position.x, m_GroundCheck.position.y+rampDetection), raycastDirection, updatedCollidersRaycastDistance, layermask);
+                
+                
 
                 //If none of the raycasts are colliding to anything...
                 if ((hit_CeilingCheck.collider == null) && (hit_BodyCheck.collider == null) && (hit_GroundCheck.collider == null))
@@ -169,6 +275,7 @@ namespace UnityStandardAssets._2D
                     Flip();
                 }
             }
+            
             // If the player should jump...
             if (m_Grounded && jump && m_Anim.GetBool("Ground"))
             {
@@ -180,7 +287,7 @@ namespace UnityStandardAssets._2D
         }
 
         //Returns if the player is looking to the specified direction (right or left)
-        private bool IsLooking(string direction, float move)
+        private bool IsLookingAt(string direction, float move)
         {
             if (move >= 0)
             {
@@ -192,6 +299,8 @@ namespace UnityStandardAssets._2D
             }
         }
 
+        //flip sprite to look where you're moving
+        #region flip
         private void Flip()
         {
             if (isServer)
@@ -237,6 +346,7 @@ namespace UnityStandardAssets._2D
             theScale.x *= -1;
             transform.localScale = theScale;
         }
+        #endregion
     }
 }
 

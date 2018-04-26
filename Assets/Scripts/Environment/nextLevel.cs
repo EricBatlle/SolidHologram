@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class nextLevel : NetworkBehaviour {
+public class nextLevel : NetworkInteractiveObject
+{
 
     public Prototype.NetworkLobby.LobbyManager lobbyManager;
     public string nextSceneName;    
@@ -12,33 +13,95 @@ public class nextLevel : NetworkBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //find any/all lines and destroy them
-            GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
-            foreach (GameObject td in toDestroy)
-            {
-                NetworkServer.Destroy(td);
-            }
-            if (isServer)
-            {
-                RpcChangeScene();
-            }
-            else
-            {
-                CmdChangeScene();
-            }
+            destroyAllLines();
+            ////find any/all lines and destroy them            
+            //GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
+            //foreach (GameObject td in toDestroy)
+            //{
+            //    NetworkServer.Destroy(td);
+            //}
+
+            ChangeScene();            
         }
     }
-    
+
+    #region changeScene
+    private void ChangeScene()
+    {
+        if (isServer)
+        {
+            RpcChangeScene();
+        }
+        //else
+        //{
+        //    if (!hasAuthority)
+        //    {
+        //        this.OnInteraction += NmCmdNextColor;
+        //        setLocalAuthority();
+        //    }
+        //    else
+        //    {
+        //        CmdNextColor();
+        //    }
+        //}
+    }
+
     [ClientRpc]
-    public void RpcChangeScene()
+    private void RpcChangeScene()
     {
         lobbyManager.ServerChangeScene(nextSceneName);
     }
 
     [Command]
-    public void CmdChangeScene()
+    private void CmdChangeScene()
     {
         RpcChangeScene();
     }
+    #endregion
+
+    //Find any/all lines and destroy them :: same function that has Bentley
+    #region destroyAllLines
+    public void destroyAllLines()
+    {
+        //if (!isLocalPlayer)
+        //    return;
+
+        if (isServer)
+        {
+            RpcDestroyAllLines();
+        }
+        else
+        {
+            if (!hasAuthority)
+            {
+                this.OnInteraction += NmCmdDestroyAllLines;
+                setLocalAuthority();
+            }
+            else
+            {
+                CmdDestroyAllLines();
+            }            
+        }
+    }
+    void NmCmdDestroyAllLines()
+    {
+        CmdDestroyAllLines();
+    }
+    [Command]
+    void CmdDestroyAllLines()
+    {
+        RpcDestroyAllLines();
+    }
+    [ClientRpc]
+    void RpcDestroyAllLines()
+    {
+        ////find any/all lines and destroy them
+        GameObject[] toDestroy = GameObject.FindGameObjectsWithTag("line");
+        foreach (GameObject td in toDestroy)
+        {
+            NetworkServer.Destroy(td);
+        }
+    }
+    #endregion
 
 }

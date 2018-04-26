@@ -52,12 +52,16 @@ GameObject:
   - component: {fileID: 212466969413547198}
   - component: {fileID: 95436354779706660}
   - component: {fileID: 58919461363925172}
+  - component: {fileID: 61724463965741866}
   - component: {fileID: 50964369433889034}
   - component: {fileID: 114528894109849250}
   - component: {fileID: 114405905934468830}
-  - component: {fileID: 61724463965741866}
   - component: {fileID: 114462416257939486}
   - component: {fileID: 114885222109023442}
+  - component: {fileID: 114527450487411714}
+  - component: {fileID: 114619050838523788}
+  - component: {fileID: 114433806821906852}
+  - component: {fileID: 114257014730718338}
   m_Layer: 0
   m_Name: CharacterRobotBoy2
   m_TagString: Player
@@ -175,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 1816532449734644}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5fc43f0c4b413534ba12c51c0e5e5f6f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9240cf6e1eb373444a04357a11e41e67, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -183,6 +187,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114257014730718338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816532449734644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95436354779706660}
+  m_ParameterSendBits: 15
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114405905934468830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,6 +217,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d7b34a3bb2d4e4b926e7e729d3d410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crouchKey: 0
+  crouchSensibility: 0
+--- !u!114 &114433806821906852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816532449734644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!114 &114462416257939486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +263,18 @@ MonoBehaviour:
     i15: 163
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114527450487411714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816532449734644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dbe225cac59ba744b6f20d8088dffb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerType: 1
 --- !u!114 &114528894109849250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -239,11 +288,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxSpeed: 10
   m_JumpForce: 800
-  m_CrouchSpeed: 0.25
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
+  collidersRaycastDistance: 0.6
+  ceilingAltitude: 0.78
+  rampDetection: 0.25
+  m_CrouchSpeed: 0.25
+  collidersRayDistCrouchDifference: 0.5
+  ceilingAltitudeCrouchDifference: -0.3
+--- !u!114 &114619050838523788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816532449734644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d1ee00b2fcaf64c946dc57d1abbbed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocal: 0
 --- !u!114 &114885222109023442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,15 +322,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
-  m_SendInterval: 0.09090909
+  m_SendInterval: 0.1
   m_SyncRotationAxis: 3
   m_RotationSyncCompression: 0
   m_SyncSpin: 1
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 5
+  m_InterpolateRotation: 10
+  m_InterpolateMovement: 1
 --- !u!212 &212466969413547198
 SpriteRenderer:
   m_ObjectHideFlags: 1
