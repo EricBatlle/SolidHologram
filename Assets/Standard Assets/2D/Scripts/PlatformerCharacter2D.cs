@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 namespace UnityStandardAssets._2D
 {
-    public class PlatformerCharacter2D : NetworkBehaviour
+    public class PlatformerCharacter2D : NetworkInteractiveObject
     {
         #region variables 
         [Header("Main Attributes")]
@@ -94,7 +94,7 @@ namespace UnityStandardAssets._2D
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
         }
-
+            
         //Die Collison and Trigger checks
         #region dieBehaviour
         //ToDo: Remove PlayerKilled, as killPlayer no longer should exists
@@ -229,7 +229,90 @@ namespace UnityStandardAssets._2D
                 NetworkServer.Destroy(td);
             }
         }
-        #endregion       
+        #endregion
+
+        //Shine Sprites behaviuor
+        #region shineDevice
+        public void SetDeviceShine(bool shine)
+        {
+            if (shine)
+            {
+                if (isServer)
+                {
+                    RpcSetDeviceShineOn();
+                }
+                else
+                {
+                    if (!hasAuthority)
+                    {
+                        this.OnInteraction += NmCmdSetDeviceShineOn;
+                    }
+                    else
+                    {
+                        CmdSetDeviceShineOn();
+                    }
+                }
+            }
+            else
+            {
+                if (isServer)
+                {
+                    RpcSetDeviceShineOff();
+                }
+                else
+                {
+                    if (!hasAuthority)
+                    {
+                        this.OnInteraction += NmCmdSetDeviceShineOff;
+                    }
+                    else
+                    {
+                        CmdSetDeviceShineOff();
+                    }
+                }
+            }
+        }
+        #region shineOn
+        private void NmCmdSetDeviceShineOn()
+        {
+            CmdSetDeviceShineOn();
+        }
+        [Command]
+        private void CmdSetDeviceShineOn()
+        {
+            RpcSetDeviceShineOn();
+        }
+        [ClientRpc]
+        private void RpcSetDeviceShineOn()
+        {
+            m_Anim.SetBool("Shine", true);
+
+            //if shine-mode is active, set shine layer to 1, if not, "disable" it setting it to 0
+            float shineLayerWeight = (m_Anim.GetBool("Shine")) ? 1 : 0;
+            m_Anim.SetLayerWeight(m_Anim.GetLayerIndex("Shine Layer"), shineLayerWeight);
+        }
+        #endregion
+        #region shineOff
+        private void NmCmdSetDeviceShineOff()
+        {
+            CmdSetDeviceShineOff();
+        }
+        [Command]
+        private void CmdSetDeviceShineOff()
+        {
+            RpcSetDeviceShineOff();
+        }
+        [ClientRpc]
+        private void RpcSetDeviceShineOff()
+        {
+            m_Anim.SetBool("Shine", false);
+
+            //if shine-mode is active, set shine layer to 1, if not, "disable" it setting it to 0
+            float shineLayerWeight = (m_Anim.GetBool("Shine")) ? 1 : 0;
+            m_Anim.SetLayerWeight(m_Anim.GetLayerIndex("Shine Layer"), shineLayerWeight);
+        }
+        #endregion
+        #endregion
 
         public void Move(float move, bool crouch, bool jump)
         {

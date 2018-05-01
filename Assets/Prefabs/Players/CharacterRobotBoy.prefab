@@ -607,7 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95798484580368648}
-  m_ParameterSendBits: 15
+  m_ParameterSendBits: 31
   param0: 
   param1: 
   param2: 

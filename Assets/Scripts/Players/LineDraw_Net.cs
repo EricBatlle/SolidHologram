@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityStandardAssets._2D;
 
 public class LineDraw_Net : NetworkInteractiveObject
 {
@@ -66,6 +67,8 @@ public class LineDraw_Net : NetworkInteractiveObject
     List<Vector3> positionsLine = new List<Vector3>();
     private float drawTimer;
     bool waitUntilNextDraw = false;         //Set to true when draws over undrawable surface, to cancel the draw
+    private GameObject box;
+    private PlatformerCharacter2D boxController;
 
     #endregion
 
@@ -88,7 +91,7 @@ public class LineDraw_Net : NetworkInteractiveObject
     }
 
     public void Start()
-    {
+    {        
         if (!isLocalPlayer)//hide Bentley HUD
         {
             transform.Find("HUD").gameObject.SetActive(false);
@@ -101,11 +104,22 @@ public class LineDraw_Net : NetworkInteractiveObject
         }
     }
 
+    private void findBoxReference()
+    {
+        //setBox reference
+        box = GameObject.FindGameObjectWithTag("Player");
+        if (box != null)
+            boxController = box.GetComponent<PlatformerCharacter2D>();
+    }
+
     // Update is called once per frame
     void Update()
-    {     
+    {
+        if (box == null)
+            findBoxReference();
+
         if (!isLocalPlayer)
-            return;        
+            return;
 
         //To avoid confusions between HUD and draw_interaction
         if (!EventSystem.current.IsPointerOverGameObject())
@@ -123,7 +137,7 @@ public class LineDraw_Net : NetworkInteractiveObject
 
                 //spawn new line object on server and all clients
                 CmdMakeNewLine(mwc);
-                drawTimer = 0;
+                drawTimer = 0;                
             }
             
             //if mouse button is down, and the draw restrictions are true
@@ -150,7 +164,7 @@ public class LineDraw_Net : NetworkInteractiveObject
 
             //if mouse button is up
             if (Input.GetMouseButtonUp(0))
-            {
+            {                
                 waitUntilNextDraw = false; //Next draw
                 if (usePhysics)
                 {
@@ -165,7 +179,7 @@ public class LineDraw_Net : NetworkInteractiveObject
             }
         }                
     }
-
+    
     //Server creates new draw instance
     [Command]
     void CmdMakeNewLine(Vector3 mouseWorldCoords)
@@ -181,6 +195,8 @@ public class LineDraw_Net : NetworkInteractiveObject
         GameObject instance = Instantiate(lineObjectPrefab, mouseWorldCoords, Quaternion.identity) as GameObject;
 
         NetworkServer.Spawn(instance);
+
+        boxController.SetDeviceShine(true);
     }
 
     //Find any/all lines and destroy them
@@ -282,76 +298,6 @@ public class LineDraw_Net : NetworkInteractiveObject
         else
         {
             CmdUpdateLineCollider(); //updates on server
-            //LocalUpdateLineCollider(); //updates locally first to avoid problems creating colliders on movement
-        }
-    }
-    void LocalUpdateLineCollider()
-    {
-        GameObject lineObject = GameObject.FindWithTag("line");
-        //get line renderer component
-        LineRenderer lr = lineObject.GetComponent<LineRenderer>();
-        //Check if the draw object distance is enough to saw it on screen
-        if (lr.positionCount > 1)
-        {
-            List<Vector2> positionsCollider = new List<Vector2>();
-
-            //COLLIDER DIRTY VERSION
-            //for (int i = 0; i < positionsLine.Count; i++)
-            //{
-            //    positionsCollider.Add(new Vector2(positionsLine[i].x - colliderThickness / 2, positionsLine[i].y - colliderThickness / 2));
-            //}
-            ////To allow convex problems
-            //for (int i = positionsLine.Count - 1; i >= 0; i--)
-            //{
-            //    positionsCollider.Add(new Vector2(positionsLine[i].x + colliderThickness / 2, positionsLine[i].y + colliderThickness / 2));
-            //}
-
-            //COLLIDER CLEARN VERSION
-            float ux = 0, uy = 0;
-            for (int iEdge = 0; iEdge < positionsLine.Count - 1; iEdge++)
-            {
-                float vx = positionsLine[iEdge + 1].x - positionsLine[iEdge].x;
-                float vy = positionsLine[iEdge + 1].y - positionsLine[iEdge].y;
-                float vlen = (float)System.Math.Sqrt(vx * vx + vy * vy);
-                if (vlen != 0.0)
-                {
-                    vx /= vlen; vy /= vlen;
-                    ux = -vy; uy = vx;
-                }
-                positionsCollider.Add(new Vector2(positionsLine[iEdge].x + ux * colliderThickness / 2, positionsLine[iEdge].y + uy * colliderThickness / 2));
-                if (iEdge == positionsLine.Count - 2)
-                {
-                    positionsCollider.Add(new Vector2(positionsLine[iEdge].x + ux * colliderThickness / 2, positionsLine[iEdge].y + uy * colliderThickness / 2));
-                }
-            }
-            for (int i = positionsLine.Count - 1; i >= 0; i--)
-            {
-                float vx = positionsCollider[i].x, vy = positionsCollider[i].y;
-                float px = positionsLine[i].x, py = positionsLine[i].y;
-                px = px - (vx - px); py = py - (vy - py);
-                positionsCollider.Add(new Vector2(px, py));
-            }
-
-            PolygonCollider2D collider = lr.gameObject.AddComponent<PolygonCollider2D>();
-            collider.points = positionsCollider.ToArray();
-
-            //RigidBody Properties
-            lr.GetComponent<Rigidbody2D>().useAutoMass = useAutoMass;
-            if (useAutoMass == true)
-            {
-                collider.density = density;
-            }
-            else
-            {
-                lr.GetComponent<Rigidbody2D>().mass = mass;
-            }
-            lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
-
-            positionsLine.Clear();
-        }
-        else
-        {
-            Destroy(lineObject);
         }
     }
     [Command]
@@ -421,8 +367,10 @@ public class LineDraw_Net : NetworkInteractiveObject
                 lr.GetComponent<Rigidbody2D>().mass = mass;
             }
             lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
-
             positionsLine.Clear();
+
+            //Advise box-device that is NOT drawing, to change shine sprites
+            boxController.SetDeviceShine(false);
         }
         else
         {
