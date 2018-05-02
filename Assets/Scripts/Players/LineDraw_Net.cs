@@ -169,13 +169,14 @@ public class LineDraw_Net : NetworkInteractiveObject
                 if (usePhysics)
                 {
                     //Add collider to the lr                    
-                    updateLineCollider();                    
+                    updateLineCollider();
                 }
                 else
                 {
                     //Clean positionsLine in case that the next draw have physics
                     cleanLinePositions();
                 }
+                SetDeviceShine(false);
             }
         }                
     }
@@ -367,10 +368,8 @@ public class LineDraw_Net : NetworkInteractiveObject
                 lr.GetComponent<Rigidbody2D>().mass = mass;
             }
             lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
-            positionsLine.Clear();
 
-            //Advise box-device that is NOT drawing, to change shine sprites
-            boxController.SetDeviceShine(false);
+            positionsLine.Clear();            
         }
         else
         {
@@ -404,6 +403,28 @@ public class LineDraw_Net : NetworkInteractiveObject
     }
     #endregion
 
+    //Advise box-device if is/is not drawing, to change shine sprites
+    private void SetDeviceShine(bool shine)
+    {
+        if (isServer)
+        {
+            RpcSetDeviceShine(shine);
+        }
+        else
+        {
+            CmdSetDeviceShine(shine);
+        }
+    }
+    [Command]
+    private void CmdSetDeviceShine(bool shine)
+    {
+        RpcSetDeviceShine(shine);
+    }
+    [ClientRpc]
+    private void RpcSetDeviceShine(bool shine)
+    {
+        boxController.SetDeviceShine(shine);
+    }
     ////Set Listeners to the HUD buttons
     #region changeDrawType
     void changeDrawType()
