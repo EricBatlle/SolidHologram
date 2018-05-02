@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 61247429985106408}
   - component: {fileID: 114200759685175086}
   - component: {fileID: 114603359713837676}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CustomTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

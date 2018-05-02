@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4549226013151570}
   - component: {fileID: 61641701978478132}
   - component: {fileID: 114288526941724594}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EndCamera (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4232221924348474}
   - component: {fileID: 61784630986817514}
   - component: {fileID: 114113580082549704}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: StartCamera (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3264b4385a0c1e4c856c30af58b3b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: de2c48e970354a04f87de907935bc50c, type: 3}
+  sprite: {fileID: 21300000, guid: bdd993f12b2c6c242b25217f7fa196dd, type: 3}
   triggerTags:
   - BurningZone
 --- !u!114 &114928713557671770
