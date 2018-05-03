@@ -13,8 +13,8 @@ public class CustomTrigger : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if(OnEnter != null)
-                OnEnter();
+            if(OnEnter != null)                            
+                OnEnter();                            
         }
     }
 
