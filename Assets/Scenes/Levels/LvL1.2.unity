@@ -1228,7 +1228,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000577029234694, guid: e4ad420d8208632419c76d979698c404, type: 2}
       propertyPath: m_Name
-      value: VcamFollowCustom (1)
+      value: VcamFollowPlatform
       objectReference: {fileID: 0}
     - target: {fileID: 4232221924348474, guid: e4ad420d8208632419c76d979698c404, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2497,11 +2497,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.5
+      value: 20.2
       objectReference: {fileID: 0}
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -10.4
+      value: -11.5
       objectReference: {fileID: 0}
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3765,6 +3765,14 @@ Prefab:
       propertyPath: m_LocalPlayerAuthority
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1865870673877054, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
+      propertyPath: m_Name
+      value: ButtonYB
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505265061269658, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
+      propertyPath: m_Name
+      value: ButtonRB
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
   m_IsPrefabParent: 0
@@ -3841,6 +3849,10 @@ Prefab:
     - target: {fileID: 4549226013151570, guid: e4ad420d8208632419c76d979698c404, type: 2}
       propertyPath: m_LocalScale.x
       value: 5.916779
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000577029234694, guid: e4ad420d8208632419c76d979698c404, type: 2}
+      propertyPath: m_Name
+      value: VcamFollowSensor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4ad420d8208632419c76d979698c404, type: 2}
@@ -6871,6 +6883,14 @@ Prefab:
       propertyPath: m_LocalPlayerAuthority
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1865870673877054, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
+      propertyPath: m_Name
+      value: ButtonYS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505265061269658, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
+      propertyPath: m_Name
+      value: ButtonPS
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05bed0acc1396be43b961e8cca85c766, type: 2}
   m_IsPrefabParent: 0
@@ -7657,7 +7677,7 @@ GameObject:
   - component: {fileID: 1918002584}
   - component: {fileID: 1918002583}
   m_Layer: 0
-  m_Name: Button
+  m_Name: ButtonVerdeSpesial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8462,7 +8482,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1262296499045494, guid: 3e36c2e88a7c10643b8a40c777c32d1a, type: 2}
       propertyPath: m_Name
-      value: Button
+      value: ButtonRBT
       objectReference: {fileID: 0}
     - target: {fileID: 4134335105356522, guid: 3e36c2e88a7c10643b8a40c777c32d1a, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z

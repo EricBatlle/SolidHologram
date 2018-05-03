@@ -4,11 +4,11 @@ using UnityEngine.Networking;
 
 public class NetworkInteractiveObject : NetworkBehaviour
 {
-    private GameObject player;
+    private GameObject player = null;
     public Action OnInteraction;
 
     //ToDo: Test if it's better to do that, or just find the player every time in setLocalAuthority
-    private void Update()
+    private void FixedUpdate()
     {
         if(player == null)
         {
@@ -41,17 +41,20 @@ public class NetworkInteractiveObject : NetworkBehaviour
         GameObject box = GameObject.FindWithTag("Player");
         GameObject bentley = GameObject.FindWithTag("Bentley");
 
-        if (box != null && bentley != null)
+        if (box != null)
         {
             if (box.GetComponent<PlayerAuthorityAssignator>().isLocal)
             {
                 return box;
             }
-            else if (bentley.GetComponent<PlayerAuthorityAssignator>().isLocal)
+        }
+        if (bentley != null)
+        {
+            if (bentley.GetComponent<PlayerAuthorityAssignator>().isLocal)
             {
                 return bentley;
             }
-        }        
+        } 
         //Debug log
         //print("There is no local player?");
 

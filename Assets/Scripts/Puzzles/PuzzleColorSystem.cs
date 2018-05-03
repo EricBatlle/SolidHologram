@@ -22,7 +22,7 @@ public class PuzzleColorSystem : MonoBehaviour {
 #endregion
     
     //Used to set players reference
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         //Set Players References       
         if (!findBoxReference)
@@ -33,7 +33,6 @@ public class PuzzleColorSystem : MonoBehaviour {
                 box = boxGO.GetComponent<PlatformerCharacter2D>();
                 findBoxReference = true;
                 box.OnPlayerDies += resetPuzzle;
-
             }
         }
     }

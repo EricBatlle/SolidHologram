@@ -12,7 +12,7 @@ namespace UnityStandardAssets._2D
         [SerializeField]
         private KeyCode crouchKey = KeyCode.None;
 
-        [Tooltip("Only useful if crouchKey is set to 'None'")]
+        [Tooltip("Only useful if crouchKey is set to 'None' or playing on MobileDevice")]
         [Range(0, -1)]
         [SerializeField]
         private float crouchSensibility;
@@ -20,6 +20,7 @@ namespace UnityStandardAssets._2D
         private PlatformerCharacter2D m_Character;
         private bool m_Jump;
 		private bool isColliding;
+        private bool crouch = false;
 
         //Only local player can use it
         private void Start()
@@ -55,13 +56,14 @@ namespace UnityStandardAssets._2D
 			float h = CrossPlatformInputManager.GetAxis ("Horizontal");
             float v = CrossPlatformInputManager.GetAxis("Vertical");
 
+            crouch = false;
 
 #if MOBILE_INPUT
-            bool crouch = (v < crouchSensibility) ? true : false;
+            crouch = (v < crouchSensibility) ? true : false;
 #else
-            bool crouch;
             if (crouchKey == KeyCode.None)
             {
+                //There is no sensibility on PC (at least not if you don't plays with joystick)
                 crouch = (v < crouchSensibility) ? true : false;
             }
             else

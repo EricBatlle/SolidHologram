@@ -15,7 +15,9 @@ public class CustomCinemachine : MonoBehaviour
         if (playerTransform != null)
         {
             //transform.position = playerTransform.position + new Vector3(horizontalDisplacement, verticalDisplacement, depth);
-            mainVirtualCamera.Follow = playerTransform;
+            //In case there is no main camera attached
+            if (mainVirtualCamera != null)
+                mainVirtualCamera.Follow = playerTransform;
         }
     }
 
