@@ -7,7 +7,6 @@ using UnityEngine.Networking;
 public class nextLevel : NetworkInteractiveObject
 {
 
-    public Prototype.NetworkLobby.LobbyManager lobbyManager;
     public string nextSceneName;    
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,7 +49,6 @@ public class nextLevel : NetworkInteractiveObject
     [ClientRpc]
     private void RpcChangeScene()
     {
-        //lobbyManager.ServerChangeScene(nextSceneName);
         LobbyManager.s_Singleton.LoadScene(nextSceneName);
     }
 
