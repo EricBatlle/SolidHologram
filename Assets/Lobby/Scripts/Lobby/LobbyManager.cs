@@ -468,7 +468,7 @@ namespace Prototype.NetworkLobby
             infoPanel.Display("Cient error : " + (errorCode == 6 ? "timeout" : errorCode.ToString()), "Close", null);
         }
 
-        // ----------------- ERIC STUFF ------------------
+        // ----------------- ERIC PLAYER SELECTION ------------------
         [Space]
         [Header("Character Selection Manager")]
         [SerializeField] Vector3 player1SpawnPos;
@@ -509,5 +509,20 @@ namespace Prototype.NetworkLobby
         }
 
         //-----
+
+        // ----------------- ERIC FADE BETWEEN LEVELS ------------------
+        #region FadeBetweenScenes
+                public void LoadScene(string sceneName)
+                {
+                    StartCoroutine(FadeToScene(sceneName));
+                }
+
+                IEnumerator FadeToScene(string sceneName)
+                {
+                    float fadeTime = Camera.main.GetComponent<Fading>().BeginFade(1);
+                    yield return new WaitForSeconds(fadeTime);
+                    ServerChangeScene(sceneName); 
+                }
+        #endregion
     }
 }

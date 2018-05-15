@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Prototype.NetworkLobby;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -49,7 +50,8 @@ public class nextLevel : NetworkInteractiveObject
     [ClientRpc]
     private void RpcChangeScene()
     {
-        lobbyManager.ServerChangeScene(nextSceneName);
+        //lobbyManager.ServerChangeScene(nextSceneName);
+        LobbyManager.s_Singleton.LoadScene(nextSceneName);
     }
 
     [Command]
