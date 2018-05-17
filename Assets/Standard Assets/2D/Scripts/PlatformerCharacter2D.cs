@@ -21,6 +21,9 @@ namespace UnityStandardAssets._2D
         [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;              // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private float collidersRayDistCrouchDifference = 0.5f; //Those values needs to be calculated manually 
         [SerializeField] private float ceilingAltitudeCrouchDifference = -0.3f;         //...if the crouch animation change
+        [Header("Help settings")]
+        [SerializeField] private GameObject helpPanel;
+        private Animator m_AnimHelp;            // Reference to the help panel's animator component.
 
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -39,7 +42,8 @@ namespace UnityStandardAssets._2D
             // Setting up references.
             m_GroundCheck = transform.Find("GroundCheck");
             m_CeilingCheck = transform.Find("CeilingCheck");
-            m_Anim = GetComponent<Animator>();
+            m_Anim = GetComponent<Animator>(); //Get Box animator
+            m_AnimHelp = GetComponent<Animator>(); //Get Help Panel animator
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             Camera.main.GetComponent<CustomCinemachine>().setTarget(gameObject.transform);
         }
@@ -93,6 +97,12 @@ namespace UnityStandardAssets._2D
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
+
+            if (Input.GetKey(KeyCode.H))
+            {
+                m_AnimHelp.SetBool("askHelp",true);
+                m_AnimHelp.SetBool("askHelp", false);
+            }
         }
             
         //Die Collison and Trigger checks
@@ -435,7 +445,7 @@ namespace UnityStandardAssets._2D
             }
         }
 
-        private void NmFlip()
+        private void flipFunction()
         {
             // Switch the way the player is labelled as facing.
             m_FacingRight = !m_FacingRight;
@@ -444,28 +454,27 @@ namespace UnityStandardAssets._2D
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
+
+            //ToDo: WHAT IS THIS NOT WORKING AT ALLLLLL
+            // Multiply AGAIN the PANEL'S HELP x local scale by -1 to fix it again.
+            Vector3 theScalePanel = helpPanel.transform.localScale;
+            theScalePanel.x *= -1;
+            helpPanel.transform.localScale = theScalePanel;
+        }
+
+        private void NmFlip()
+        {
+            flipFunction();
         }
         [ClientRpc]
         private void RpcFlip()
         {
-            // Switch the way the player is labelled as facing.
-            m_FacingRight = !m_FacingRight;
-
-            // Multiply the player's x local scale by -1.
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            flipFunction();
         }
         [Command]
         private void CmdFlip()
         {
-            // Switch the way the player is labelled as facing.
-            m_FacingRight = !m_FacingRight;
-
-            // Multiply the player's x local scale by -1.
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            flipFunction();
         }
         #endregion
     }
