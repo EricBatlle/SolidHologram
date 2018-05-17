@@ -23,7 +23,9 @@ namespace UnityStandardAssets._2D
         [SerializeField] private float ceilingAltitudeCrouchDifference = -0.3f;         //...if the crouch animation change
         [Header("Help settings")]
         [SerializeField] private GameObject helpPanel;
-        private Animator m_AnimHelp;            // Reference to the help panel's animator component.
+        private Animator m_AnimHelp;                    // Reference to the help panel's animator component.
+        private SpriteRenderer m_SpriteRHelp;           // Reference to the help panel's SpriteRenderer component.
+        private bool askHelp = false;
 
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -43,7 +45,8 @@ namespace UnityStandardAssets._2D
             m_GroundCheck = transform.Find("GroundCheck");
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>(); //Get Box animator
-            m_AnimHelp = GetComponent<Animator>(); //Get Help Panel animator
+            m_AnimHelp = helpPanel.GetComponent<Animator>(); //Get Help Panel animator
+            m_SpriteRHelp = helpPanel.GetComponent<SpriteRenderer>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             Camera.main.GetComponent<CustomCinemachine>().setTarget(gameObject.transform);
         }
@@ -98,13 +101,12 @@ namespace UnityStandardAssets._2D
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 
-            if (Input.GetKey(KeyCode.H))
-            {
-                m_AnimHelp.SetBool("askHelp",true);
-                m_AnimHelp.SetBool("askHelp", false);
-            }
+            // Set the help animation
+            askHelp = Input.GetKey(KeyCode.H) ? true : false;
+            m_AnimHelp.SetBool("askHelp", askHelp);
+        
         }
-            
+
         //Die Collison and Trigger checks
         #region dieBehaviour
         //ToDo: Remove PlayerKilled, as killPlayer no longer should exists
@@ -455,11 +457,8 @@ namespace UnityStandardAssets._2D
             theScale.x *= -1;
             transform.localScale = theScale;
 
-            //ToDo: WHAT IS THIS NOT WORKING AT ALLLLLL
-            // Multiply AGAIN the PANEL'S HELP x local scale by -1 to fix it again.
-            Vector3 theScalePanel = helpPanel.transform.localScale;
-            theScalePanel.x *= -1;
-            helpPanel.transform.localScale = theScalePanel;
+            //Flip also the Help Panel            
+            m_SpriteRHelp.flipX = !m_SpriteRHelp.flipX;
         }
 
         private void NmFlip()
