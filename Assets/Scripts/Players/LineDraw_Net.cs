@@ -12,7 +12,8 @@ public class LineDraw_Net : NetworkInteractiveObject
     #region variables
     //PLAYER INFORMATION
     [Header("Player Information")]
-    [SerializeField] PlayerInfo playerInfo; //Information about the current player
+    [SerializeField]
+    PlayerInfo playerInfo; //Information about the current player
 
     [Header("HUD Interaction")]
     public DrawButton[] hudButtons;
@@ -22,7 +23,8 @@ public class LineDraw_Net : NetworkInteractiveObject
 
     //PREFAB DRAW
     [Header("Draw Prefab")]
-    [SerializeField] GameObject lineObjectPrefab; //this needs to be the line prefab in the assets folder
+    [SerializeField]
+    GameObject lineObjectPrefab; //this needs to be the line prefab in the assets folder
     private Color color;
     public Color messageColor;
     public Color normalColor;
@@ -58,15 +60,16 @@ public class LineDraw_Net : NetworkInteractiveObject
     //OTHER CUSTOM PARAMETERS
     [Header("Gameplay Parameters")]
     public float startWidth = 0.1f; //Try to maintain the ratio of start-endWitdh...
-    public float endWidth = 0.1f;  //or the collider will be in troubles!
+    public float endWidth = 0.1f;   //or the collider will be in troubles!
     public float deathTime = 0;
-    public float drawTime = 3; // 0 == inf
+    public float drawTime = 3;      // 0 == inf
 
     //GLOBAL VARIABLES
-    Vector3 oldMousePos; //we store the mouse position when user first clicks
+    Vector3 oldMousePos;                    //we store the mouse position when user first clicks
     List<Vector3> positionsLine = new List<Vector3>();
     private float drawTimer;
     bool waitUntilNextDraw = false;         //Set to true when draws over undrawable surface, to cancel the draw
+    bool drawing = false;                   //Set to true when the user is currently drawing
     private GameObject box;
     private PlatformerCharacter2D boxController;
 
@@ -76,7 +79,7 @@ public class LineDraw_Net : NetworkInteractiveObject
 
     private void OnEnable()
     {
-        OnDestroyLines += destroyAllLines;    
+        OnDestroyLines += destroyAllLines;
     }
 
     private void OnDisable()
@@ -91,12 +94,12 @@ public class LineDraw_Net : NetworkInteractiveObject
     }
 
     public void Start()
-    {        
+    {
         if (!isLocalPlayer)//hide Bentley HUD
         {
             transform.Find("HUD").gameObject.SetActive(false);
         }
-        else 
+        else
         {
             //Initiate DrawButtons
             changeDrawType();                       //Set Listeners to the HUD buttons
@@ -137,12 +140,13 @@ public class LineDraw_Net : NetworkInteractiveObject
 
                 //spawn new line object on server and all clients
                 CmdMakeNewLine(mwc);
-                drawTimer = 0;                
+                drawTimer = 0;
             }
-            
+
             //if mouse button is down, and the draw restrictions are true
-            if (Input.GetMouseButton(0) && (((drawTime == 0) || (drawTimer <= drawTime))) && (!waitUntilNextDraw) )
+            if (Input.GetMouseButton(0) && (((drawTime == 0) || (drawTimer <= drawTime))) && (!waitUntilNextDraw))
             {
+                drawing = true;
                 Vector3 mp = Input.mousePosition;
                 //if we have dragged mouse more than pointInterval pixels
                 if (Vector3.Distance(mp, oldMousePos) > pointInterval)
@@ -152,7 +156,7 @@ public class LineDraw_Net : NetworkInteractiveObject
                     mwc.z = 0;
 
                     //update the line renderer while drawing on all clients
-                    updateLine(mwc);                    
+                    updateLine(mwc);
                 }
                 drawTimer += Time.deltaTime;
                 //In case user is drawing over an undrawable part, negate the draw capacity until next draw
@@ -164,7 +168,8 @@ public class LineDraw_Net : NetworkInteractiveObject
 
             //if mouse button is up
             if (Input.GetMouseButtonUp(0))
-            {                
+            {
+                drawing = false;
                 waitUntilNextDraw = false; //Next draw
                 if (usePhysics)
                 {
@@ -178,9 +183,29 @@ public class LineDraw_Net : NetworkInteractiveObject
                 }
                 SetDeviceShine(false);
             }
-        }                
+        }
+        else
+        {
+            //in case someone is making a draw and collides to the HUD
+            if (drawing)
+            {
+                //Act similar the user makes a buttonUp
+                drawing = false;
+                waitUntilNextDraw = true; //This line change cause the user do not really makes a button up, so if the user is still...
+                                          //..drawing, we need to force the user to re-click again to start drawing, or bugs will be made
+                if (usePhysics)
+                {
+                    updateLineCollider();
+                }
+                else
+                {
+                    cleanLinePositions();
+                }
+                SetDeviceShine(false);
+            }
+        }
     }
-    
+
     //Server creates new draw instance
     [Command]
     void CmdMakeNewLine(Vector3 mouseWorldCoords)
@@ -197,7 +222,8 @@ public class LineDraw_Net : NetworkInteractiveObject
 
         NetworkServer.Spawn(instance);
 
-        boxController.SetDeviceShine(true);
+        if (boxController != null)
+            boxController.SetDeviceShine(true);
     }
 
     //Find any/all lines and destroy them
@@ -304,7 +330,7 @@ public class LineDraw_Net : NetworkInteractiveObject
     [Command]
     void CmdUpdateLineCollider()
     {
-        RpcUpdateLineCollider();        
+        RpcUpdateLineCollider();
     }
     [ClientRpc]
     void RpcUpdateLineCollider()
@@ -369,7 +395,7 @@ public class LineDraw_Net : NetworkInteractiveObject
             }
             lr.GetComponent<Rigidbody2D>().bodyType = getBodyType(bodyType);
 
-            positionsLine.Clear();            
+            positionsLine.Clear();
         }
         else
         {
@@ -423,7 +449,8 @@ public class LineDraw_Net : NetworkInteractiveObject
     [ClientRpc]
     private void RpcSetDeviceShine(bool shine)
     {
-        boxController.SetDeviceShine(shine);
+        if (boxController != null)
+            boxController.SetDeviceShine(shine);
     }
     ////Set Listeners to the HUD buttons
     #region changeDrawType
@@ -457,11 +484,11 @@ public class LineDraw_Net : NetworkInteractiveObject
             case "normal":
                 color = normalColor;
                 usePhysics = true;
-                break;            
+                break;
         }
     }
     #endregion
-    
+
     //Decides if the surface is drawable or not
     bool isDrawableSurface()
     {
@@ -479,5 +506,5 @@ public class LineDraw_Net : NetworkInteractiveObject
         }
         return true;
     }
-    
+
 }
