@@ -45,9 +45,11 @@ namespace UnityStandardAssets._2D
             m_GroundCheck = transform.Find("GroundCheck");
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>(); //Get Box animator
+            m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
             m_AnimHelp = helpPanel.GetComponent<Animator>(); //Get Help Panel animator
             m_SpriteRHelp = helpPanel.GetComponent<SpriteRenderer>();
-            m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
             Camera.main.GetComponent<CustomCinemachine>().setTarget(gameObject.transform);
         }
 
@@ -80,7 +82,7 @@ namespace UnityStandardAssets._2D
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
         }
         
-        //MAIN LOOP         
+        //MAIN LOOP - MORE THAN ONE PER FRAME         
         private void FixedUpdate()
         {
             if (!isLocalPlayer)
@@ -99,13 +101,49 @@ namespace UnityStandardAssets._2D
             m_Anim.SetBool("Ground", m_Grounded);
 
             // Set the vertical animation
-            m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
+            m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);            
+        }
+
+        //MAIN LOOP - ONE PER FRAME
+        private void Update()
+        {
+            m_AnimHelp.SetBool("askHelp", askHelp);
+            askHelp = false;
+            if (!isLocalPlayer)
+                return;
 
             // Set the help animation
-            askHelp = Input.GetKey(KeyCode.H) ? true : false;
-            m_AnimHelp.SetBool("askHelp", askHelp);
-        
+            if (Input.GetKey(KeyCode.H))
+            {
+                AskHelp();
+            }
         }
+
+        //Help Animation, only sets help animator boolean
+        #region askHelp
+        public void AskHelp()
+        {
+            if (isServer)
+            {
+                RpcAskHelp();
+            }
+            else
+            {
+                CmdAskHelp();
+            }
+        }
+
+        [ClientRpc]
+        public void RpcAskHelp()
+        {
+            askHelp = true;
+        }
+        [Command]
+        public void CmdAskHelp()
+        {
+            RpcAskHelp();
+        }
+        #endregion
 
         //Die Collison and Trigger checks
         #region dieBehaviour
@@ -432,7 +470,7 @@ namespace UnityStandardAssets._2D
             }
         }
 
-        //flip sprite to look where you're moving
+        //flip sprite (Player&Panel) to look where you're moving
         #region flip
         private void Flip()
         {
@@ -460,7 +498,6 @@ namespace UnityStandardAssets._2D
             //Flip also the Help Panel            
             m_SpriteRHelp.flipX = !m_SpriteRHelp.flipX;
         }
-
         private void NmFlip()
         {
             flipFunction();
@@ -475,7 +512,7 @@ namespace UnityStandardAssets._2D
         {
             flipFunction();
         }
-        #endregion
+        #endregion 
     }
 }
 
