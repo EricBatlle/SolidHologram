@@ -51,6 +51,92 @@ namespace Prototype.NetworkLobby
         //static Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         //static Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
 
+        #region player Selection
+        [Space]
+        [Header("Player Selection")]
+        [SyncVar(hook = "OnMyBentley")]
+        public bool bentleySelected = false;
+        public Sprite bentleySprite;
+        public Sprite bentleySelectedSprite;
+
+        [SyncVar(hook = "OnMyBox")]
+        public bool boxSelected = false;
+        public Sprite boxSprite;
+        public Sprite boxSelectedSprite;
+
+        #region bentleySelection
+        //When "bentleySelected" variable changes do that
+        public void OnMyBentley(bool bentleySelected)
+        {            
+            if (bentleySelected)
+            {
+                bentleyButton.gameObject.GetComponent<Image>().sprite = bentleySelectedSprite;
+            }
+            else
+            {
+                bentleyButton.gameObject.GetComponent<Image>().sprite = bentleySprite;
+            }         
+        }
+        
+        //This is activated when the bentleyButton is pressed
+        public void OnBentleySelectedClicked()
+        {
+            CmdBentley();
+        }
+
+        //This command sends the bentley value to everyone
+        [Command]
+        public void CmdBentley()
+        {
+            bentleySelected = true;
+            boxSelected = false;
+        }
+
+        //Used to set up local player
+        [Command]
+        public void CmdBentleySelectedChanged(bool selected)
+        {
+            bentleySelected = selected;
+        }
+        #endregion
+
+        #region boxSelection
+        //When "boxSelected" variable changes do that
+        public void OnMyBox(bool boxSelected)
+        {
+            if (boxSelected)
+            {
+                boxButton.gameObject.GetComponent<Image>().sprite = boxSelectedSprite;
+            }
+            else
+            {
+                boxButton.gameObject.GetComponent<Image>().sprite = boxSprite;
+            }
+        }
+
+        //This is activated when the boxButton is pressed
+        public void OnBoxSelectedClicked()
+        {
+            CmdBox();
+        }
+
+        //This command sends the box value to everyone
+        [Command]
+        public void CmdBox()
+        {
+            boxSelected = true;
+            bentleySelected = false;
+        }
+
+        //Used to set up local player
+        [Command]
+        public void CmdBoxSelectedChanged(bool selected)
+        {
+            boxSelected = selected;
+        }
+        #endregion
+
+        #endregion
 
         public override void OnClientEnterLobby()
         {
@@ -74,6 +160,9 @@ namespace Prototype.NetworkLobby
             //will be created with the right value currently on server
             OnMyName(playerName);
             OnMyColor(playerColor);
+            //Player selection
+            OnMyBentley(bentleySelected);
+            OnMyBox(bentleySelected);
         }
 
         public override void OnStartAuthority()
@@ -139,6 +228,10 @@ namespace Prototype.NetworkLobby
             //have to use child count of player prefab already setup as "this.slot" is not set yet
             if (playerName == "")
                 CmdNameChanged("Player" + (LobbyPlayerList._instance.playerListContentTransform.childCount-1));
+
+            //Player selection
+            CmdBentleySelectedChanged(bentleySelected);
+            CmdBoxSelectedChanged(boxSelected);
 
             //we switch from simple name display to name input
             colorButton.interactable = true;
