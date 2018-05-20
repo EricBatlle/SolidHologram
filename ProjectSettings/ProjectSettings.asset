@@ -141,6 +141,7 @@ PlayerSettings:
   targetPixelDensity: 0
   resolutionScalingMode: 0
   applicationIdentifier:
+    Android: com.IgarabaStudio.SolidHologram
     Standalone: com.IgarabaStudio.SolidHologram
   buildNumber: {}
   AndroidBundleVersionCode: 1
