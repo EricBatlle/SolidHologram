@@ -162,7 +162,7 @@ namespace Prototype.NetworkLobby
             OnMyColor(playerColor);
             //Player selection
             OnMyBentley(bentleySelected);
-            OnMyBox(bentleySelected);
+            OnMyBox(boxSelected);
         }
 
         public override void OnStartAuthority()
