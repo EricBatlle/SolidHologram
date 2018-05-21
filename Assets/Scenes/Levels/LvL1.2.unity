@@ -2090,6 +2090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 1823048754164722, guid: 3d337e4d859607c4fa452f5722c6f9f6, type: 2}
   random_0_dropEvery: 1
+  dropping: 0
   dropEvery: 2
   startDropping: 0
   startTrigger: {fileID: 0}
@@ -2434,6 +2435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 1823048754164722, guid: 3d337e4d859607c4fa452f5722c6f9f6, type: 2}
   random_0_dropEvery: 1
+  dropping: 0
   dropEvery: 2
   startDropping: 0
   startTrigger: {fileID: 0}
@@ -2507,11 +2509,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.6
+      value: 125.7
       objectReference: {fileID: 0}
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -10.5
+      value: -38.5
       objectReference: {fileID: 0}
     - target: {fileID: 4336419674119838, guid: 5d6c0b51608598f4dbd55e22cf1de2d2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3490,6 +3492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 1823048754164722, guid: 3d337e4d859607c4fa452f5722c6f9f6, type: 2}
   random_0_dropEvery: 1
+  dropping: 0
   dropEvery: 2
   startDropping: 0
   startTrigger: {fileID: 0}
@@ -3759,6 +3762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 1823048754164722, guid: 3d337e4d859607c4fa452f5722c6f9f6, type: 2}
   random_0_dropEvery: 0
+  dropping: 0
   dropEvery: 2
   startDropping: 0
   startTrigger: {fileID: 2039038062}
@@ -7224,6 +7228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7237e4f64bd8247963dfdbda54dd6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worksWithPressure: 0
   sprites:
   - {fileID: 21300000, guid: 09a646587da095748a664d022593712f, type: 3}
   - {fileID: 21300000, guid: 7b97a046b3a98b948a89a0ef1e3376f2, type: 3}
@@ -7750,6 +7755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropPrefab: {fileID: 1823048754164722, guid: 3d337e4d859607c4fa452f5722c6f9f6, type: 2}
   random_0_dropEvery: 1
+  dropping: 0
   dropEvery: 2
   startDropping: 0
   startTrigger: {fileID: 0}

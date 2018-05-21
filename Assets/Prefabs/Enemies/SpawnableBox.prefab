@@ -108,7 +108,7 @@ MonoBehaviour:
   m_SyncSpin: 1
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
+  m_SnapThreshold: 0.1
   m_InterpolateRotation: 10
   m_InterpolateMovement: 1.3
 --- !u!114 &114677645181491256
@@ -142,7 +142,7 @@ MonoBehaviour:
     i14: 79
     i15: 99
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114792188870023086
 MonoBehaviour:
   m_ObjectHideFlags: 1

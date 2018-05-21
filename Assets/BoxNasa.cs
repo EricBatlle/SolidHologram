@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class BoxNasa : MonoBehaviour {
+public class BoxNasa : NetworkBehaviour {
 
     public Sprite collisionSprite;
 
@@ -24,6 +25,6 @@ public class BoxNasa : MonoBehaviour {
     IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        NetworkServer.Destroy(this.gameObject);
     }
 }
