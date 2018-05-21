@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 60833178958027970}
   - component: {fileID: 114413759028329522}
   - component: {fileID: 114442774482146128}
+  - component: {fileID: 114919435573239646}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -120,6 +121,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0e0f0f8ab521723478a6216e2417cd8b, type: 3}
   - {fileID: 21300000, guid: ead6cef44e1a1414eb0638dc6758607a, type: 3}
   currSprite: {fileID: 0}
+--- !u!114 &114919435573239646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262296499045494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1027d6c640628284aab6db73821a4033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawable: 0
 --- !u!212 &212709783071896126
 SpriteRenderer:
   m_ObjectHideFlags: 1
