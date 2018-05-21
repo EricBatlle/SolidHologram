@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4270846633360624}
-  - component: {fileID: 114892321246321648}
   - component: {fileID: 114407862893713816}
+  - component: {fileID: 114765796958457636}
   m_Layer: 0
   m_Name: Dripper_net
   m_TagString: Untagged
@@ -73,7 +73,7 @@ MonoBehaviour:
     i15: 2
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114892321246321648
+--- !u!114 &114765796958457636
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -81,10 +81,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1461041664767706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d29945aaaecfd6e4cb83b4b1198c318b, type: 3}
+  m_Script: {fileID: 11500000, guid: b01a7c1f3c484ba45863b251e5171857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropPrefab: {fileID: 1823048754164722, guid: 3d337e4d859607c4fa452f5722c6f9f6, type: 2}
+  dropPrefab: {fileID: 0}
   random_0_dropEvery: 0
   dropEvery: 2
   startDropping: 0

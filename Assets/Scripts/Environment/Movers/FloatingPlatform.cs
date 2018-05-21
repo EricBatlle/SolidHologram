@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class FloatingPlatform : MonoBehaviour {
 
-    [SerializeField] private Mover mover;
-    [SerializeField] private Sprite[] sprites;
+    [SerializeField] protected Mover mover;
+    [Tooltip("First sprite should be the Up sprite, second down")]
+    [SerializeField] protected Sprite[] sprites;
     [SerializeField] private CustomTrigger startTrigger;
 
     private int spritesCount = 0;
@@ -15,11 +16,13 @@ public class FloatingPlatform : MonoBehaviour {
 
     private void OnEnable()
     {
-        startTrigger.OnEnter = StartMovingPlatform;
+        if(startTrigger != null)
+            startTrigger.OnEnter = StartMovingPlatform;
     }
     private void OnDisable()
     {
-        startTrigger.OnEnter = null;
+        if (startTrigger != null)
+            startTrigger.OnEnter = null;
     }
     
     void StartMovingPlatform()

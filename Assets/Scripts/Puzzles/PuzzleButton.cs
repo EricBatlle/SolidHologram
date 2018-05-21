@@ -22,7 +22,7 @@ public class PuzzleButton : NetworkInteractiveObject
 
     //Change color when enter player or draw
     private void OnTriggerEnter2D(Collider2D collision){
-		if (collision.gameObject.CompareTag ("Player") || collision.gameObject.CompareTag ("line")) {
+		if (collision.gameObject.CompareTag ("Player") || collision.gameObject.CompareTag ("line") || (collision.gameObject.CompareTag("Pusher"))) {
             nextColor();
 		}
 	}

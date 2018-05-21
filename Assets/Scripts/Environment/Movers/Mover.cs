@@ -54,8 +54,9 @@ public class Mover : MonoBehaviour {
     public float maxDisplacement = 5; //if 0 -> returns to the origin
     public float speed = 1;
 
-    private bool open = false;
-    private bool close = true;
+    public bool open = false;
+    public bool close = true;
+    public bool stopped = true;
 
     public void Start()
     {
@@ -69,19 +70,18 @@ public class Mover : MonoBehaviour {
         if (close)
         {
             Open();
-            open = true;
-            close = false;
         }
         else
         {
             Close();
-            open = false;
-            close = true;
         }
     }
 
     public void Open()
-    {        
+    {
+        stopped = false;
+        open = true;
+        close = false;
         CalculateDirectionVectors(openDirection);
         SmoothMovementCoroutine = SmoothMovement(openDirection);
         StartCoroutine(SmoothMovementCoroutine);        
@@ -89,6 +89,9 @@ public class Mover : MonoBehaviour {
 
     public void Close()
     {
+        stopped = false;
+        open = false;
+        close = true;
         CalculateReturnDirectionVectors(closeDirection);
         SmoothMovementCoroutine = SmoothMovement(closeDirection);
         StartCoroutine(SmoothMovementCoroutine);
@@ -101,6 +104,7 @@ public class Mover : MonoBehaviour {
             transform.Translate(vecDirection * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+        stopped = true;
     }
 
     public void CalculateDirectionVectors(Direction direction)

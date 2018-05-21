@@ -16,6 +16,7 @@ TagManager:
   - Vcam
   - MainVcam
   - BurningZone
+  - Pusher
   layers:
   - Default
   - TransparentFX
