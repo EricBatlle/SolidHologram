@@ -95,6 +95,7 @@ namespace UnityStandardAssets._2D
             Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < colliders.Length; i++)
             {
+                print("chocando"+colliders[i].gameObject);
                 if (colliders[i].gameObject != gameObject)
                     m_Grounded = true;
             }
@@ -111,12 +112,18 @@ namespace UnityStandardAssets._2D
             askHelp = false;
             if (!isLocalPlayer)
                 return;
-
-            // Set the help animation
+#if !MOBILE_INPUT
             if (Input.GetKey(KeyCode.H))
             {
                 AskHelp();
             }
+#endif
+        }
+
+        // Set the help animation if click OnBox 
+        private void OnMouseDown()
+        {
+            AskHelp();
         }
 
         //Help Animation, only sets help animator boolean
