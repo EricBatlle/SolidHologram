@@ -54,6 +54,7 @@ public class LineDraw_Net : NetworkInteractiveObject
     public PhysicsType bodyType;
     public float colliderThickness = 0.1f;
     public float pointInterval = 3f; //the maximum distance in pixels between each point of line
+    [Tooltip("Ideally 10 to avoid to move the draw")]
     public float mass = 10.0f;
     public float density = 75.0f;
 
