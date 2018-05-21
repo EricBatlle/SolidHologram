@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4492490117093106}
   - component: {fileID: 212952600105880600}
   - component: {fileID: 50338092769248502}
+  - component: {fileID: 61025883328428042}
+  - component: {fileID: 114792188870023086}
   - component: {fileID: 114677645181491256}
   - component: {fileID: 114181630154043654}
-  - component: {fileID: 114792188870023086}
-  - component: {fileID: 61025883328428042}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnableBox
   m_TagString: Pusher
   m_Icon: {fileID: 0}

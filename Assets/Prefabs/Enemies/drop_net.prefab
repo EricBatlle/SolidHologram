@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 50422927014968960}
   - component: {fileID: 114928713557671770}
   - component: {fileID: 114998767054552826}
+  - component: {fileID: 114234674183230450}
+  - component: {fileID: 114952183647719732}
   m_Layer: 0
   m_Name: drop_net
   m_TagString: Untagged
@@ -118,6 +120,20 @@ PolygonCollider2D:
       - {x: 0.19, y: -0.83}
       - {x: 0.28, y: -0.79999995}
       - {x: 0.45999998, y: -0.64}
+--- !u!114 &114234674183230450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1823048754164722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3264b4385a0c1e4c856c30af58b3b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: bdd993f12b2c6c242b25217f7fa196dd, type: 3}
+  triggerTags:
+  - BurningZone
 --- !u!114 &114928713557671770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,6 +146,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSprite: {fileID: 21300000, guid: 7b352e554f30b3145826eef5396c4925, type: 3}
+--- !u!114 &114952183647719732
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1823048754164722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.09090909
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 10
+  m_InterpolateMovement: 1.3
 --- !u!114 &114998767054552826
 MonoBehaviour:
   m_ObjectHideFlags: 1
