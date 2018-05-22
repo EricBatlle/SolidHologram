@@ -13,6 +13,9 @@ public class Drip_net : NetworkInteractiveObject
 
 	// Use this for initialization
 	void Start () {
+        if (!isServer)
+            return;
+
         //Every 2 seconds, spawn a drop
         if (random_0_dropEvery == true) {
 			dropEvery = Random.Range (0.5f,dropEvery);
