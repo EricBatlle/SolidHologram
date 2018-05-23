@@ -10,6 +10,7 @@ public class PuzzleColorSystemV2 : MonoBehaviour
     [SerializeField] private PuzzleButton[] puzzleButtons;
     [SerializeField] private Sprite spriteSolution;
     [SerializeField] private Mover[] puzzleDoorMovers;
+    [SerializeField] private Mover platform;
 
     public event Action OnPuzzleSolved;
     public event Action OnPuzzleNotSolved;
@@ -96,8 +97,18 @@ public class PuzzleColorSystemV2 : MonoBehaviour
         }
         else if (puzzleHasBeenSolvedOnce)
         {
-            OnPuzzleNotSolved();
+            platform.Close();
+            StartCoroutine(WaitPlatform());
         }
+    }
+
+    private IEnumerator WaitPlatform()
+    {
+        while (platform.moving)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        OnPuzzleNotSolved();
     }
 
 }

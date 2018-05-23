@@ -39,7 +39,7 @@ public class PuzzleButton : NetworkInteractiveObject
 
     //Set Next Color
     #region nextColor
-    private void nextColor()
+    public void nextColor()
     {
         if (isServer)
         {
@@ -79,7 +79,8 @@ public class PuzzleButton : NetworkInteractiveObject
         currSprite = sprites[spritesCount];
         spritesCount++;
 
-        OnColorChange();
+        if(OnColorChange != null)
+            OnColorChange();
     }
     #endregion
 

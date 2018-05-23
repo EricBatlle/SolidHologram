@@ -36,7 +36,6 @@ public class Mover : MonoBehaviour {
         { return (this.transform.position.x <= destination.x); }
         else if (dir == Direction.Left)
         { return (this.transform.position.x >= destination.x); }
-
         return false;
     }
     #endregion
@@ -46,9 +45,10 @@ public class Mover : MonoBehaviour {
 
     private Vector3 vecDirection;
     private Vector3 destination;
-    private Vector3 startPos;
+    [SerializeField] private Vector3 startPos;
 
     private IEnumerator SmoothMovementCoroutine;
+    private IEnumerator SmoothMovementOpenCoroutine;
 
 
     public float maxDisplacement = 5; //if 0 -> returns to the origin
@@ -56,8 +56,11 @@ public class Mover : MonoBehaviour {
 
     public bool open = false;
     public bool close = true;
-    public bool stopped = true;
+    public bool opening = false;
+    public bool closing = false;
+    public bool moving = false;
 
+    public Action OnStop;
     public void Start()
     {
         startPos = this.transform.position;
@@ -79,17 +82,19 @@ public class Mover : MonoBehaviour {
 
     public void Open()
     {
-        stopped = false;
+        moving = true;
+        opening = true;
         open = true;
         close = false;
         CalculateDirectionVectors(openDirection);
-        SmoothMovementCoroutine = SmoothMovement(openDirection);
-        StartCoroutine(SmoothMovementCoroutine);        
+        SmoothMovementOpenCoroutine = SmoothMovementOpen(openDirection);
+        StartCoroutine(SmoothMovementOpenCoroutine);        
     }
 
     public void Close()
     {
-        stopped = false;
+        moving = true;
+        closing = true;
         open = false;
         close = true;
         CalculateReturnDirectionVectors(closeDirection);
@@ -104,7 +109,29 @@ public class Mover : MonoBehaviour {
             transform.Translate(vecDirection * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        stopped = true;
+        closing = false;
+        if (!opening&&!closing)
+        {
+            moving = false;
+            if (OnStop != null)
+                OnStop();
+        }
+    }
+
+    IEnumerator SmoothMovementOpen(Direction direction)
+    {
+        while (isAvailableDirection(direction))
+        {
+            transform.Translate(vecDirection * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        opening = false;
+        if (!opening && !closing)
+        {
+            moving = false;
+            if(OnStop != null)
+                OnStop();
+        }
     }
 
     public void CalculateDirectionVectors(Direction direction)

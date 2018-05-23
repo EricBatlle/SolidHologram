@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressionButton : MonoBehaviour {
+public class PressionButton : PuzzleButton {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    //Avoid calling the puzzlebutton ontriggerenter2d schema
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+    }
 }
