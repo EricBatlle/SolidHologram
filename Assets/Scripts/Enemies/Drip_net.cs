@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Drip_net : NetworkBehaviour {
+public class Drip_net : NetworkInteractiveObject
+{
 
     public GameObject dropPrefab;
 	public bool random_0_dropEvery = false;
@@ -12,6 +13,9 @@ public class Drip_net : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (!isServer)
+            return;
+
         //Every 2 seconds, spawn a drop
         if (random_0_dropEvery == true) {
 			dropEvery = Random.Range (0.5f,dropEvery);
@@ -24,7 +28,37 @@ public class Drip_net : NetworkBehaviour {
         }
 
     }
-	
+
+    IEnumerator DripDropCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(dropEvery);
+            //CmdDripDrop();
+            DripDrop();
+        }
+
+    }
+
+    #region DripDrop
+    public void DripDrop()
+    {
+        if (!hasAuthority)
+        {
+            this.OnInteraction += NmCmdDripDrop;
+            setLocalAuthority();
+        }
+        else
+        {
+            CmdDripDrop();
+        }
+    }
+
+    public void NmCmdDripDrop()
+    {
+        CmdDripDrop();
+    }
+
     [Command]
     public void CmdDripDrop()
     {
@@ -35,14 +69,5 @@ public class Drip_net : NetworkBehaviour {
         //drop.transform.SetParent(transform);
         NetworkServer.Spawn(drop);
     }
-   
-    IEnumerator DripDropCoroutine()
-    {
-        while (true) {
-            yield return new WaitForSeconds(dropEvery);
-            CmdDripDrop();
-        }
-
-    }
-    
+    #endregion
 }

@@ -111,12 +111,18 @@ namespace UnityStandardAssets._2D
             askHelp = false;
             if (!isLocalPlayer)
                 return;
-
-            // Set the help animation
+#if !MOBILE_INPUT
             if (Input.GetKey(KeyCode.H))
             {
                 AskHelp();
             }
+#endif
+        }
+
+        // Set the help animation if click OnBox 
+        private void OnMouseDown()
+        {
+            AskHelp();
         }
 
         //Help Animation, only sets help animator boolean

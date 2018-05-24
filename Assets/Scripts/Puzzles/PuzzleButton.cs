@@ -6,10 +6,9 @@ using UnityEngine.Networking;
 
 public class PuzzleButton : NetworkInteractiveObject
 {
-    
+    [SerializeField] private bool worksWithPressure = false;
     [SerializeField] private Sprite[] sprites;
     private int spritesCount = 0;
-
     public Sprite currSprite;
     private Sprite startSprite;
     public event Action OnColorChange;
@@ -22,14 +21,25 @@ public class PuzzleButton : NetworkInteractiveObject
 
     //Change color when enter player or draw
     private void OnTriggerEnter2D(Collider2D collision){
-		if (collision.gameObject.CompareTag ("Player") || collision.gameObject.CompareTag ("line")) {
+		if (collision.gameObject.CompareTag ("Player") || collision.gameObject.CompareTag ("line") || (collision.gameObject.CompareTag("Pusher"))) {
             nextColor();
 		}
 	}
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (worksWithPressure)
+        {
+            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("line") || (collision.gameObject.CompareTag("Pusher")))
+            {
+                nextColor();
+            }
+        }        
+    }
+
     //Set Next Color
     #region nextColor
-    private void nextColor()
+    public void nextColor()
     {
         if (isServer)
         {
@@ -69,7 +79,8 @@ public class PuzzleButton : NetworkInteractiveObject
         currSprite = sprites[spritesCount];
         spritesCount++;
 
-        OnColorChange();
+        if(OnColorChange != null)
+            OnColorChange();
     }
     #endregion
 

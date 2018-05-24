@@ -105,7 +105,7 @@ MonoBehaviour:
     i14: 45
     i15: 26
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114442774482146128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7237e4f64bd8247963dfdbda54dd6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worksWithPressure: 0
   sprites:
   - {fileID: 21300000, guid: 0e0f0f8ab521723478a6216e2417cd8b, type: 3}
   - {fileID: 21300000, guid: ead6cef44e1a1414eb0638dc6758607a, type: 3}
