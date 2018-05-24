@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +9,22 @@ public class LeftSystem : MonoBehaviour {
     [SerializeField] private Mover[] gates = null;
     [SerializeField] private Mover floatingPlatform = null;
 
+    public bool systemState = false;
+
+    public Action OnStateUpdated; 
+
     private void OnEnable()
     {
-        foreach (Mover gate in gates)
+        if(gates != null)
         {
-            gate.OnStop += CheckPlatformMovement;
-            
-        }
+            foreach (Mover gate in gates)
+            {
+                gate.OnStop += CheckPlatformMovement;
+
+            }
+        }            
         leftPanelButton.OnColorChange += leftPanelIndicator.nextColor;
+        leftPanelButton.OnColorChange += ActivateSystemState;
     }
     private void OnDisable()
     {
@@ -24,6 +33,13 @@ public class LeftSystem : MonoBehaviour {
             gate.OnStop -= CheckPlatformMovement;
         }
         leftPanelButton.OnColorChange -= leftPanelIndicator.nextColor;
+        leftPanelButton.OnColorChange -= ActivateSystemState;
+    }
+
+    private void ActivateSystemState()
+    {
+        systemState = true;
+        OnStateUpdated();
     }
 
     private void CheckPlatformMovement()
@@ -49,12 +65,4 @@ public class LeftSystem : MonoBehaviour {
         }
     }   
    
-    private void EnablePanel()
-    {
-        //change Panel sprite
-    }
-    private void EnableIndicator()
-    {
-        //change indicator sprite
-    }
 }
