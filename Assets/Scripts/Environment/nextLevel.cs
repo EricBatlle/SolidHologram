@@ -6,8 +6,8 @@ using UnityEngine.Networking;
 
 public class nextLevel : NetworkInteractiveObject
 {
-    public string nextSceneName;
-    public bool blabla;
+    public string nextSceneName;    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
