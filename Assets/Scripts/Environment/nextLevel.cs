@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 public class nextLevel : NetworkInteractiveObject
 {
+    [SerializeField] private bool startDisabled = false;
+    private bool disabledOnce = false;
     public string nextSceneName;    
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,6 +22,17 @@ public class nextLevel : NetworkInteractiveObject
             //    NetworkServer.Destroy(td);
             //}
             ChangeScene();            
+        }
+    }
+
+    private void FixedUpdate()
+    {
+//        if (startDisabled && (player != null) && (!disabledOnce))
+
+        if (startDisabled && (!disabledOnce))
+        {
+            disabledOnce = true;
+            this.gameObject.SetActive(false);
         }
     }
 

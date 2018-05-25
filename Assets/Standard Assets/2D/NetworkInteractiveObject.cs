@@ -3,23 +3,15 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class NetworkInteractiveObject : NetworkBehaviour
-{
-    [SerializeField] private bool startDisabled = false;
-    private bool disabledOnce = false;
-    private GameObject player = null;
+{    
+    protected GameObject player = null;
     public Action OnInteraction;
 
     //ToDo: Test if it's better to do that, or just find the player every time in setLocalAuthority
     private void FixedUpdate()
     {
         if (player == null)
-            player = findLocalPlayer();
-
-        if (startDisabled && (player != null) && (!disabledOnce))
-        {
-            disabledOnce = true;
-            this.gameObject.SetActive(false);
-        }                    
+            player = findLocalPlayer();                          
     }
 
     public void setLocalAuthority()
