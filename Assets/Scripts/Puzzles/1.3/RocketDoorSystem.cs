@@ -41,7 +41,6 @@ public class RocketDoorSystem : MonoBehaviour {
         allSystemsEnabled = true;
         foreach (LeftSystem system in systems)
         {
-            print(system.systemState);
             if (system.systemState == false)
                 allSystemsEnabled = false;
         }
