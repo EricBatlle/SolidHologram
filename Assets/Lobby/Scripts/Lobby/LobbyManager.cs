@@ -40,6 +40,7 @@ namespace Prototype.NetworkLobby
         protected RectTransform currentPanel;
 
         public Button backButton;
+        public Button exitButton;
 
         public Text statusInfo;
         public Text hostInfo;
@@ -142,10 +143,13 @@ namespace Prototype.NetworkLobby
             if (currentPanel != mainMenuPanel)
             {
                 backButton.gameObject.SetActive(true);
+                exitButton.gameObject.SetActive(false);
             }
             else
             {
                 backButton.gameObject.SetActive(false);
+                exitButton.gameObject.SetActive(true);
+
                 SetServerInfo("Offline", "None");
                 _isMatchmaking = false;
             }
@@ -166,10 +170,13 @@ namespace Prototype.NetworkLobby
             if (currentPanel != mainMenuPanel)
             {
                 backButton.gameObject.SetActive(true);
+                exitButton.gameObject.SetActive(false);
             }
             else
             {
                 backButton.gameObject.SetActive(false);
+                exitButton.gameObject.SetActive(true);
+
                 SetServerInfo("Offline", "None");
                 _isMatchmaking = false;
             }
@@ -201,6 +208,11 @@ namespace Prototype.NetworkLobby
                 backDelegate();
             }
             //topPanel.isInGame = false;
+        }
+
+        public void OnExitButton()
+        {
+            Application.Quit();
         }
 
         // ----------------- Server management

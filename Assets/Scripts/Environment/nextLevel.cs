@@ -37,7 +37,7 @@ public class nextLevel : NetworkInteractiveObject
     }
 
     #region changeScene
-    private void ChangeScene()
+    protected void ChangeScene()
     {
         if (isServer)
         {
@@ -58,13 +58,13 @@ public class nextLevel : NetworkInteractiveObject
     }
 
     [ClientRpc]
-    private void RpcChangeScene()
+    protected void RpcChangeScene()
     {
         LobbyManager.s_Singleton.LoadScene(nextSceneName);
     }
 
     [Command]
-    private void CmdChangeScene()
+    protected void CmdChangeScene()
     {
         RpcChangeScene();
     }
