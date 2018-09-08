@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public class RocketDoorSystem : MonoBehaviour {
-
+    [SerializeField] private MoveTowards rocketGate;
     [SerializeField] private nextLevel nextLevelObject = null;
     [SerializeField] private LeftSystem[] systems = null;
     private Action SystemEnabled;
@@ -41,7 +41,7 @@ public class RocketDoorSystem : MonoBehaviour {
         allSystemsEnabled = true;
         foreach (LeftSystem system in systems)
         {
-            if (system.systemState == false)
+            if (system.isSystemActive == false)
                 allSystemsEnabled = false;
         }
 
@@ -51,6 +51,9 @@ public class RocketDoorSystem : MonoBehaviour {
 
     private void EnableNextLevel()
     {
+        //Open rocket Door
+        rocketGate.StartMove();
+        //Active the trigger to nextLevel
         nextLevelObject.gameObject.SetActive(true);
     }
 }

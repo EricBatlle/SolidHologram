@@ -9,7 +9,7 @@ public class LeftSystem : MonoBehaviour {
     [SerializeField] private Mover[] gates = null;
     [SerializeField] private Mover floatingPlatform = null;
 
-    public bool systemState = false;
+    public bool isSystemActive = false;
 
     public Action OnStateUpdated; 
 
@@ -38,7 +38,7 @@ public class LeftSystem : MonoBehaviour {
 
     private void ActivateSystemState()
     {
-        systemState = true;
+        isSystemActive = true;
         OnStateUpdated();
     }
 
