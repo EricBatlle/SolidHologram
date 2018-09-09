@@ -186,6 +186,46 @@ Transform:
   m_PrefabParentObject: {fileID: 4797688206174688, guid: 1e47736d956a76841bd54f50a352c916,
     type: 2}
   m_PrefabInternal: {fileID: 1864098747}
+--- !u!1 &55700162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 55700163}
+  - component: {fileID: 55700164}
+  m_Layer: 0
+  m_Name: CameraCheckViewport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &55700163
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55700162}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1348.3562, y: 470.00082, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &55700164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55700162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdff092db0995c4dbcaa243ef62a7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &83582889
 GameObject:
   m_ObjectHideFlags: 0

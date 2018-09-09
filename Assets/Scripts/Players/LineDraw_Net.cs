@@ -160,8 +160,10 @@ public class LineDraw_Net : NetworkInteractiveObject
                     updateLine(mwc);
                 }
                 drawTimer += Time.deltaTime;
-                //In case user is drawing over an undrawable part, negate the draw capacity until next draw
-                if (!isDrawableSurface())
+                //In case user is...negate the draw capacity until next draw
+                //...drawing over an undrawable part
+                //...drawing out of the camera viewport                
+                if (!isDrawableSurface() || !isMouseOverViewport() )
                 {
                     waitUntilNextDraw = true;
                 }
@@ -431,6 +433,7 @@ public class LineDraw_Net : NetworkInteractiveObject
     #endregion
 
     //Advise box-device if is/is not drawing, to change shine sprites
+    #region setDeviceShine
     private void SetDeviceShine(bool shine)
     {
         if (isServer)
@@ -453,6 +456,8 @@ public class LineDraw_Net : NetworkInteractiveObject
         if (boxController != null)
             boxController.SetDeviceShine(shine);
     }
+    #endregion
+
     ////Set Listeners to the HUD buttons
     #region changeDrawType
     void changeDrawType()
@@ -508,4 +513,14 @@ public class LineDraw_Net : NetworkInteractiveObject
         return true;
     }
 
+    bool isMouseOverViewport()
+    {
+        Camera main_cam, local_cam;
+        main_cam = local_cam = Camera.main; //for the moment, but can be different to check multiple cameras
+
+        if (!Input.mousePresent) return true; //always true if no mouse??
+
+        Vector3 main_mou = main_cam.ScreenToViewportPoint(Input.mousePosition);
+        return local_cam.rect.Contains(main_mou);
+    }
 }
