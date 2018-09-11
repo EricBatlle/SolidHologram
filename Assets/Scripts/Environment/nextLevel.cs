@@ -27,8 +27,7 @@ public class nextLevel : NetworkInteractiveObject
 
     private void FixedUpdate()
     {
-//        if (startDisabled && (player != null) && (!disabledOnce))
-
+        //if (startDisabled && (player != null) && (!disabledOnce))
         if (startDisabled && (!disabledOnce))
         {
             disabledOnce = true;
@@ -60,6 +59,7 @@ public class nextLevel : NetworkInteractiveObject
     [ClientRpc]
     protected void RpcChangeScene()
     {
+        PlayerInfoController.s_Singleton.UpdateProgress();
         LobbyManager.s_Singleton.LoadScene(nextSceneName);
     }
 

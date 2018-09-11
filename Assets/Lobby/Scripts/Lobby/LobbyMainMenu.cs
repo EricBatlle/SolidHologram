@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace Prototype.NetworkLobby
 {
@@ -17,6 +18,11 @@ namespace Prototype.NetworkLobby
         public InputField ipInput;
         public InputField matchNameInput;
 
+        //Scene Selection
+        private int chapterSelected;
+        private int levelSelected;        
+        //
+
         public void OnEnable()
         {
             lobbyManager.topPanel.ToggleVisibility(true);
@@ -31,20 +37,24 @@ namespace Prototype.NetworkLobby
         public void OnClickHost()
         {
             lobbyManager.ChangeTo(selectChapterPanel);
-
+            selectChapterPanel.GetComponent<LobbyProgressSelection>().SetValidProgress();
             //lobbyManager.StartHost();
         }
 
-        public void OnAcceptChapter()
+        public void OnAcceptChapter(int chapter)
         {
+            chapterSelected = chapter;
             lobbyManager.ChangeTo(selectLevelPanel);
+            selectLevelPanel.GetComponent<LobbyProgressSelection>().SetValidProgress();
         }
 
-        public void OnAcceptLevel()
-        {            
+        public void OnAcceptLevel(int level)
+        {
+            levelSelected = level;
+            string selectedScene = "LvL" + chapterSelected + "." + levelSelected; ;
+            LobbyManager.s_Singleton.playScene = selectedScene;
             //lobbyManager.StartHost();
-
-            this.OnClickCreateMatchmakingGame();
+            this.OnClickCreateMatchmakingGame();            
         }
 
         public void OnClickJoin()
