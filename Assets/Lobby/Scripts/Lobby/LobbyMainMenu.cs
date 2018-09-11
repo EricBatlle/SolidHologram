@@ -20,9 +20,9 @@ namespace Prototype.NetworkLobby
 
         //Scene Selection
         private int chapterSelected;
-        private int levelSelected;        
+        private int levelSelected;
         //
-
+   
         public void OnEnable()
         {
             lobbyManager.topPanel.ToggleVisibility(true);
@@ -118,10 +118,6 @@ namespace Prototype.NetworkLobby
             {
                 OnClickCreateMatchmakingGame();
             }
-        }
-
-        //Nuria stuff
-
-    
+        }        
     }
 }

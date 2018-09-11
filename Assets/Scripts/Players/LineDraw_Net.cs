@@ -96,8 +96,9 @@ public class LineDraw_Net : NetworkInteractiveObject
 
     public void Start()
     {
-        if (!isLocalPlayer)//hide Bentley HUD
+        if (!isLocalPlayer)//hide Bentley player HUD
         {
+            transform.Find("HUD_bentley").gameObject.SetActive(false);
             transform.Find("HUD").gameObject.SetActive(false);
         }
         else

@@ -41,6 +41,7 @@ namespace Prototype.NetworkLobby
 
         public Button backButton;
         public Button exitButton;
+        public Button musicButton;
 
         public Text statusInfo;
         public Text hostInfo;
@@ -58,7 +59,7 @@ namespace Prototype.NetworkLobby
         
         protected ulong _currentMatchID;
 
-        protected LobbyHook _lobbyHooks;
+        protected LobbyHook _lobbyHooks;       
 
         void Start()
         {
@@ -123,6 +124,10 @@ namespace Prototype.NetworkLobby
 
                 //backDelegate = StopGameClbk;
                 topPanel.isInGame = true;
+
+                backButton.gameObject.SetActive(false);
+                musicButton.gameObject.SetActive(false);
+
                 topPanel.ToggleVisibility(false);
             }
         }
@@ -141,14 +146,17 @@ namespace Prototype.NetworkLobby
             currentPanel = newPanel;
             userTrail.AddLast(newPanel);            
             if (currentPanel != mainMenuPanel)
-            {
+            {                
                 backButton.gameObject.SetActive(true);
+                musicButton.gameObject.SetActive(true);                
+
                 exitButton.gameObject.SetActive(false);
             }
             else
             {
                 backButton.gameObject.SetActive(false);
                 exitButton.gameObject.SetActive(true);
+                musicButton.gameObject.SetActive(true);
 
                 SetServerInfo("Offline", "None");
                 _isMatchmaking = false;
@@ -176,6 +184,7 @@ namespace Prototype.NetworkLobby
             {
                 backButton.gameObject.SetActive(false);
                 exitButton.gameObject.SetActive(true);
+                musicButton.gameObject.SetActive(true);
 
                 SetServerInfo("Offline", "None");
                 _isMatchmaking = false;
@@ -207,7 +216,7 @@ namespace Prototype.NetworkLobby
             {
                 backDelegate();
             }
-            //topPanel.isInGame = false;
+            topPanel.isInGame = false;
         }
 
         public void OnExitButton()
@@ -273,10 +282,7 @@ namespace Prototype.NetworkLobby
         {
             conn.Send(MsgKicked, new KickMsg());
         }
-
-
-
-
+        
         public void KickedMessageHandler(NetworkMessage netMsg)
         {
             infoPanel.Display("Kicked by Server", "Close", null);
@@ -309,9 +315,7 @@ namespace Prototype.NetworkLobby
                 StopHost();
             }
         }
-
-
-
+        
         //allow to handle the (+) button to add/remove player
         public void OnPlayersNumberModified(int count)
         {
@@ -383,7 +387,6 @@ namespace Prototype.NetworkLobby
                     p.ToggleJoinButton(numPlayers >= minPlayers);
                 }
             }
-
         }
 
         public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)
@@ -408,8 +411,12 @@ namespace Prototype.NetworkLobby
 					allready &= lobbySlots[i].readyToBegin;
 			}
 
-			if(allready)
-				StartCoroutine(ServerCountdownCoroutine());
+            if (allready)
+            {
+                StartCoroutine(ServerCountdownCoroutine());
+                backButton.gameObject.SetActive(false);
+                musicButton.gameObject.SetActive(false);
+            }
         }
 
         public IEnumerator ServerCountdownCoroutine()
@@ -445,7 +452,8 @@ namespace Prototype.NetworkLobby
                     (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(0);
                 }
             }
-
+            backButton.gameObject.SetActive(false);
+            musicButton.gameObject.SetActive(false);
             ServerChangeScene(playScene);
         }
 
@@ -524,17 +532,19 @@ namespace Prototype.NetworkLobby
 
         // ----------------- ERIC FADE BETWEEN LEVELS ------------------
         #region FadeBetweenScenes
-                public void LoadScene(string sceneName)
-                {
-                    StartCoroutine(FadeToScene(sceneName));
-                }
+        public void LoadScene(string sceneName)
+        {
+            musicButton.gameObject.SetActive(false);
 
-                IEnumerator FadeToScene(string sceneName)
-                {
-                    float fadeTime = Camera.main.GetComponent<Fading>().BeginFade(1);
-                    yield return new WaitForSeconds(fadeTime);
-                    ServerChangeScene(sceneName); 
-                }
+            StartCoroutine(FadeToScene(sceneName));
+        }
+
+        IEnumerator FadeToScene(string sceneName)
+        {
+            float fadeTime = Camera.main.GetComponent<Fading>().BeginFade(1);
+            yield return new WaitForSeconds(fadeTime);
+            ServerChangeScene(sceneName); 
+        }
         #endregion
     }
 }

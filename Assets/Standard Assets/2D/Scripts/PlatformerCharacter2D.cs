@@ -27,6 +27,11 @@ namespace UnityStandardAssets._2D
         private SpriteRenderer m_SpriteRHelp;           // Reference to the help panel's SpriteRenderer component.
         private bool askHelp = false;
 
+        //[Header("HUD settings")]
+        //[SerializeField] private GameObject hudPanel;
+        //private Animator m_AnimHud;                    // Reference to the help panel's animator component.        
+        //private bool openIGM = false;
+
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
@@ -80,8 +85,13 @@ namespace UnityStandardAssets._2D
         {
             //For the first lobby start, onlevelwasloaded is not called, so Player has to be realocated to the first spawn point
             gameObject.transform.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+            //Hide Box player HUD
+            if (!isLocalPlayer)
+            {
+                transform.Find("HUD").gameObject.SetActive(false);
+            }
         }
-        
+
         //MAIN LOOP - MORE THAN ONE PER FRAME         
         private void FixedUpdate()
         {
