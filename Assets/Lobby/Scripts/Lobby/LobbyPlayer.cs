@@ -387,6 +387,13 @@ namespace Prototype.NetworkLobby
         }
 
         [ClientRpc]
+        public void RpcDenegateButtonsOnCountdown()
+        {
+            LobbyManager.s_Singleton.musicButton.gameObject.SetActive(false);
+            LobbyManager.s_Singleton.backButton.gameObject.SetActive(false);
+        }
+
+        [ClientRpc]
         public void RpcUpdateCountdown(int countdown)
         {
             LobbyManager.s_Singleton.countdownPanel.UIText.text = "Match Starting in " + countdown;

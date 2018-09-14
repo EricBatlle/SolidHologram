@@ -424,6 +424,13 @@ namespace Prototype.NetworkLobby
             if (allready)
             {
                 StartCoroutine(ServerCountdownCoroutine());
+                for (int i = 0; i < lobbySlots.Length; ++i)
+                {
+                    if (lobbySlots[i] != null)
+                    {//there is maxPlayer slots, so some could be == null, need to test it before accessing!
+                        (lobbySlots[i] as LobbyPlayer).RpcDenegateButtonsOnCountdown();
+                    }
+                }
                 backButton.gameObject.SetActive(false);
                 musicButton.gameObject.SetActive(false);
             }
@@ -462,8 +469,7 @@ namespace Prototype.NetworkLobby
                     (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(0);
                 }
             }
-            backButton.gameObject.SetActive(false);
-            musicButton.gameObject.SetActive(false);
+            
             ServerChangeScene(playScene);
         }
 
