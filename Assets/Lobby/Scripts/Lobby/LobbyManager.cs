@@ -223,13 +223,16 @@ namespace Prototype.NetworkLobby
         {
             Application.Quit();
         }
-
+        public void OnPlayerHasDisconectedMessage()
+        {
+            infoPanel.infoText.text = "The other Player has disconected";
+            infoPanel.gameObject.SetActive(true);
+        }
         //Detect when a client disconnects from the Server
         public override void OnServerDisconnect(NetworkConnection connection)
         {
             //Advise the player that someone left the game!
-            infoPanel.infoText.text = "The other Player has disconected";
-            infoPanel.gameObject.SetActive(true);
+            OnPlayerHasDisconectedMessage();
         }
 
         // ----------------- Server management
@@ -483,10 +486,12 @@ namespace Prototype.NetworkLobby
         }
 
         public override void OnClientDisconnect(NetworkConnection conn)
-        {
+        {            
             base.OnClientDisconnect(conn);
             ChangeTo(mainMenuPanel);
-        }
+
+            OnPlayerHasDisconectedMessage();
+        }        
 
         public override void OnClientError(NetworkConnection conn, int errorCode)
         {
