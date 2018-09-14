@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114626866585061852}
   m_Layer: 0
   m_Name: ResetLevel
-  m_TagString: Untagged
+  m_TagString: ResetLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,4 +85,4 @@ MonoBehaviour:
     i14: 37
     i15: 246
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1

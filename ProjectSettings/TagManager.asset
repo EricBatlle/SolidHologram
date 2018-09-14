@@ -18,6 +18,7 @@ TagManager:
   - BurningZone
   - Pusher
   - HUD
+  - ResetLevel
   layers:
   - Default
   - TransparentFX

@@ -132,7 +132,8 @@ namespace UnityStandardAssets._2D
         // Set the help animation if click OnBox 
         private void OnMouseDown()
         {
-            AskHelp();
+            if( isLocalPlayer)
+                AskHelp();
         }
 
         //Help Animation, only sets help animator boolean

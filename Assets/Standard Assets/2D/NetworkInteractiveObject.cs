@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
+//ALERT!!! CAN'T PERFORM A SECOND LEVEL POLYMORPHISM WITH THIS CLASS
 public class NetworkInteractiveObject : NetworkBehaviour
 {    
     protected GameObject player = null;
@@ -55,7 +56,6 @@ public class NetworkInteractiveObject : NetworkBehaviour
         } 
         //Debug log
         //print("There is no local player?");
-
         return null;
     }
 }

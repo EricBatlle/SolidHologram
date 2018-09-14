@@ -59,7 +59,12 @@ namespace Prototype.NetworkLobby
         
         protected ulong _currentMatchID;
 
-        protected LobbyHook _lobbyHooks;       
+        protected LobbyHook _lobbyHooks;
+
+        private void OnDisconnectedFromServer(NetworkDisconnection info)
+        {
+            print("disconeted=?");
+        }
 
         void Start()
         {
