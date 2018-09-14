@@ -54,7 +54,6 @@ public class ResetLevel : NetworkInteractiveObject
     protected void CmdResetScene()
     {
         RpcResetScene();
-        //LobbyManager.s_Singleton.LoadScene(nextSceneName);
     }
-    #endregion
+    #endregion    
 }

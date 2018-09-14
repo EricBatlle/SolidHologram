@@ -29,9 +29,14 @@ public class HUDController : MonoBehaviour {
    
     private void SetOnClickMenuButtons()
     {
-        backButton.onClick.AddListener(LobbyManager.s_Singleton.GoBackButton);
+        backButton.onClick.AddListener(GoBackButton);
         restartButton.onClick.AddListener(ResetLevel);
         //Music button works by itself
+    }
+
+    private void GoBackButton()
+    {
+        LobbyManager.s_Singleton.GoBackButton();
     }
 
     private void ResetLevel()

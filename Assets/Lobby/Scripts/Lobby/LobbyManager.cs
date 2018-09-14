@@ -59,12 +59,7 @@ namespace Prototype.NetworkLobby
         
         protected ulong _currentMatchID;
 
-        protected LobbyHook _lobbyHooks;
-
-        private void OnDisconnectedFromServer(NetworkDisconnection info)
-        {
-            print("disconeted=?");
-        }
+        protected LobbyHook _lobbyHooks;        
 
         void Start()
         {
@@ -229,6 +224,14 @@ namespace Prototype.NetworkLobby
             Application.Quit();
         }
 
+        //Detect when a client disconnects from the Server
+        public override void OnServerDisconnect(NetworkConnection connection)
+        {
+            //Advise the player that someone left the game!
+            infoPanel.infoText.text = "The other Player has disconected";
+            infoPanel.gameObject.SetActive(true);
+        }
+
         // ----------------- Server management
 
         public void AddLocalPlayer()
@@ -265,14 +268,13 @@ namespace Prototype.NetworkLobby
         }
 
         public void StopClientClbk()
-        {
+        {            
             StopClient();
 
             if (_isMatchmaking)
             {
                 StopMatchMaker();
             }
-
             ChangeTo(mainMenuPanel);
         }
 
@@ -479,7 +481,6 @@ namespace Prototype.NetworkLobby
                 SetServerInfo("Client", networkAddress);
             }
         }
-
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {

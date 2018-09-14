@@ -69,8 +69,8 @@ public class LineDraw_Net : NetworkInteractiveObject
     Vector3 oldMousePos;                    //we store the mouse position when user first clicks
     List<Vector3> positionsLine = new List<Vector3>();
     private float drawTimer;
-    bool waitUntilNextDraw = false;         //Set to true when draws over undrawable surface, to cancel the draw
-    bool drawing = false;                   //Set to true when the user is currently drawing
+    private bool waitUntilNextDraw = false;         //Set to true when draws over undrawable surface, to cancel the draw
+    private bool drawing = false;                   //Set to true when the user is currently drawing
     private GameObject box;
     private PlatformerCharacter2D boxController;
 
