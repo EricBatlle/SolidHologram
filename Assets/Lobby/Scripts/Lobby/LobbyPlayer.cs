@@ -163,7 +163,7 @@ namespace Prototype.NetworkLobby
             //Player selection
             OnMyBentley(bentleySelected);
             OnMyBox(boxSelected);
-        }
+        }       
 
         public override void OnStartAuthority()
         {
@@ -186,8 +186,7 @@ namespace Prototype.NetworkLobby
         }
 
         void SetupOtherPlayer()
-        {
-            
+        {            
             nameInput.interactable = false;
             removePlayerButton.interactable = NetworkServer.active;
 
@@ -384,6 +383,12 @@ namespace Prototype.NetworkLobby
         {
             readyButton.gameObject.SetActive(enabled);
             waitingPlayerButton.gameObject.SetActive(!enabled);
+        }
+
+        [ClientRpc]
+        public void RpcUpdateClientsPhaseTitle(string phaseTitle)
+        {
+            LobbyManager.s_Singleton.lobbyPanel.gameObject.GetComponent<LobbyPlayerList>().phaseTitle.text = phaseTitle;
         }
 
         [ClientRpc]

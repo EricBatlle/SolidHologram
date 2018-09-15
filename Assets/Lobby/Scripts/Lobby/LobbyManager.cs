@@ -367,6 +367,7 @@ namespace Prototype.NetworkLobby
 
                 if (p != null)
                 {
+                    p.RpcUpdateClientsPhaseTitle(LobbyManager.s_Singleton.lobbyPanel.gameObject.GetComponent<LobbyPlayerList>().phaseTitle.text);
                     p.RpcUpdateRemoveButton();
                     p.ToggleJoinButton(numPlayers + 1 >= minPlayers);
                 }
@@ -486,14 +487,14 @@ namespace Prototype.NetworkLobby
             infoPanel.gameObject.SetActive(false);
 
             conn.RegisterHandler(MsgKicked, KickedMessageHandler);
-
+            
             if (!NetworkServer.active)
             {//only to do on pure client (not self hosting client)
                 ChangeTo(lobbyPanel);
                 backDelegate = StopClientClbk;
                 SetServerInfo("Client", networkAddress);
             }
-        }
+        }       
 
         public override void OnClientDisconnect(NetworkConnection conn)
         {            

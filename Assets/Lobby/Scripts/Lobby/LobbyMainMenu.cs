@@ -55,6 +55,7 @@ namespace Prototype.NetworkLobby
             LobbyManager.s_Singleton.playScene = selectedScene;
             //lobbyManager.StartHost();
             lobbyPanel.gameObject.GetComponent<LobbyPlayerList>().phaseTitle.text = selectedScene;
+            lobbyPanel.gameObject.GetComponent<LobbyPlayerList>().phaseTitle.color = Color.white;
             this.OnClickCreateMatchmakingGame();            
         }
 
