@@ -54,6 +54,7 @@ namespace Prototype.NetworkLobby
             string selectedScene = "LvL" + chapterSelected + "." + levelSelected; ;
             LobbyManager.s_Singleton.playScene = selectedScene;
             //lobbyManager.StartHost();
+            lobbyPanel.gameObject.GetComponent<LobbyPlayerList>().phaseTitle.text = selectedScene;
             this.OnClickCreateMatchmakingGame();            
         }
 
