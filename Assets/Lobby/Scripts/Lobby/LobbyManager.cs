@@ -225,14 +225,18 @@ namespace Prototype.NetworkLobby
         }
         public void OnPlayerHasDisconectedMessage()
         {
-            infoPanel.infoText.text = "The other Player has disconected";
-            infoPanel.gameObject.SetActive(true);
+            if (topPanel.isInGame)
+            {
+                infoPanel.infoText.text = "The other Player has disconected";
+                infoPanel.gameObject.SetActive(true);
+            }            
         }
         //Detect when a client disconnects from the Server
         public override void OnServerDisconnect(NetworkConnection connection)
         {
             //Advise the player that someone left the game!
             OnPlayerHasDisconectedMessage();
+            base.OnServerDisconnect(connection);
         }
 
         // ----------------- Server management
