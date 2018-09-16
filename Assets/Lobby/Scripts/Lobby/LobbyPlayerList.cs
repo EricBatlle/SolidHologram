@@ -16,7 +16,7 @@ namespace Prototype.NetworkLobby
         public Text phaseTitle;
 
         protected VerticalLayoutGroup _layout;
-        protected List<LobbyPlayer> _players = new List<LobbyPlayer>();
+        public List<LobbyPlayer> _players = new List<LobbyPlayer>();
 
         public void OnEnable()
         {

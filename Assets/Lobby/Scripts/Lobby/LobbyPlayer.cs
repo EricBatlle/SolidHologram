@@ -16,6 +16,7 @@ namespace Prototype.NetworkLobby
         public int avatarIndex = 0;
         public Button boxButton;
         public Button bentleyButton;
+        public LobbyPlayer otherLobbyPlayer;
         //-----
 
         static Color[] Colors = new Color[] { Color.magenta, Color.red, Color.cyan, Color.blue, Color.green, Color.yellow };
@@ -36,6 +37,7 @@ namespace Prototype.NetworkLobby
         public string playerName = "";
         [SyncVar(hook = "OnMyColor")]
         public Color playerColor = Color.white;
+        public Color playerDisableColor = new Color(1, 1, 1, 0.5f);
 
         public Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         public Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
@@ -44,16 +46,14 @@ namespace Prototype.NetworkLobby
         static Color NotReadyColor = new Color(255.0f, 255.0f, 255.0f, 1.0f);
         static Color ReadyColor = new Color(0f, 219.0f, 214.0f, 1.0f);
         static Color TransparentColor = new Color(0, 0, 0, 0);
-
-        //static Color NormalColor = new Color(0.0f, 219.0f, 2.0f, 1.0f);
-
-
+        
+        //static Color NormalColor = new Color(0.0f, 219.0f, 2.0f, 1.0f);        
         //static Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         //static Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
 
-        #region player Selection
+        #region characterSelection
         [Space]
-        [Header("Player Selection")]
+        [Header("Character Selection")]
         [SyncVar(hook = "OnMyBentley")]
         public bool bentleySelected = false;
         public Sprite bentleySprite;
@@ -63,7 +63,7 @@ namespace Prototype.NetworkLobby
         public bool boxSelected = false;
         public Sprite boxSprite;
         public Sprite boxSelectedSprite;
-
+        
         #region bentleySelection
         //When "bentleySelected" variable changes do that
         public void OnMyBentley(bool bentleySelected)
@@ -138,6 +138,78 @@ namespace Prototype.NetworkLobby
 
         #endregion
 
+        #region characterSelectionAvailability
+        [Space]
+        [Header("Character Availability")]
+        [SyncVar(hook = "OnMyIsReady")]
+        public bool isReady = false;
+        
+        public void ChangeCharacterSelectionAvailability()
+        {
+            if (bentleySelected)
+            {
+                //disable bentley for the other player
+                CmdChangeBentleySelectionAvailability();
+            }
+            else if (boxSelected)
+            {
+                CmdChangeBoxSelectionAvailability();
+            }
+            return;
+        }
+
+        public void DisableButton(Button button)
+        {
+            button.gameObject.GetComponent<Image>().color = playerDisableColor;
+            button.interactable = false;
+        }
+
+        #region isReady hooks
+        //When "isReady" variable changes, do that
+        public void OnMyIsReady(bool readyState)
+        {
+            isReady = readyState;
+        }
+        //Used to set up local player
+        [Command]
+        public void CmdIsReadyChanged(bool readyState)
+        {
+            isReady = readyState;
+        }
+        #endregion
+
+        #region bentleyAvailability
+        [Command]
+        public void CmdChangeBentleySelectionAvailability()
+        {
+            RpcChangeBentleySelectionAvailability();
+        }
+
+        [ClientRpc]
+        public void RpcChangeBentleySelectionAvailability()
+        {
+            DisableButton(otherLobbyPlayer.bentleyButton);
+            DisableButton(boxButton);            
+        }
+        #endregion
+
+        #region boxAvailability
+        [Command]
+        public void CmdChangeBoxSelectionAvailability()
+        {
+            RpcChangeBoxSelectionAvailability();
+        }
+
+        [ClientRpc]
+        public void RpcChangeBoxSelectionAvailability()
+        {
+            DisableButton(otherLobbyPlayer.boxButton);
+            DisableButton(bentleyButton);
+        }
+        #endregion
+
+        #endregion
+
         public override void OnClientEnterLobby()
         {
             base.OnClientEnterLobby();
@@ -146,7 +218,7 @@ namespace Prototype.NetworkLobby
 
             LobbyPlayerList._instance.AddPlayer(this);
             LobbyPlayerList._instance.DisplayDirectServerWarning(isServer && LobbyManager.s_Singleton.matchMaker == null);
-
+            
             if (isLocalPlayer)
             {
                 SetupLocalPlayer();
@@ -163,6 +235,8 @@ namespace Prototype.NetworkLobby
             //Player selection
             OnMyBentley(bentleySelected);
             OnMyBox(boxSelected);
+            //Player Availability
+            OnMyIsReady(isReady);
         }       
 
         public override void OnStartAuthority()
@@ -197,6 +271,13 @@ namespace Prototype.NetworkLobby
             boxButton.interactable = false;
             bentleyButton.interactable = false;
 
+            if (this.isReady)
+            {
+                if (bentleySelected)                
+                    DisableButton(boxButton);                
+                if (boxSelected)                
+                    DisableButton(bentleyButton);
+            }
             OnClientReady(false);
         }
 
@@ -215,6 +296,16 @@ namespace Prototype.NetworkLobby
             localIcone.gameObject.SetActive(true);
 
             CheckRemoveButton();
+
+            CmdIsReadyChanged(isReady);
+            if (otherLobbyPlayer.isReady)
+            {
+                if (otherLobbyPlayer.bentleySelected)                
+                    CmdChangeBoxSelectionAvailability();
+                
+                if (otherLobbyPlayer.boxSelected)               
+                    CmdChangeBentleySelectionAvailability();              
+            }
 
             if (playerColor == Color.white)
                 CmdColorChange();
@@ -250,7 +341,7 @@ namespace Prototype.NetworkLobby
             if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(0);
         }
 
-        //ERIC STUFF 
+        #region AvatarPicker
         void AvatarPicker(string buttonName)
         {
             if (!isLocalPlayer)
@@ -290,7 +381,7 @@ namespace Prototype.NetworkLobby
         {
             LobbyManager.s_Singleton.SetPlayerTypeLobby(GetComponent<NetworkIdentity>().connectionToClient, avIndex, playerType);
         }
-        //-----
+        #endregion
 
         //This enable/disable the remove button depending on if that is the only local player or not
         public void CheckRemoveButton()
@@ -309,6 +400,7 @@ namespace Prototype.NetworkLobby
         {
             if (readyState)
             {
+                ChangeCharacterSelectionAvailability();
                 ChangeReadyButtonColor(TransparentColor);
 
                 Text textComponent = readyButton.transform.GetChild(0).GetComponent<Text>();
@@ -332,7 +424,8 @@ namespace Prototype.NetworkLobby
         }
 
         public void OnPlayerListChanged(int idx)
-        { 
+        {
+            otherLobbyPlayer = (idx == 0) ? LobbyPlayerList._instance._players.Last<LobbyPlayer>() : LobbyPlayerList._instance._players.First<LobbyPlayer>();
             GetComponent<Image>().color = (idx % 2 == 0) ? EvenRowColor : OddRowColor;
         }
 
@@ -361,6 +454,7 @@ namespace Prototype.NetworkLobby
 
         public void OnReadyClicked()
         {
+            isReady = true;
             SendReadyToBeginMessage();
         }
 
