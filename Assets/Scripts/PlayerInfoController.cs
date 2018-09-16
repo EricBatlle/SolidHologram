@@ -80,12 +80,13 @@ public class PlayerInfoController : MonoBehaviour
     {
         //Get from scene name the chapter and the level
         string name = SceneManager.GetActiveScene().name;
-        string chapter = name.Substring(name.LastIndexOf('.') + 1);
-        char level = name[name.LastIndexOf('.') - 1];
+        print("scene name" + name);
+        string level = name.Substring(name.LastIndexOf('.') + 1);
+        char chapter = name[name.LastIndexOf('.') - 1];
         //Cast to int to operate with them
-        int chapter_int = int.Parse(chapter);
-        int level_int = (int)Char.GetNumericValue(level);
-
+        int level_int = int.Parse(level);
+        int chapter_int = (int)Char.GetNumericValue(chapter);
+        print("chapter " + chapter_int + " level: " + level);
         //Update level
         data.levels[((chapter_int - 1) * 3) + level_int] = true;
 
@@ -96,6 +97,7 @@ public class PlayerInfoController : MonoBehaviour
         }
         Save();
     }
+
     //Get last chapter/level completed
     #region GetLastCompleted
     public int GetLastChapterCompleted()
@@ -120,5 +122,6 @@ public class PlayerInfoController : MonoBehaviour
         return 0;
     }
     #endregion
+
 }
 
