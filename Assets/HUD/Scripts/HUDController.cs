@@ -42,5 +42,6 @@ public class HUDController : MonoBehaviour {
     private void ResetLevel()
     {
         GameObject.FindGameObjectWithTag("ResetLevel").GetComponent<ResetLevel>().ResetScene();
+        InGameMenu();
     }
 }
