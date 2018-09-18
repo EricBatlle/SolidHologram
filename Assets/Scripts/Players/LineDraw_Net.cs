@@ -19,7 +19,10 @@ public class LineDraw_Net : NetworkInteractiveObject
     public DrawButton[] hudButtons;
     public DrawButton messageDrawButton;
     public DrawButton normalDrawButton;
-
+    //Hider
+    [SerializeField] private GameObject hiderPanel;
+    private Animator m_AnimBentleyHUDPanel;
+    private bool openBentleyHUD = true;
 
     //PREFAB DRAW
     [Header("Draw Prefab")]
@@ -106,6 +109,8 @@ public class LineDraw_Net : NetworkInteractiveObject
             //Initiate DrawButtons
             changeDrawType();                       //Set Listeners to the HUD buttons
             messageDrawButton.initiatePressed();    //Starts with the message type button
+            m_AnimBentleyHUDPanel = hiderPanel.GetComponent<Animator>();
+            m_AnimBentleyHUDPanel.SetBool("openBentleyHUD", openBentleyHUD);
         }
     }
 
@@ -495,6 +500,13 @@ public class LineDraw_Net : NetworkInteractiveObject
         }
     }
     #endregion
+
+    //HUD Hider animation
+    public void OnClickHider()
+    {
+        openBentleyHUD = !openBentleyHUD;
+        m_AnimBentleyHUDPanel.SetBool("openBentleyHUD", openBentleyHUD);
+    }
 
     //Decides if the surface is drawable or not
     bool isDrawableSurface()

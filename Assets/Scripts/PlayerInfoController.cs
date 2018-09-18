@@ -80,21 +80,18 @@ public class PlayerInfoController : MonoBehaviour
     {
         //Get from scene name the chapter and the level
         string name = SceneManager.GetActiveScene().name;
-        print("scene name" + name);
         string level = name.Substring(name.LastIndexOf('.') + 1);
         char chapter = name[name.LastIndexOf('.') - 1];
         //Cast to int to operate with them
         int level_int = int.Parse(level);
         int chapter_int = (int)Char.GetNumericValue(chapter);
-        print("chapter " + chapter_int + " level: " + level);
         //Update level
         data.levels[((chapter_int - 1) * 3) + level_int] = true;
 
         //If it's the last level of the chapter, open new chapter
-        if (level_int >= 3)
-        {
+        if (level_int >= 3)        
             data.chapters[chapter_int] = true;
-        }
+        
         Save();
     }
 
